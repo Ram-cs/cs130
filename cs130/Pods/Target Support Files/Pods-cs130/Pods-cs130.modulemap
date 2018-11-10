@@ -1,0 +1,6 @@
+framework module Pods_cs130 {
+  umbrella header "Pods-cs130-umbrella.h"
+
+  export *
+  module * { export * }
+}
