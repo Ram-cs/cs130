@@ -1,1 +1,1 @@
-cs130
+cs130-StudyBuddy
