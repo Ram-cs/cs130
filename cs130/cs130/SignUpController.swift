@@ -108,7 +108,4 @@ class SignUpController: UIViewController {
         view.addSubview(alreadyHaveAccountButtton) //always put this first and then only anchor
         alreadyHaveAccountButtton.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -40, width: 0, height: 40)
     }
-
-    
-    
 }
