@@ -21,6 +21,10 @@
 		83F24E33219666010012034D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E32219666010012034D /* Extension.swift */; };
 		83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E3421968FB10012034D /* MainTabBarController.swift */; };
 		83F24E37219693C50012034D /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E36219693C50012034D /* SignUpController.swift */; };
+		881ADBCC2198ECD500A76EB9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCB2198ECD500A76EB9 /* Post.swift */; };
+		881ADBCE2198F74B00A76EB9 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCD2198F74B00A76EB9 /* DemoController.swift */; };
+		881ADBD02199052900A76EB9 /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCF2199052900A76EB9 /* TextItem.swift */; };
+		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,10 @@
 		83F24E32219666010012034D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		83F24E3421968FB10012034D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		83F24E36219693C50012034D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		881ADBCB2198ECD500A76EB9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		881ADBCD2198F74B00A76EB9 /* DemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
+		881ADBCF2199052900A76EB9 /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
+		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C156AB094F174432F22202B0 /* Pods-cs130.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.debug.xcconfig"; sourceTree = "<group>"; };
 		D6246BE0A06B63ED09BABDC6 /* Pods-cs130Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC2D6914668F7CFAE62543C4 /* Pods-cs130Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,12 +123,16 @@
 				83F24E3421968FB10012034D /* MainTabBarController.swift */,
 				83F24E36219693C50012034D /* SignUpController.swift */,
 				83557843218CF96800DAC3CF /* ViewController.swift */,
+				881ADBCD2198F74B00A76EB9 /* DemoController.swift */,
 				83557848218CF97200DAC3CF /* Assets.xcassets */,
 				8355784A218CF97200DAC3CF /* LaunchScreen.storyboard */,
 				8355784D218CF97200DAC3CF /* Info.plist */,
 				83557861219538AD00DAC3CF /* GoogleService-Info.plist */,
 				21D5F3EA2197E0EF000DAB8A /* Course.swift */,
+				881ADBCF2199052900A76EB9 /* TextItem.swift */,
+				881ADBD12199053B00A76EB9 /* Comment.swift */,
 				21D5F3EC2197E2ED000DAB8A /* User.swift */,
+				881ADBCB2198ECD500A76EB9 /* Post.swift */,
 			);
 			path = cs130;
 			sourceTree = "<group>";
@@ -335,8 +347,12 @@
 				21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */,
 				83557844218CF96800DAC3CF /* ViewController.swift in Sources */,
 				83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */,
+				881ADBCE2198F74B00A76EB9 /* DemoController.swift in Sources */,
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
+				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
+				881ADBCC2198ECD500A76EB9 /* Post.swift in Sources */,
+				881ADBD02199052900A76EB9 /* TextItem.swift in Sources */,
 				83F24E33219666010012034D /* Extension.swift in Sources */,
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,
 			);
