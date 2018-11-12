@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+        FirebaseApp.configure()
 //        let controller = ViewController()
 //        let mainTabBarController = MainTabBarController()
         // let signUpController = SignUpController()
@@ -27,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let courseTableViewController = CourseTableViewController()
         let navigationController = UINavigationController(rootViewController: courseTableViewController)
         window?.rootViewController = navigationController
-        FirebaseApp.configure()
         return true
     }
 }
