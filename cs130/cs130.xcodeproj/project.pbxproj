@@ -136,12 +136,7 @@
 				881ADBCF2199052900A76EB9 /* TextItem.swift */,
 				881ADBD12199053B00A76EB9 /* Comment.swift */,
 				21D5F3EC2197E2ED000DAB8A /* User.swift */,
-<<<<<<< HEAD
-				881ADBCB2198ECD500A76EB9 /* Post.swift */,
-=======
-				21D5F3EE2198CA98000DAB8A /* CourseTableViewController.swift */,
-				21D5F3F02198FACD000DAB8A /* CourseDetailViewController.swift */,
->>>>>>> 23a07ca4838dd69aef9c89f313068bd20f481234
+
 			);
 			path = cs130;
 			sourceTree = "<group>";
