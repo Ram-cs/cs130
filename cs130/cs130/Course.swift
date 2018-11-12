@@ -10,26 +10,27 @@ import Foundation
 import FirebaseDatabase
 
 class Course {
+    /*
     let name:String
     let id:String // A unique identifier
     let major:String
+    let profName:String
+    let quarter:String
+    let year:Int
+    */
+    let id: String
+    let attributes: [String: AnyObject]
     let itemRef:DatabaseReference?
     
-    init(name:String, id:String, major:String) {
-        self.name = name
+    init(id: String) {
         self.id = id
-        self.major = major
-        self.itemRef = nil
+        self.itemRef = Database.database().reference().child("courses").child(id)
+        self.attributes = [:]
     }
     
-    init(snapshot:DataSnapshot) {
+    init(snapshot: DataSnapshot) {
+        self.id = snapshot.key
         self.itemRef = snapshot.ref
-        let dic = snapshot.value as? NSDictionary
-        if let dicName = dic?["name"] as? String {self.name = dicName}
-        else {self.name = ""}
-        if let dicId = dic?["id"] as? String {self.id = dicId}
-        else {self.id = ""}
-        if let dicMajor = dic?["major"] as? String {self.major = dicMajor}
-        else {self.major = ""}
+        self.attributes = snapshot.value as? [String: AnyObject] ?? [:]
     }
 }
