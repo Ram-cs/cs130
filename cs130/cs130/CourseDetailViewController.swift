@@ -54,7 +54,7 @@ class CourseDetailViewController: UIViewController {
     } ()
     
     func displayCourse() {
-        self.courseTitle.text = self.course?.attributes["name"]! as! String
+        self.courseTitle.text = self.course?.attributes["title"]! as! String
         
         let pageStack = UIStackView(arrangedSubviews: [self.courseTitle, self.info])
         pageStack.axis = .vertical

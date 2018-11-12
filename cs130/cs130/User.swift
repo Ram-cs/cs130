@@ -28,11 +28,11 @@ class User {
         else {self.major = ""}
     }
     
-    func addCourse(courseId: String) {
-        Database.database().reference().child("courses").child(courseId).child(self.id)
+    func addCourse(major: String, courseId: String) {
+        Database.database().reference().child("majors").child(major).child(courseId).child(self.id)
     }
     
-    func removeCourse(courseId: String) {
-        Database.database().reference().child("courses").child(courseId).child(self.id).removeValue()
+    func removeCourse(major: String, courseId: String) {
+        Database.database().reference().child("majors").child(major).child(courseId).child(self.id).removeValue()
     }
 }

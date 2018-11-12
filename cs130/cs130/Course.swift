@@ -18,17 +18,20 @@ class Course {
     let quarter:String
     let year:Int
     */
+    let major: String
     let id: String
     let attributes: [String: AnyObject]
     let itemRef:DatabaseReference?
     
-    init(id: String) {
+    init(major: String, id: String) {
+        self.major = major
         self.id = id
-        self.itemRef = Database.database().reference().child("courses").child(id)
+        self.itemRef = Database.database().reference().child("majors").child(major).child(id)
         self.attributes = [:]
     }
     
-    init(snapshot: DataSnapshot) {
+    init(major: String, snapshot: DataSnapshot) {
+        self.major = major
         self.id = snapshot.key
         self.itemRef = snapshot.ref
         self.attributes = snapshot.value as? [String: AnyObject] ?? [:]

@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1AE76596ED4248103D45F3E3 /* Pods_cs130Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD67C4CE2EEA4389898A9FE /* Pods_cs130Tests.framework */; };
+		21BD0B7B219934F300797852 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD0B78219934F300797852 /* Post.swift */; };
+		21BD0B7C219934F300797852 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD0B79219934F300797852 /* CourseTableViewController.swift */; };
+		21BD0B7D219934F300797852 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD0B7A219934F300797852 /* CourseDetailViewController.swift */; };
 		21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3EA2197E0EF000DAB8A /* Course.swift */; };
 		21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3EC2197E2ED000DAB8A /* User.swift */; };
-		21D5F3EF2198CA98000DAB8A /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3EE2198CA98000DAB8A /* CourseTableViewController.swift */; };
-		21D5F3F12198FACE000DAB8A /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3F02198FACD000DAB8A /* CourseDetailViewController.swift */; };
 		221ACEF3165EDA2F7FE6EE91 /* Pods_cs130.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDF1E43BAFEC69442A47F5 /* Pods_cs130.framework */; };
 		83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557841218CF96800DAC3CF /* AppDelegate.swift */; };
 		83557844218CF96800DAC3CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557843218CF96800DAC3CF /* ViewController.swift */; };
@@ -23,8 +24,6 @@
 		83F24E33219666010012034D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E32219666010012034D /* Extension.swift */; };
 		83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E3421968FB10012034D /* MainTabBarController.swift */; };
 		83F24E37219693C50012034D /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E36219693C50012034D /* SignUpController.swift */; };
-		881ADBCC2198ECD500A76EB9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCB2198ECD500A76EB9 /* Post.swift */; };
-		881ADBCE2198F74B00A76EB9 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCD2198F74B00A76EB9 /* DemoController.swift */; };
 		881ADBD02199052900A76EB9 /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCF2199052900A76EB9 /* TextItem.swift */; };
 		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
 /* End PBXBuildFile section */
@@ -40,10 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21BD0B78219934F300797852 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		21BD0B79219934F300797852 /* CourseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
+		21BD0B7A219934F300797852 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 		21D5F3EA2197E0EF000DAB8A /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		21D5F3EC2197E2ED000DAB8A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		21D5F3EE2198CA98000DAB8A /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
-		21D5F3F02198FACD000DAB8A /* CourseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 		7B7579CCD2407B483A884040 /* Pods-cs130.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.release.xcconfig"; sourceTree = "<group>"; };
 		80CDF1E43BAFEC69442A47F5 /* Pods_cs130.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs130.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8355783E218CF96800DAC3CF /* cs130.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cs130.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,8 +60,6 @@
 		83F24E32219666010012034D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		83F24E3421968FB10012034D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		83F24E36219693C50012034D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
-		881ADBCB2198ECD500A76EB9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		881ADBCD2198F74B00A76EB9 /* DemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
 		881ADBCF2199052900A76EB9 /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
 		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		C156AB094F174432F22202B0 /* Pods-cs130.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +88,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21BD0B77219934BD00797852 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		476B0A5DED2DD0F12C60ED21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +112,7 @@
 				8355783F218CF96800DAC3CF /* Products */,
 				AD245D546B7192D4124AA3E6 /* Pods */,
 				476B0A5DED2DD0F12C60ED21 /* Frameworks */,
+				21BD0B77219934BD00797852 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,12 +128,14 @@
 		83557840218CF96800DAC3CF /* cs130 */ = {
 			isa = PBXGroup;
 			children = (
+				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
+				21BD0B79219934F300797852 /* CourseTableViewController.swift */,
+				21BD0B78219934F300797852 /* Post.swift */,
 				83F24E2E219663730012034D /* Utilities */,
 				83557841218CF96800DAC3CF /* AppDelegate.swift */,
 				83F24E3421968FB10012034D /* MainTabBarController.swift */,
 				83F24E36219693C50012034D /* SignUpController.swift */,
 				83557843218CF96800DAC3CF /* ViewController.swift */,
-				881ADBCD2198F74B00A76EB9 /* DemoController.swift */,
 				83557848218CF97200DAC3CF /* Assets.xcassets */,
 				8355784A218CF97200DAC3CF /* LaunchScreen.storyboard */,
 				8355784D218CF97200DAC3CF /* Info.plist */,
@@ -136,7 +144,6 @@
 				881ADBCF2199052900A76EB9 /* TextItem.swift */,
 				881ADBD12199053B00A76EB9 /* Comment.swift */,
 				21D5F3EC2197E2ED000DAB8A /* User.swift */,
-
 			);
 			path = cs130;
 			sourceTree = "<group>";
@@ -347,17 +354,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21D5F3F12198FACE000DAB8A /* CourseDetailViewController.swift in Sources */,
+				21BD0B7D219934F300797852 /* CourseDetailViewController.swift in Sources */,
 				83F24E302196639B0012034D /* Constraints.swift in Sources */,
-				21D5F3EF2198CA98000DAB8A /* CourseTableViewController.swift in Sources */,
+				21BD0B7C219934F300797852 /* CourseTableViewController.swift in Sources */,
 				21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */,
 				83557844218CF96800DAC3CF /* ViewController.swift in Sources */,
 				83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */,
-				881ADBCE2198F74B00A76EB9 /* DemoController.swift in Sources */,
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
+				21BD0B7B219934F300797852 /* Post.swift in Sources */,
 				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
-				881ADBCC2198ECD500A76EB9 /* Post.swift in Sources */,
 				881ADBD02199052900A76EB9 /* TextItem.swift in Sources */,
 				83F24E33219666010012034D /* Extension.swift in Sources */,
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,

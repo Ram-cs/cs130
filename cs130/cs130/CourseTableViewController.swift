@@ -23,7 +23,7 @@ class CourseTableViewController: UITableViewController {
         navigationItem.title = "All Courses"
         
         // Connect to DB
-        self.ref = Database.database().reference().child("courses")
+        self.ref = Database.database().reference().child("majors")
         self.fetchCourses()
         
         // Register cells
@@ -35,8 +35,11 @@ class CourseTableViewController: UITableViewController {
         self.ref?.observe(.value, with: { (DataSnapshot) in
             var fetchedCourses = [Course]()
             for item in DataSnapshot.children {
-                let course = Course(snapshot: item as! DataSnapshot)
-                fetchedCourses.append(course)
+                let major = item as! DataSnapshot
+                for course in major.children {
+                    let newCourse = Course(major: major.key as! String, snapshot: course as! DataSnapshot)
+                    fetchedCourses.append(newCourse)
+                }
             }
             self.Courses = fetchedCourses
             self.tableView.reloadData()
@@ -126,9 +129,10 @@ class CourseTableViewCell: UITableViewCell {
     }
     
     func setupContent(course: Course) {
+        let s0 = course.major
         let s1 = course.id
-        let s2 = course.attributes["name"] as? String
-        self.name.text = s1 + ": " + s2!
+        let s2 = course.attributes["title"] as? String
+        self.name.text = s0 + " " + s1 + ": " + s2!
         let s3 = course.attributes["professor"] as! String
         let s4 = (course.attributes["quarter"]! as! String) + " " + String(course.attributes["year"]! as! Int)
         self.id.text = s3 + ", " + s4
