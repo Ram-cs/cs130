@@ -12,31 +12,31 @@ import FirebaseDatabase
 class Comment: TextItem {
     let parent:TextItem
     var isPrivate:Bool
-    let isResponse:Bool
     let rootPost:Post
-    var commentRef:DatabaseReference?
     
-    init(creator:User, content:String, parent:TextItem, isPrivate:Bool, isResponse:Bool, rootPost:Post) {
+    init(creator:User, content:String, parent:TextItem, isPrivate:Bool = false, rootPost:Post) {
         self.parent = parent
         self.isPrivate = isPrivate
-        self.isResponse = isResponse
         self.rootPost = rootPost
-        self.commentRef = nil
         super.init(creator:creator, content:content)
     }
     
-    //adds entry to database /posts/major/course/postID
-    func post() {
+    //adds entry to database /posts/major/course/rootPostID/commentID
+    override func post() {
         let db:DatabaseReference = Database.database().reference()
         let major:String = self.rootPost.getMajor()
         let course:String = self.rootPost.getCourse()
-        let key:String = db.child("comments").child(major).child(course).childByAutoId().key
+        let rootPostID:String = (self.rootPost.getID())!
+        let key:String = db.child("comments").child(major).child(course).child(rootPostID).childByAutoId().key
+        
+        let post:[String:Any] = ["content": self.content,
+                                 "parentID": self.parent.getID()!,
+                                 "isPrivate": self.isPrivate,
+                                 "rootPostID": rootPostID]
+        db.updateChildValues(["/comments/\(major)/\(course)/\(rootPostID)/\(key)": post])
         
         self.ID = key as String?
-        let post:[String:Any] = ["content": self.content]
-        db.updateChildValues(["/comments/\(major)/\(course)/\(key)": post])
-        
-        self.commentRef = db.child("posts").child(major).child(course).child(key)
+        self.ref = db.child("posts").child(major).child(course).child(rootPostID).child(key)
         
     }
     

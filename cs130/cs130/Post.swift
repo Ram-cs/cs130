@@ -24,21 +24,22 @@ class Post: TextItem {
         self.course = course
         self.isTutorPost = isTutorPost
         self.isClosed = false
-        self.postRef = nil
         super.init(creator:creator, content:content)
     }
     
     //adds entry to database /posts/major/course/postID
-    func post() {
+    override func post() {
         let db:DatabaseReference = Database.database().reference()
-        let key = db.child("posts").child(major).child(course).childByAutoId().key
-        self.ID = key as String?
+        let key = db.child("posts").child(self.major).child(self.course).childByAutoId().key
+        
         let post:[String:Any] = ["description": self.content,
+                                 "title": self.title,
                                  "isTutorPost": self.isTutorPost,
-                                 "title": self.title]
+                                 "isClosed": self.isClosed]
         db.updateChildValues(["/posts/\(self.major)/\(self.course)/\(key)": post])
         
-        self.postRef = db.child("posts").child(major).child(course).child(key)
+        self.ID = key as String?
+        self.ref = db.child("posts").child(self.major).child(self.course).child(key)
     }
     
     func getMajor() -> String {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class TextItem {
     let creator:User
@@ -14,6 +15,7 @@ class TextItem {
     let creationTime:Date
     var ID:String?
     var child:Comment?
+    var ref:DatabaseReference?
     
     init(creator:User, content:String) {
         self.creator = creator
@@ -21,14 +23,24 @@ class TextItem {
         self.creationTime = Date()
         self.ID = nil
         self.child = nil
+        self.ref = nil
     }
+    
+    //to be overridden by subclasses: Post, Comment
+    //self.ID and self.ref should be initialized here
+    func post() {}
     
     func addChild(child:Comment) {
         self.child = child
     }
     
     func getChild() -> Comment? {
-        return child
+        return self.child
+    }
+    
+    //returns nil is this TextItem has not been posted yet
+    func getID() -> String? {
+        return self.ID
     }
     
     func hasChild() -> Bool {
@@ -68,9 +80,8 @@ class TextItem {
         self.content = newContent
     }
     
-    func deleteSelf() {
-        
-    }
+    
+    func deleteSelf() {}
     
     
     
