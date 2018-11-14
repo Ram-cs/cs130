@@ -28,12 +28,32 @@ class User {
         else {self.major = ""}
     }
     
-    func addCourse(major: String, courseId: String) {
-        Database.database().reference().child("majors").child(major).child(courseId).child(self.id)
+    // Add self to database (when creating new user)
+    func addToDatabase() {
+        
     }
     
-    func removeCourse(major: String, courseId: String) {
-        Database.database().reference().child("majors").child(major).child(courseId).child(self.id).removeValue()
+    func addCourse(course: Course) {
+        let major = course.major
+        let courseId = course.id
+        let key = self.userRef?.child("courses").childByAutoId().key
+        let courseInfo = ["major": major, "id": courseId]
+        let updates = ["/courses/\(key)": courseInfo]
+        self.userRef?.updateChildValues(updates)
+    }
+    
+    func removeCourse(course: Course) {
+        let major = course.major
+        let courseId = course.id
+        self.userRef?.child("courses").observe(.value, with: { (DataSnapshot) in
+            for item in DataSnapshot.children {
+                let aCourse = item as! DataSnapshot
+                let dic = aCourse.value as? NSDictionary
+                if dic?["major"] as? String == major && dic?["id"] as? String == courseId {
+                    self.userRef?.child("courses").child(aCourse.key).removeValue()
+                }
+            }
+        })
     }
     
     //returns of array of (major, courseID)
