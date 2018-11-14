@@ -134,6 +134,7 @@
 			children = (
 				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
 				21BD0B79219934F300797852 /* CourseTableViewController.swift */,
+				21D5F3EA2197E0EF000DAB8A /* Course.swift */,
 				21BD0B78219934F300797852 /* Post.swift */,
 				88ACB14E219C0277000375D2 /* PostCollector.swift */,
 				88B8C752219BBBC200BE7A09 /* DemoController.swift */,
@@ -146,7 +147,6 @@
 				8355784A218CF97200DAC3CF /* LaunchScreen.storyboard */,
 				8355784D218CF97200DAC3CF /* Info.plist */,
 				83557861219538AD00DAC3CF /* GoogleService-Info.plist */,
-				21D5F3EA2197E0EF000DAB8A /* Course.swift */,
 				881ADBCF2199052900A76EB9 /* TextItem.swift */,
 				881ADBD12199053B00A76EB9 /* Comment.swift */,
 				21D5F3EC2197E2ED000DAB8A /* User.swift */,

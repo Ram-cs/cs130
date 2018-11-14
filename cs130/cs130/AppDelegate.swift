@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
-//        let controller = ViewController()
+        // let controller = ViewController()
 //        let mainTabBarController = MainTabBarController()
         // let signUpController = SignUpController()
-        // window?.rootViewController = signUpController
+        // window?.rootViewController = controller
         let courseTableViewController = CourseTableViewController()
         let navigationController = UINavigationController(rootViewController: courseTableViewController)
         window?.rootViewController = navigationController
