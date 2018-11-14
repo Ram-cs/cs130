@@ -125,16 +125,10 @@ class CourseTableViewCell: UITableViewCell {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.id]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-15-[v]-1-[v2]-15-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name, "v2": self.id]))
-
     }
     
     func setupContent(course: Course) {
-        let s0 = course.major
-        let s1 = course.id
-        let s2 = course.attributes["title"] as? String
-        self.name.text = s0 + " " + s1 + ": " + s2!
-        let s3 = course.attributes["professor"] as! String
-        let s4 = (course.attributes["quarter"]! as! String) + " " + String(course.attributes["year"]! as! Int)
-        self.id.text = s3 + ", " + s4
+        self.name.text = course.major + " " + course.id + ": " + course.title
+        self.id.text = course.professor + ", " + course.quarter + " " + String(course.year)
     }
 }
