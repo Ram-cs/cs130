@@ -35,4 +35,9 @@ class User {
     func removeCourse(major: String, courseId: String) {
         Database.database().reference().child("majors").child(major).child(courseId).child(self.id).removeValue()
     }
+    
+    //returns of array of (major, courseID)
+    func getCourses() -> [(String,String)] {
+        return [(String, String)]()
+    }
 }

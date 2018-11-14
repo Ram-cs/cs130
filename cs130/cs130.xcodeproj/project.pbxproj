@@ -26,6 +26,8 @@
 		83F24E37219693C50012034D /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E36219693C50012034D /* SignUpController.swift */; };
 		881ADBD02199052900A76EB9 /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCF2199052900A76EB9 /* TextItem.swift */; };
 		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
+		88ACB14F219C0277000375D2 /* PostCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ACB14E219C0277000375D2 /* PostCollector.swift */; };
+		88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8C752219BBBC200BE7A09 /* DemoController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		83F24E36219693C50012034D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		881ADBCF2199052900A76EB9 /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
 		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		88ACB14E219C0277000375D2 /* PostCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollector.swift; sourceTree = "<group>"; };
+		88B8C752219BBBC200BE7A09 /* DemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
 		C156AB094F174432F22202B0 /* Pods-cs130.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.debug.xcconfig"; sourceTree = "<group>"; };
 		D6246BE0A06B63ED09BABDC6 /* Pods-cs130Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC2D6914668F7CFAE62543C4 /* Pods-cs130Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
 				21BD0B79219934F300797852 /* CourseTableViewController.swift */,
 				21BD0B78219934F300797852 /* Post.swift */,
+				88ACB14E219C0277000375D2 /* PostCollector.swift */,
+				88B8C752219BBBC200BE7A09 /* DemoController.swift */,
 				83F24E2E219663730012034D /* Utilities */,
 				83557841218CF96800DAC3CF /* AppDelegate.swift */,
 				83F24E3421968FB10012034D /* MainTabBarController.swift */,
@@ -356,6 +362,7 @@
 			files = (
 				21BD0B7D219934F300797852 /* CourseDetailViewController.swift in Sources */,
 				83F24E302196639B0012034D /* Constraints.swift in Sources */,
+				88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */,
 				21BD0B7C219934F300797852 /* CourseTableViewController.swift in Sources */,
 				21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */,
 				83557844218CF96800DAC3CF /* ViewController.swift in Sources */,
@@ -363,6 +370,7 @@
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
 				21BD0B7B219934F300797852 /* Post.swift in Sources */,
+				88ACB14F219C0277000375D2 /* PostCollector.swift in Sources */,
 				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
 				881ADBD02199052900A76EB9 /* TextItem.swift in Sources */,
 				83F24E33219666010012034D /* Extension.swift in Sources */,
