@@ -30,7 +30,6 @@ class Comment: TextItem {
         let key:String = db.child("comments").child(major).child(course).child(rootPostID).childByAutoId().key
         
         let post:[String:Any] = ["content": self.content,
-                                 "parentID": self.parent.getID()!,
                                  "isPrivate": self.isPrivate,
                                  "rootPostID": rootPostID]
         db.updateChildValues(["/comments/\(major)/\(course)/\(rootPostID)/\(key)": post])
