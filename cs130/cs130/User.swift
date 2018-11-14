@@ -30,7 +30,7 @@ class User {
     
     // Add self to database (when creating new user)
     func addToDatabase() {
-        
+        self.userRef?.child("major").setValue(self.major)
     }
     
     func addCourse(course: Course) {
@@ -40,6 +40,9 @@ class User {
         let courseInfo = ["major": major, "id": courseId]
         let updates = ["/courses/\(key)": courseInfo]
         self.userRef?.updateChildValues(updates)
+        // Update user count for course
+        course.updateUserCnt(add: true)
+        
     }
     
     func removeCourse(course: Course) {
@@ -54,6 +57,7 @@ class User {
                 }
             }
         })
+        course.updateUserCnt(add: false)
     }
     
     //returns of array of (major, courseID)

@@ -16,6 +16,7 @@ class Course {
     let professor: String
     let quarter: String
     let year: Int
+    let userCnt: Int
     let itemRef:DatabaseReference?
     
     init(major: String, id: String, title: String, professor: String, quarter: String, year: Int) {
@@ -25,6 +26,7 @@ class Course {
         self.professor = professor
         self.quarter = quarter
         self.year = year
+        self.userCnt = 0
         self.itemRef = Database.database().reference().child("majors").child(major).child(id)
     }
     
@@ -41,5 +43,28 @@ class Course {
         else {self.quarter = ""}
         if let data = val?["year"] as? Int {self.year = data}
         else {self.year = 9999}
+        if let data = val?["users"] as? Int {self.userCnt = data}
+        else {self.userCnt = 0}
+    }
+    
+    // When add == true, increment user count, otherwise decrement
+    func updateUserCnt(add: Bool) {
+        self.itemRef?.runTransactionBlock({ (MutableData) -> TransactionResult in
+            var dic = MutableData.value as? [String: AnyObject]
+            var cnt = dic?["users"] as! Int
+            if add {
+                cnt += 1
+            } else {
+                cnt = max(cnt - 1, 0)
+            }
+            dic?["users"] = cnt as AnyObject
+            MutableData.value = dic
+            return TransactionResult.success(withValue: MutableData)
+        })
+    }
+    
+    func getPostCnt() -> Int {
+        // TODO: return number of posts
+        return 10
     }
 }

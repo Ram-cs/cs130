@@ -114,10 +114,6 @@ class CourseTableViewCell: UITableViewCell {
         return label
     }()
     
-    @objc func buttonClicked() {
-        print("Enroll")
-    }
-    
     private func setupViews() {
         self.addSubview(self.name)
         self.addSubview(self.id)

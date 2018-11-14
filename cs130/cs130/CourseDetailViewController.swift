@@ -78,6 +78,10 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return button
     } ()
     
+    @objc func enrollButtonPress(sender: UIButton) {
+        self.course?.updateUserCnt(add: true)
+    }
+    
     func displayCourse() {
         // Set up the course title
         self.courseTitle.text = self.course?.title
@@ -89,6 +93,9 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         self.infoTable.register(CourseInfoTableViewCell.self, forCellReuseIdentifier: "cell")
         self.infoTable.tableFooterView = UIView(frame: .zero)
         self.infoTable.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        // Set up enroll button action
+        self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
     
         // Set up the stack view
         let pageStack = UIStackView(arrangedSubviews: [self.courseTitle, self.infoTable, self.enroll])
@@ -100,7 +107,6 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-        
     }
 }
 
