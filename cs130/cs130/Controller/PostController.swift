@@ -42,7 +42,8 @@ class PostController {
                                                 major:course.0,
                                                 course:course.1,
                                                 isTutorSearch:isTutorSearch,
-                                                creationTime:creationTime)
+                                                creationTime:creationTime,
+                                                ID:post.key)
                     posts.append(fetchedPost)
                 }
                 

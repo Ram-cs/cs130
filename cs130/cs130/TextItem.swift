@@ -17,7 +17,7 @@ public class TextItem {
     var child:Comment?
     var ref:DatabaseReference?
     
-    init(creator:User, content:String, creationTime:Date? = nil) {
+    init(creator:User, content:String, creationTime:Date? = nil, ID:String? = nil) {
         self.creator = creator
         self.content = content
         if creationTime == nil {
@@ -26,7 +26,7 @@ public class TextItem {
         else {
             self.creationTime = creationTime as! Date
         }
-        self.ID = nil
+        self.ID = ID
         self.child = nil
         self.ref = nil
     }

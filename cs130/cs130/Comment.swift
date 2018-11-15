@@ -10,15 +10,17 @@ import Foundation
 import FirebaseDatabase
 
 public class Comment: TextItem {
-    let parent:TextItem
     var isPrivate:Bool
     let rootPost:Post
+    let isResponse:Bool
+    let respondeeID:String
     
-    init(creator:User, content:String, parent:TextItem, isPrivate:Bool = false, rootPost:Post, creationTime:Date? = nil) {
-        self.parent = parent
+    init(creator:User, content:String, isPrivate:Bool = false, rootPost:Post, isResponse:Bool = false, respondeeID:String = "", creationTime:Date? = nil, ID:String? = nil) {
         self.isPrivate = isPrivate
         self.rootPost = rootPost
-        super.init(creator:creator, content:content, creationTime:creationTime)
+        self.isResponse = isResponse
+        self.respondeeID = respondeeID
+        super.init(creator:creator, content:content, creationTime:creationTime, ID:ID)
     }
     
     //adds entry to database /posts/major/course/rootPostID/commentID
