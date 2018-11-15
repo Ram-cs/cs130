@@ -37,7 +37,7 @@ class CourseTableViewController: UITableViewController {
             for item in DataSnapshot.children {
                 let major = item as! DataSnapshot
                 for course in major.children {
-                    let newCourse = Course(major: major.key as! String, snapshot: course as! DataSnapshot)
+                    let newCourse = Course(major: major.key , snapshot: course as! DataSnapshot)
                     fetchedCourses.append(newCourse)
                 }
             }

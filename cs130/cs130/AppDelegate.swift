@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+// This global variable is the currently logged-in user
+var appUser = User(id: "TESTUSER", major: "Computer Science")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

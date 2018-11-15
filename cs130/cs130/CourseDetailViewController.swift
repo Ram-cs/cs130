@@ -8,6 +8,7 @@
 
 // This viewcontroller displays details of a class
 import UIKit
+import FirebaseAuth
 
 class CourseDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -30,19 +31,19 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = self.infoTable.dequeueReusableCell(withIdentifier: "cell") as! CourseInfoTableViewCell
+        let cell = self.infoTable.dequeueReusableCell(withIdentifier: "cell") as! CourseInfoTableViewCell
         var field = ""
         var value = ""
         switch indexPath.row {
         case 0:
             field = "Course ID"
-            value = (self.course?.major)! + " " + (self.course?.id)!
+            value = ((self.course?.major)!) + " " + (self.course!.id)
         case 1:
             field = "Instructor"
-            value = (self.course?.professor)!
+            value = (self.course!.professor)
         case 2:
             field = "Quarter"
-            value = (self.course?.quarter)! + " " + String(self.course?.year as! Int)
+            value = (self.course!.quarter) + " " + String(self.course!.year)
         default:
             break
         }
@@ -71,20 +72,30 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     let enroll: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.rgb(red: 181, green: 252, blue: 161)
-        button.setTitle("ENROLL", for: .normal)
+        button.setTitle("Enroll", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = button.titleLabel?.font.withSize(30)
         return button
     } ()
     
+    let userCnt = CourseStatsBox()
+    let postCnt = CourseStatsBox()
+    
+    let emptyView: UIView = {
+        let view = UIView()
+        view.backgroundColor = PANEL_GRAY
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     @objc func enrollButtonPress(sender: UIButton) {
-        self.course?.updateUserCnt(add: true)
+        appUser.addCourse(course: self.course!)
     }
     
     func displayCourse() {
         // Set up the course title
-        self.courseTitle.text = self.course?.title
+        self.courseTitle.text = self.course!.title
         self.courseTitle.heightAnchor.constraint(equalToConstant: 200).isActive = true
 
         // Register the info table
@@ -94,11 +105,31 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         self.infoTable.tableFooterView = UIView(frame: .zero)
         self.infoTable.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
+        
+        // Set up real-time stats display
+        self.userCnt.number.text = String(self.course!.userCnt)
+        self.userCnt.item.text = "Students"
+        self.postCnt.number.text = String(self.course!.postCnt)
+        self.postCnt.item.text = "Posts"
+    
+        // Substack containing stats
+        let subStack = UIStackView(arrangedSubviews: [self.userCnt, self.postCnt])
+        subStack.axis = .horizontal
+        subStack.distribution = .fillEqually
+        subStack.alignment = .fill
+        subStack.translatesAutoresizingMaskIntoConstraints = false
+        subStack.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        view.addSubview(subStack)
+        
         // Set up enroll button action
         self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
-    
+        self.enroll.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        // The empty view
+        self.emptyView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        
         // Set up the stack view
-        let pageStack = UIStackView(arrangedSubviews: [self.courseTitle, self.infoTable, self.enroll])
+        let pageStack = UIStackView(arrangedSubviews: [self.courseTitle, self.infoTable, subStack, self.enroll, self.emptyView])
         pageStack.axis = .vertical
         pageStack.distribution = .fillProportionally
         pageStack.alignment = .fill
@@ -139,5 +170,42 @@ class CourseInfoTableViewCell: UITableViewCell {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-[v2]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.fieldName, "v2" : self.fieldValue]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.fieldName]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.fieldValue]))
+    }
+}
+
+class CourseStatsBox: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let number: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(30.0)
+        label.textAlignment = .center
+        return label
+    } ()
+    
+    let item: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIColor.gray
+        label.font = label.font.withSize(20.0)
+        label.textAlignment = .center
+        return label
+    } ()
+    
+    private func setupViews() {
+        self.backgroundColor = UIColor.white
+        self.addSubview(self.number)
+        self.addSubview(self.item)
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[v]-[v2]-20-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.number, "v2" : self.item]))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.number]))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.item]))
     }
 }

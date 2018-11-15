@@ -16,7 +16,8 @@ class Course {
     let professor: String
     let quarter: String
     let year: Int
-    let userCnt: Int
+    var userCnt: Int
+    var postCnt: Int
     let itemRef:DatabaseReference?
     
     init(major: String, id: String, title: String, professor: String, quarter: String, year: Int) {
@@ -27,7 +28,9 @@ class Course {
         self.quarter = quarter
         self.year = year
         self.userCnt = 0
+        self.postCnt = 0
         self.itemRef = Database.database().reference().child("majors").child(major).child(id)
+        self.setUpObserver()
     }
     
     init(major: String, snapshot: DataSnapshot) {
@@ -45,6 +48,12 @@ class Course {
         else {self.year = 9999}
         if let data = val?["users"] as? Int {self.userCnt = data}
         else {self.userCnt = 0}
+        self.postCnt = 0
+        self.setUpObserver()
+    }
+    
+    func toString() -> String {
+        return self.major + " " + self.id
     }
     
     // When add == true, increment user count, otherwise decrement
@@ -63,8 +72,21 @@ class Course {
         })
     }
     
-    func getPostCnt() -> Int {
-        // TODO: return number of posts
-        return 10
+    func setUpObserver() {
+        // Observe changes in user count
+        self.itemRef?.observe(.value) { (DataSnapshot) in
+            let dic = DataSnapshot.value as? NSDictionary
+            self.userCnt = dic?["users"] as! Int
+        }
+        
+        // Observe changes in post count
+        let ref = Database.database().reference().child("posts").child(self.major).child(self.id)
+        ref.observe(.value) { (DataSnapshot) in
+            var cnt = 0
+            for _ in DataSnapshot.children {
+                cnt += 1
+            }
+            self.postCnt = cnt
+        }
     }
 }
