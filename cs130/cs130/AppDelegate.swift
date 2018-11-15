@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // window?.rootViewController = controller
         let courseTableViewController = CourseTableViewController()
         let navigationController = UINavigationController(rootViewController: courseTableViewController)
-        window?.rootViewController = navigationController
+        let demo = DemoController()
+        window?.rootViewController = demo
         return true
     }
 }
