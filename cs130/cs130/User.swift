@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// This class defines a user
 class User {
     let id:String
     let major:String
@@ -23,7 +24,6 @@ class User {
         self.observeCourses()
     }
     
-    // Get user from database, based on user ID
     init(id: String) {
         self.userRef = Database.database().reference().child("users").child(id)
         self.id = id
@@ -45,13 +45,16 @@ class User {
         self.observeCourses()
     }
     
-    // Add self to database (when creating new user)
+    /// Add the user to the database as an entry (when creating a new user)
     func addToDatabase() {
         self.userRef?.child("major").setValue(self.major)
     }
     
+    /// Check if the user is already enrolled in a course
+    /// - parameters:
+    ///     - course: a course of interest
+    /// - returns: whether the user is already enrolled or not
     func hasCourse(course: Course) -> Bool {
-        // Check if user is already enrolled in course
         for item in self.courses {
             if item.0 == course.major && item.1 == course.id {
                 return true
@@ -60,6 +63,10 @@ class User {
         return false
     }
     
+    /// Let the user enroll in a course
+    /// - parameters:
+    ///     - course: a course of interest
+    /// - returns: whether the course is successfully enrolled or not (because the user has already enrolled)
     func addCourse(course: Course) -> Bool {
         if self.hasCourse(course: course) {
             return false
@@ -72,6 +79,10 @@ class User {
         }
     }
     
+    /// Let the user drop a course
+    /// - parameters:
+    ///     - course: a course of interest
+    /// - returns: whether the course is successfully dropped or not (because the user has not yet enrolled)
     func removeCourse(course: Course) -> Bool{
         if self.hasCourse(course: course) {
             self.userRef?.child("courses").child(course.toString()).removeValue()
@@ -83,7 +94,8 @@ class User {
         }
     }
     
-    // Set up observer to asynchronously listen to changes in user's classes
+    /// Set up an observer to asynchronously listen to changes in the user's courses. This is called
+    /// within the constructor
     func observeCourses() {
         self.userRef?.child("courses").observe(.value, with: { (DataSnapshot) in
             var newCourses = [(String,String)]()
@@ -98,7 +110,8 @@ class User {
         })
     }
     
-    //returns of array of (major, courseID)
+    /// Gets the courses of the user
+    /// - returns: an array of (major, courseID) that the user is currently enrolled in
     func getCourses() -> [(String,String)] {
         // return [(String, String)]()
         return self.courses

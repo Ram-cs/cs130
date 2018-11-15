@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// This class defines a course that users can enroll in and view the posts
 class Course {
     let major: String
     let id: String
@@ -52,11 +53,15 @@ class Course {
         self.setUpObserver()
     }
     
+    /// Generates the full identifier of the course, in the form of "major id"
+    /// - returns: String of the course's full identifier
     func toString() -> String {
         return self.major + " " + self.id
     }
     
-    // When add == true, increment user count, otherwise decrement
+    /// When add == true, increment user count of the course by 1, otherwise decrement
+    /// - parameters:
+    ///     - add: if true increment user count, or otherwise
     func updateUserCnt(add: Bool) {
         self.itemRef?.runTransactionBlock({ (MutableData) -> TransactionResult in
             var dic = MutableData.value as? [String: AnyObject]
@@ -72,8 +77,9 @@ class Course {
         })
     }
     
+    /// Creates an observer to the database and updates user count and post count of the course in real time.
+    /// This is called within the constructor
     func setUpObserver() {
-        // Observe changes in user count
         self.itemRef?.observe(.value) { (DataSnapshot) in
             let dic = DataSnapshot.value as? NSDictionary
             self.userCnt = dic?["users"] as! Int
