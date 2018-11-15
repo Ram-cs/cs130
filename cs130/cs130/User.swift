@@ -98,6 +98,10 @@ class User {
         })
     }
     
+    func getID() -> String {
+        return self.id
+    }
+    
     //returns of array of (major, courseID)
     func getCourses() -> [(String,String)] {
         // return [(String, String)]()

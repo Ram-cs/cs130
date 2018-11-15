@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-class TextItem {
+public class TextItem {
     let creator:User
     var content:String
     let creationTime:Date
@@ -17,10 +17,15 @@ class TextItem {
     var child:Comment?
     var ref:DatabaseReference?
     
-    init(creator:User, content:String) {
+    init(creator:User, content:String, creationTime:Date? = nil) {
         self.creator = creator
         self.content = content
-        self.creationTime = Date()
+        if creationTime == nil {
+            self.creationTime = Date()
+        }
+        else {
+            self.creationTime = creationTime as! Date
+        }
         self.ID = nil
         self.child = nil
         self.ref = nil

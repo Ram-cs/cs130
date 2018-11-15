@@ -9,16 +9,16 @@
 import Foundation
 import FirebaseDatabase
 
-class Comment: TextItem {
+public class Comment: TextItem {
     let parent:TextItem
     var isPrivate:Bool
     let rootPost:Post
     
-    init(creator:User, content:String, parent:TextItem, isPrivate:Bool = false, rootPost:Post) {
+    init(creator:User, content:String, parent:TextItem, isPrivate:Bool = false, rootPost:Post, creationTime:Date? = nil) {
         self.parent = parent
         self.isPrivate = isPrivate
         self.rootPost = rootPost
-        super.init(creator:creator, content:content)
+        super.init(creator:creator, content:content, creationTime:creationTime)
     }
     
     //adds entry to database /posts/major/course/rootPostID/commentID

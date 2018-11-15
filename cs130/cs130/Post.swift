@@ -9,22 +9,21 @@
 import Foundation
 import FirebaseDatabase
 
-class Post: TextItem {
+public class Post: TextItem {
     let title:String
     let course:String
     let major:String
-    let isTutorPost:Bool
-    var postRef:DatabaseReference?
+    let isTutorSearch:Bool
     
     var isClosed:Bool
     
-    init(creator:User, title:String, content:String, major:String, course:String, isTutorPost:Bool) {
+    init(creator:User, title:String, content:String, major:String, course:String, isTutorSearch:Bool, creationTime:Date? = nil) {
         self.title = title
         self.major = major
         self.course = course
-        self.isTutorPost = isTutorPost
+        self.isTutorSearch = isTutorSearch
         self.isClosed = false
-        super.init(creator:creator, content:content)
+        super.init(creator:creator, content:content, creationTime:creationTime)
     }
     
     //adds entry to database /posts/major/course/postID
@@ -34,7 +33,7 @@ class Post: TextItem {
         
         let post:[String:Any] = ["description": self.content,
                                  "title": self.title,
-                                 "isTutorPost": self.isTutorPost,
+                                 "isTutorSearch": self.isTutorSearch,
                                  "isClosed": self.isClosed]
         db.updateChildValues(["/posts/\(self.major)/\(self.course)/\(key)": post])
         
