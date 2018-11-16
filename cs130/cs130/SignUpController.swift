@@ -7,36 +7,55 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpController: UIViewController {
     let emailTextField: UITextField = {
-        let email = UITextField();
-        email.backgroundColor = UIColor(white: 0, alpha: 0.04)
+        let email = UITextField(frame: .zero);
+        email.backgroundColor = .white
         email.attributedPlaceholder = NSAttributedString(string: "Email",
                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         email.textColor = .black
         email.clearButtonMode = .whileEditing
         email.borderStyle = .roundedRect
         email.font = UIFont.systemFont(ofSize: 16)
+        email.sizeToFit()
+        email.translatesAutoresizingMaskIntoConstraints = true
         return email
     }()
     
     let userNameTextField: UITextField = {
         let username = UITextField();
         username.clearButtonMode = .whileEditing
-        username.backgroundColor = UIColor(white: 0, alpha: 0.04)
+        username.backgroundColor = .white
         username.attributedPlaceholder = NSAttributedString(string: "Username",
                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         username.textColor = .black
         username.borderStyle = .roundedRect
         username.font = UIFont.systemFont(ofSize: 16)
+        username.sizeToFit()
+        username.translatesAutoresizingMaskIntoConstraints = true
         return username
     }()
+    
+//    let universityName: UITextField = {
+//        let name = UITextField();
+//        name.clearButtonMode = .whileEditing
+//        name.backgroundColor = .white
+//        name.attributedPlaceholder = NSAttributedString(string: "Univeristy Name",
+//                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+//        name.textColor = .black
+//        name.borderStyle = .roundedRect
+//        name.font = UIFont.systemFont(ofSize: 16)
+//        name.sizeToFit()
+//        name.translatesAutoresizingMaskIntoConstraints = true
+//        return name
+//    }()
     
     let passwordTextField: UITextField = {
         let password = UITextField();
         password.clearButtonMode = .whileEditing
-        password.backgroundColor = UIColor(white: 0, alpha: 0.04)
+        password.backgroundColor = .white
         password.textColor = .black
         password.attributedPlaceholder = NSAttributedString(string: "Password",
                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
@@ -44,19 +63,23 @@ class SignUpController: UIViewController {
         
         password.borderStyle = .roundedRect
         password.font = UIFont.systemFont(ofSize: 16)
+        password.sizeToFit()
+        password.translatesAutoresizingMaskIntoConstraints = true
         return password
     }()
     
     let confirmPasswordTextField: UITextField = {
         let password = UITextField();
         password.clearButtonMode = .whileEditing
-        password.backgroundColor = UIColor(white: 0, alpha: 0.04)
+        password.backgroundColor = .white
         password.textColor = .black
         password.attributedPlaceholder = NSAttributedString(string: "Confirm password",
                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         password.isSecureTextEntry = true
         password.borderStyle = .roundedRect
         password.font = UIFont.systemFont(ofSize: 16)
+        password.sizeToFit()
+        password.translatesAutoresizingMaskIntoConstraints = true
         return password
     }()
     
@@ -69,8 +92,52 @@ class SignUpController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(signUpHandle), for: .touchUpInside)
         return button
     }()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { //make bar color white
+        return .lightContent
+    }
+    
+    @objc func signUpHandle() {
+        guard let email = emailTextField.text, email.count > 0 else {print(1); return}
+        guard let username = userNameTextField.text, username.count > 0 else {print(2); return}
+        guard let password = passwordTextField.text, password.count > 0 else {print(3); return}
+        guard let confirmPassword = confirmPasswordTextField.text, confirmPassword.count > 0 else {print(4);return}
+        
+        if(password != confirmPassword) {
+            print("Password doesn't matched! Try again!")
+            return
+        }
+        
+        Firebase.Auth.auth().createUser(withEmail: email, password: password) { (user, err) in
+            if let error = err {
+                print("Account can not be created!", error)
+                return
+            } else {
+                //now store the credentials to our databse
+                guard let uid = user?.uid else {return}
+                let ref = Database.database().reference().child("users").child(uid)
+                let dictionary = ["Email": email, "Username": username, "Password": password]
+                let values = [uid: dictionary]
+                
+                ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                    if let error = err {
+                        print("Error storing data!", error)
+                        return
+                    } else {
+                        print("Account succefully created!")
+                        print("Succefully data saved!")
+                        
+                        //dismiss this view controller now
+//                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
+            }
+        }
+        
+    }
     
     let alreadyHaveAccountButtton: UIButton = {
         let button = UIButton(type: .system)
@@ -84,7 +151,7 @@ class SignUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175) //render background color
         setUpInputField()
         signUp()
         
@@ -103,6 +170,7 @@ class SignUpController: UIViewController {
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
     }
+
     
     fileprivate func signUp() {
         view.addSubview(alreadyHaveAccountButtton) //always put this first and then only anchor

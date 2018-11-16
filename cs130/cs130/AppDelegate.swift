@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-//        let controller = ViewController()
+        let viewController = ViewController()
 //        let mainTabBarController = MainTabBarController()
         let signUpController = SignUpController()
         window?.rootViewController = signUpController

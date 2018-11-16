@@ -28,10 +28,10 @@ class ViewController: UIViewController {
     
     let emailTextField: UITextField = {
         let email = UITextField();
-        email.backgroundColor = UIColor(white: 0, alpha: 0.06)
+        email.backgroundColor = UIColor(white: 0, alpha: 0.10)
         email.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        email.textColor = .white
+                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        email.textColor = .black
         email.borderStyle = .roundedRect
         email.font = UIFont.systemFont(ofSize: 16)
         return email
@@ -39,10 +39,10 @@ class ViewController: UIViewController {
     
     let passwordTextField: UITextField = {
         let password = UITextField();
-        password.backgroundColor = UIColor(white: 0, alpha: 0.06)
-        password.textColor = .white
+        password.backgroundColor = UIColor(white: 0, alpha: 0.10)
+        password.textColor = .black
         password.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         password.isSecureTextEntry = true
         password.borderStyle = .roundedRect
         password.font = UIFont.systemFont(ofSize: 16)
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = GREEN_COLOR
+        view.backgroundColor = .white
         logoViewDisplay();
         
         setUpInputField() //for the input buttons
