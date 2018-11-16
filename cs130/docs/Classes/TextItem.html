@@ -14,7 +14,7 @@
     <a title="TextItem Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (7% documented)</p>
+        <p><a href="../index.html"> Docs</a> (11% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -35,6 +35,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comment.html">Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CommentController.html">CommentController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Course.html">Course</a>
@@ -64,7 +67,7 @@
                 <a href="../Classes/Post.html">Post</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/PostCollector.html">PostCollector</a>
+                <a href="../Classes/PostViewController.html">PostViewController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SignUpController.html">SignUpController</a>
@@ -116,7 +119,7 @@
             <h1>TextItem</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">TextItem</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TextItem</span></code></pre>
 
                 </div>
               </div>
@@ -291,9 +294,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5cs1308TextItemC7creator7contentAcA4UserC_SStcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(creator:content:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC7creator7contentAcA4UserC_SStcfc">init(creator:content:)</a>
+                    <a name="/s:5cs1308TextItemC7creator7content12creationTime2IDAcA4UserC_SS10Foundation4DateVSgSSSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(creator:content:creationTime:ID:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5cs1308TextItemC7creator7content12creationTime2IDAcA4UserC_SS10Foundation4DateVSgSSSgtcfc">init(creator:content:creationTime:ID:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -301,259 +304,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes a TextItem object</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">creator</span><span class="p">:</span> <span class="kt"><a href="../Classes/User.html">User</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">creator</span><span class="p">:</span><span class="kt"><a href="../Classes/User.html">User</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">creationTime</span><span class="p">:</span><span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="kt"><a href="../Classes/TextItem.html#/s:5cs1308TextItemC2IDSSSgvp">ID</a></span><span class="p">:</span><span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC4postyyF"></a>
-                    <a name="//apple_ref/swift/Method/post()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC4postyyF">post()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">post</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC8addChild5childyAA7CommentC_tF"></a>
-                    <a name="//apple_ref/swift/Method/addChild(child:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC8addChild5childyAA7CommentC_tF">addChild(child:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addChild</span><span class="p">(</span><span class="nv">child</span><span class="p">:</span> <span class="kt"><a href="../Classes/Comment.html">Comment</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC8getChildAA7CommentCSgyF"></a>
-                    <a name="//apple_ref/swift/Method/getChild()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC8getChildAA7CommentCSgyF">getChild()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getChild</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Comment.html">Comment</a></span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC5getIDSSSgyF"></a>
-                    <a name="//apple_ref/swift/Method/getID()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC5getIDSSSgyF">getID()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getID</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC8hasChildSbyF"></a>
-                    <a name="//apple_ref/swift/Method/hasChild()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC8hasChildSbyF">hasChild()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hasChild</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC11deleteChildAA7CommentCSgyF"></a>
-                    <a name="//apple_ref/swift/Method/deleteChild()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC11deleteChildAA7CommentCSgyF">deleteChild()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteChild</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Comment.html">Comment</a></span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC17deleteAllChildrenyyF"></a>
-                    <a name="//apple_ref/swift/Method/deleteAllChildren()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC17deleteAllChildrenyyF">deleteAllChildren()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteAllChildren</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC11editContent03newE0ySS_tF"></a>
-                    <a name="//apple_ref/swift/Method/editContent(newContent:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC11editContent03newE0ySS_tF">editContent(newContent:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">editContent</span><span class="p">(</span><span class="nv">newContent</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1308TextItemC10deleteSelfyyF"></a>
-                    <a name="//apple_ref/swift/Method/deleteSelf()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1308TextItemC10deleteSelfyyF">deleteSelf()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteSelf</span><span class="p">()</span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a new TextItem object</p>
                       </div>
                     </section>
                   </div>

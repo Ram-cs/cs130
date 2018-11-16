@@ -17,14 +17,14 @@ public class Comment: TextItem {
     
     /// Initializes a Post object
     /// - parameters:
-    ///     - creator:User: the User that is the author of the Comment
-    ///     - content:String: the content of the Comment
-    ///     - isPrivate:Bool: whether the message can be seen by everyone or only by the poster and rootPost poster
-    ///     - rootPost:Post: the Post that this comment is replying to
-    ///     - isResponse:Bool: whether this Comment is a response to another Comment
-    ///     - respondeeID:String: the ID of the User that thie comment is responding to
-    ///     - creationTime:Date: time that this Post was created/posted
-    ///     - ID:String: Post identifier in the database
+    ///     - creator: the User that is the author of the Comment
+    ///     - content: the content of the Comment
+    ///     - isPrivate: whether the message can be seen by everyone or only by the poster and rootPost poster
+    ///     - rootPost: the Post that this comment is replying to
+    ///     - isResponse: whether this Comment is a response to another Comment
+    ///     - respondeeID: the ID of the User that thie comment is responding to
+    ///     - creationTime: time that this Post was created/posted
+    ///     - ID: Post identifier in the database
     /// - returns: a new Comment object
     init(creator:User, content:String, isPrivate:Bool = false, rootPost:Post, isResponse:Bool = false, respondeeID:String = "", creationTime:Date? = nil, ID:String? = nil) {
         self.isPrivate = isPrivate
