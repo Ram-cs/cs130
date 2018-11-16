@@ -28,8 +28,7 @@
 		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
 		88ACB14F219C0277000375D2 /* PostCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ACB14E219C0277000375D2 /* PostCollector.swift */; };
 		88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8C752219BBBC200BE7A09 /* DemoController.swift */; };
-		88C13AA8219C203600F54B30 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AA7219C203600F54B30 /* Controller.swift */; };
-		88C13AAC219D159F00F54B30 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostController.swift */; };
+		88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostViewController.swift */; };
 		88C13AAE219D3D4900F54B30 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAD219D3D4900F54B30 /* CommentController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,12 +68,10 @@
 		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		88ACB14E219C0277000375D2 /* PostCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollector.swift; sourceTree = "<group>"; };
 		88B8C752219BBBC200BE7A09 /* DemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
-		88C13AA7219C203600F54B30 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		88C13AAB219D159F00F54B30 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		88C13AAB219D159F00F54B30 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		88C13AAD219D3D4900F54B30 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		C156AB094F174432F22202B0 /* Pods-cs130.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.debug.xcconfig"; sourceTree = "<group>"; };
 		D6246BE0A06B63ED09BABDC6 /* Pods-cs130Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		EAF1AA25219C02B40026E06E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		FC2D6914668F7CFAE62543C4 /* Pods-cs130Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FDD67C4CE2EEA4389898A9FE /* Pods_cs130Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs130Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,8 +140,6 @@
 				88C13AA5219C201500F54B30 /* Controller */,
 				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
 				21BD0B79219934F300797852 /* CourseTableViewController.swift */,
-				21D5F3EA2197E0EF000DAB8A /* Course.swift */,
-				21BD0B78219934F300797852 /* Post.swift */,
 				88ACB14E219C0277000375D2 /* PostCollector.swift */,
 				88B8C752219BBBC200BE7A09 /* DemoController.swift */,
 				83F24E2E219663730012034D /* Utilities */,
@@ -156,10 +151,6 @@
 				8355784A218CF97200DAC3CF /* LaunchScreen.storyboard */,
 				8355784D218CF97200DAC3CF /* Info.plist */,
 				83557861219538AD00DAC3CF /* GoogleService-Info.plist */,
-				881ADBCF2199052900A76EB9 /* TextItem.swift */,
-				881ADBD12199053B00A76EB9 /* Comment.swift */,
-				21D5F3EC2197E2ED000DAB8A /* User.swift */,
-				EAF1AA25219C02B40026E06E /* DataController.swift */,
 			);
 			path = cs130;
 			sourceTree = "<group>";
@@ -185,8 +176,7 @@
 		88C13AA5219C201500F54B30 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				88C13AA7219C203600F54B30 /* Controller.swift */,
-				88C13AAB219D159F00F54B30 /* PostController.swift */,
+				88C13AAB219D159F00F54B30 /* PostViewController.swift */,
 				88C13AAD219D3D4900F54B30 /* CommentController.swift */,
 			);
 			path = Controller;
@@ -195,6 +185,11 @@
 		88C13AA6219C201E00F54B30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				21D5F3EA2197E0EF000DAB8A /* Course.swift */,
+				21BD0B78219934F300797852 /* Post.swift */,
+				881ADBCF2199052900A76EB9 /* TextItem.swift */,
+				881ADBD12199053B00A76EB9 /* Comment.swift */,
+				21D5F3EC2197E2ED000DAB8A /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -402,8 +397,7 @@
 				881ADBD02199052900A76EB9 /* TextItem.swift in Sources */,
 				83F24E33219666010012034D /* Extension.swift in Sources */,
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,
-				88C13AA8219C203600F54B30 /* Controller.swift in Sources */,
-				88C13AAC219D159F00F54B30 /* PostController.swift in Sources */,
+				88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */,
 				88C13AAE219D3D4900F54B30 /* CommentController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
