@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+// This global variable is the currently logged-in user
+var appUser = User(id: "TESTUSER", major: "Computer Science")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,13 +22,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+<<<<<<< HEAD
         
         let viewController = ViewController()
 //        let mainTabBarController = MainTabBarController()
         let signUpController = SignUpController()
         window?.rootViewController = signUpController
         
+=======
+>>>>>>> 96b88715d43dfddb0eec11815fd78e43b27b4d20
         FirebaseApp.configure()
+        // let controller = ViewController()
+//        let mainTabBarController = MainTabBarController()
+        // let signUpController = SignUpController()
+        // window?.rootViewController = controller
+        let courseTableViewController = CourseTableViewController()
+        let navigationController = UINavigationController(rootViewController: courseTableViewController)
+        window?.rootViewController = navigationController
+        print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
         return true
     }
 }
