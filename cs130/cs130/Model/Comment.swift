@@ -26,8 +26,8 @@ public class Comment: TextItem {
     //adds entry to database /posts/major/course/rootPostID/commentID
     override func post() {
         let db:DatabaseReference = Database.database().reference()
-        let major:String = self.rootPost.getMajor()
-        let course:String = self.rootPost.getCourse()
+        let major:String = self.rootPost.major
+        let course:String = self.rootPost.course
         let rootPostID:String = (self.rootPost.getID())!
         let key:String = db.child("comments").child(major).child(course).child(rootPostID).childByAutoId().key
         
@@ -47,10 +47,5 @@ public class Comment: TextItem {
     
     func setPublic() {
         self.isPrivate = false
-    }
-    
-    
-    override func deleteSelf() {
-        
     }
 }
