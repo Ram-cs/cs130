@@ -91,6 +91,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func enrollButtonPress(sender: UIButton) {
         appUser.addCourse(course: self.course!)
+        self.viewDidLoad() // Refresh the page
     }
     
     func displayCourse() {
