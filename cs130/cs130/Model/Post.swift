@@ -18,14 +18,14 @@ public class Post: TextItem {
     
     /// Initializes a Post object
     /// - parameters:
-    ///     - creator:User: the User that is the author of the Post
-    ///     - title:String: the title of the Post
-    ///     - content:String: the description of the Post
-    ///     - major:String: major that the Post is categorized under
-    ///     - course:String: course that the Post is categorized under
-    ///     - isTutorSearch:Bool: whether this Post is directed at Tutors
-    ///     - creationTime:Date: time that this Post was created/posted
-    ///     - ID:String: Post identifier in the database
+    ///     - creator: the User that is the author of the Post
+    ///     - title: the title of the Post
+    ///     - content: the description of the Post
+    ///     - major: major that the Post is categorized under
+    ///     - course: course that the Post is categorized under
+    ///     - isTutorSearch: whether this Post is directed at Tutors
+    ///     - creationTime: time that this Post was created/posted
+    ///     - ID: Post identifier in the database
     /// - returns: a new Post object
     init(creator:User, title:String, content:String, major:String, course:String, isTutorSearch:Bool, creationTime:Date? = nil, ID:String? = nil) {
         self.title = title

@@ -20,10 +20,10 @@ public class TextItem {
     
     /// Initializes a TextItem object
     /// - parameters:
-    ///     - creator:User: the User that is the author of the Comment
-    ///     - content:String: the content of the TextItem
-    ///     - creationTime:Date: time that this TextItem was created/posted
-    ///     - ID:String: TextItem identifier in the database
+    ///     - creator the User that is the author of the Comment
+    ///     - content: the content of the TextItem
+    ///     - creationTime: time that this TextItem was created/posted
+    ///     - ID: TextItem identifier in the database
     /// - returns: a new TextItem object
     init(creator:User, content:String, creationTime:Date? = nil, ID:String? = nil) {
         self.creator = creator
