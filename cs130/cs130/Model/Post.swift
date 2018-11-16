@@ -25,6 +25,7 @@ public class Post: TextItem {
         super.init(creator:creator, content:content, creationTime:creationTime, ID:ID)
     }
     
+    ///not functional yet
     init(major:String, course:String, ID:String) {
         let db:DatabaseReference = Database.database().reference().child("/posts/\(major)/\(course)/\(ID)")
         var postTitle:String = ""
