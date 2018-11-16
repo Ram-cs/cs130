@@ -76,4 +76,8 @@ class PostViewController: UITableViewController {
                                     "title": post.title]
         db.updateChildValues(["/\(key)":dbEntry])
     }
+    
+    func setClosed(post:Post) {
+        post.isClosed = true
+    }
 }
