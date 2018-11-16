@@ -17,6 +17,14 @@ public class TextItem {
     var child:Comment?
     var ref:DatabaseReference?
     
+    
+    /// Initializes a TextItem object
+    /// - parameters:
+    ///     - creator:User: the User that is the author of the Comment
+    ///     - content:String: the content of the TextItem
+    ///     - creationTime:Date: time that this TextItem was created/posted
+    ///     - ID:String: TextItem identifier in the database
+    /// - returns: a new TextItem object
     init(creator:User, content:String, creationTime:Date? = nil, ID:String? = nil) {
         self.creator = creator
         self.content = content
@@ -30,65 +38,4 @@ public class TextItem {
         self.child = nil
         self.ref = nil
     }
-    
-    //to be overridden by subclasses: Post, Comment
-    //self.ID and self.ref should be initialized here
-    func post() {}
-    
-    func addChild(child:Comment) {
-        self.child = child
-    }
-    
-    func getChild() -> Comment? {
-        return self.child
-    }
-    
-    //returns nil is this TextItem has not been posted yet
-    func getID() -> String? {
-        return self.ID
-    }
-    
-    func hasChild() -> Bool {
-        if self.child == nil {
-            return false
-        }
-        return true
-    }
-    
-    func deleteChild() -> Comment? {
-        let deadChild:Comment? = self.child
-        if self.hasChild() {
-            self.child = self.child?.getChild()
-        }
-        return deadChild
-    }
-    
-    //does not work yet: deleteSelf() still needs to be implemented
-    func deleteAllChildren() {
-        if self.child != nil {
-            self.child?.deleteChain()
-        }
-    }
-    
-    //deleteAllChildren() helper function
-    private func deleteChain() {
-        if self.child == nil {
-            self.deleteSelf()
-        }
-        else {
-            self.child?.deleteChain()
-            self.deleteSelf()
-        }
-    }
-    
-    func editContent(newContent:String) {
-        self.content = newContent
-    }
-    
-    
-    func deleteSelf() {}
-    
-    
-    
-    
 }

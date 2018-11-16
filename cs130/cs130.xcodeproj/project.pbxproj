@@ -26,7 +26,6 @@
 		83F24E37219693C50012034D /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E36219693C50012034D /* SignUpController.swift */; };
 		881ADBD02199052900A76EB9 /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCF2199052900A76EB9 /* TextItem.swift */; };
 		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
-		88ACB14F219C0277000375D2 /* PostCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ACB14E219C0277000375D2 /* PostCollector.swift */; };
 		88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8C752219BBBC200BE7A09 /* DemoController.swift */; };
 		88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostViewController.swift */; };
 		88C13AAE219D3D4900F54B30 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAD219D3D4900F54B30 /* CommentController.swift */; };
@@ -66,7 +65,6 @@
 		83F24E36219693C50012034D /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		881ADBCF2199052900A76EB9 /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
 		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		88ACB14E219C0277000375D2 /* PostCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollector.swift; sourceTree = "<group>"; };
 		88B8C752219BBBC200BE7A09 /* DemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
 		88C13AAB219D159F00F54B30 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		88C13AAD219D3D4900F54B30 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				88C13AA5219C201500F54B30 /* Controller */,
 				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
 				21BD0B79219934F300797852 /* CourseTableViewController.swift */,
-				88ACB14E219C0277000375D2 /* PostCollector.swift */,
 				88B8C752219BBBC200BE7A09 /* DemoController.swift */,
 				83F24E2E219663730012034D /* Utilities */,
 				83557841218CF96800DAC3CF /* AppDelegate.swift */,
@@ -392,7 +389,6 @@
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
 				21BD0B7B219934F300797852 /* Post.swift in Sources */,
-				88ACB14F219C0277000375D2 /* PostCollector.swift in Sources */,
 				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
 				881ADBD02199052900A76EB9 /* TextItem.swift in Sources */,
 				83F24E33219666010012034D /* Extension.swift in Sources */,
