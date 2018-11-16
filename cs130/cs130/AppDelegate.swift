@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let courseTableViewController = CourseTableViewController()
         let navigationController = UINavigationController(rootViewController: courseTableViewController)
         window?.rootViewController = navigationController
+        print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
         return true
     }
 }

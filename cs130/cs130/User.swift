@@ -24,18 +24,6 @@ class User {
         self.observeCourses()
     }
     
-    init(id: String) {
-        self.userRef = Database.database().reference().child("users").child(id)
-        self.id = id
-        var userMajor = ""
-        self.userRef?.observeSingleEvent(of: .value, with: { (DataSnapshot) in
-            let dic = DataSnapshot.value as? NSDictionary
-            userMajor = (dic?["major"] as? String)!
-        })
-        self.major = userMajor
-        self.observeCourses()
-    }
-    
     init(snapshot: DataSnapshot) {
         self.id = snapshot.key
         self.userRef = snapshot.ref
@@ -97,7 +85,7 @@ class User {
     /// Set up an observer to asynchronously listen to changes in the user's courses. This is called
     /// within the constructor
     func observeCourses() {
-        self.userRef?.child("courses").observe(.value, with: { (DataSnapshot) in
+        self.userRef?.child("courses").observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             for item in DataSnapshot.children {
                 let course = item as! DataSnapshot
@@ -107,7 +95,7 @@ class User {
                 newCourses.append((major, id))
             }
             self.courses = newCourses
-        })
+        }
     }
     
     /// Gets the courses of the user

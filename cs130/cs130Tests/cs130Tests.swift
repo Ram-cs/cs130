@@ -24,6 +24,21 @@ class cs130Tests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
+    func testUser() {
+        // Check if user id is correct
+        XCTAssert(appUser.id == "TESTUSER")
+        sleep(50)
+        // This user should be enrolled in 5 courses right now
+        XCTAssert(appUser.courses.count == 5)
+        // This first course is CS130
+        XCTAssert(appUser.courses[0].0 == "Computer Science" && appUser.courses[0].1 == "130")
+    }
+    
+    func testCourseEnrolling() {
+        let VC = CourseTableViewController()
+        
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
