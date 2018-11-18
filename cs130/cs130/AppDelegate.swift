@@ -14,21 +14,24 @@ var appUser = User(id: "TESTUSER", major: "Computer Science")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var appUser:User!
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        appUser = User(id:"204578044")
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        FirebaseApp.configure()
         // let controller = ViewController()
 //        let mainTabBarController = MainTabBarController()
         // let signUpController = SignUpController()
         // window?.rootViewController = controller
-        let courseTableViewController = CourseTableViewController()
-        let navigationController = UINavigationController(rootViewController: courseTableViewController)
+        //let courseTableViewController = CourseTableViewController()
+        //let navigationController = UINavigationController(rootViewController: courseTableViewController)
+        //window?.rootViewController = DemoController()
+        window?.rootViewController = PostViewController()
         return true
     }
 }

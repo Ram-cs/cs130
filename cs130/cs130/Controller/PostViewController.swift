@@ -13,26 +13,28 @@ import UIKit
 class PostViewController: UITableViewController {
     var formatter = DateFormatter()
     var posts = [Post]()
+    let appUser:User = (UIApplication.shared.delegate as! AppDelegate).appUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         view.backgroundColor = .white
-        let courseList:[(String, String)] = [("Computer Science","130"),
-                                             ("Engineering","183EW")]
-        for course in courseList{
-            let db:DatabaseReference = Database.database().reference().child("posts/\(course.0)/\(course.1)")
-            fetchUserPosts(db: db, major: course.0, course: course.1)
+        //let courseList:[(String, String)] = [("Computer Science","130"),
+        //                                    ("Engineering","183EW")]
+        //get(user:appUser)
+        fetchUserPosts(major:"Computer Science", course:"130")
+    }
+    
+    func get(user:User)  {
+        let userCourses:[(String, String)] = user.getCourses()
+        for course in userCourses {
+            print("fetch course")
+            fetchUserPosts(major: course.0, course: course.1)
         }
     }
     
-//    func get(user:User) -> [Post] {
-//        let userCourses:[(String, String)] = user.getCourses()
-//        var posts: [Post] = []
-//        getCoursePosts(courses:userCourses)
-//        return posts
-//    }
-    func fetchUserPosts(db: DatabaseReference, major: String, course: String) {
+    func fetchUserPosts(major: String, course: String) {
+        let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
         db.observe(.value, with: { (DataSnapshot) in
             var posts: [Post] = []
             for item in DataSnapshot.children {
@@ -56,7 +58,6 @@ class PostViewController: UITableViewController {
                 
             }
             self.posts += posts
-            print(self.posts)
             self.tableView.reloadData()
         })
     }

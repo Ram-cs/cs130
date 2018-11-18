@@ -28,7 +28,8 @@
 		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
 		88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8C752219BBBC200BE7A09 /* DemoController.swift */; };
 		88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostViewController.swift */; };
-		88C13AAE219D3D4900F54B30 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAD219D3D4900F54B30 /* CommentController.swift */; };
+		88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573921A0C009009B7852 /* DatabaseAddController.swift */; };
+		88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573B21A0DA4D009B7852 /* CommentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +68,8 @@
 		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		88B8C752219BBBC200BE7A09 /* DemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
 		88C13AAB219D159F00F54B30 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		88C13AAD219D3D4900F54B30 /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		88CC573921A0C009009B7852 /* DatabaseAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAddController.swift; sourceTree = "<group>"; };
+		88CC573B21A0DA4D009B7852 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		C156AB094F174432F22202B0 /* Pods-cs130.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.debug.xcconfig"; sourceTree = "<group>"; };
 		D6246BE0A06B63ED09BABDC6 /* Pods-cs130Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC2D6914668F7CFAE62543C4 /* Pods-cs130Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,7 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				88C13AAB219D159F00F54B30 /* PostViewController.swift */,
-				88C13AAD219D3D4900F54B30 /* CommentController.swift */,
+				88CC573921A0C009009B7852 /* DatabaseAddController.swift */,
+				88CC573B21A0DA4D009B7852 /* CommentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				83557844218CF96800DAC3CF /* ViewController.swift in Sources */,
 				83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */,
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
+				88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
 				21BD0B7B219934F300797852 /* Post.swift in Sources */,
 				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
@@ -394,7 +398,7 @@
 				83F24E33219666010012034D /* Extension.swift in Sources */,
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,
 				88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */,
-				88C13AAE219D3D4900F54B30 /* CommentController.swift in Sources */,
+				88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

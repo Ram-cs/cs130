@@ -9,9 +9,10 @@
 //import UIKit
 //import FirebaseDatabase
 //
-//class DemoController: UIViewController {
-// 
+//
+//class DemoController: UITableViewController {
 //    let group = DispatchGroup()
+//    var comments:[Comment] = [Comment]()
 //    
 //    
 //    override func viewDidLoad() {
@@ -38,28 +39,37 @@
 //                                    course: "130",
 //                                    isTutorSearch: false)
 //        
+//        let sample_comment1 = Comment(creator:sample_user,
+//                                      content: "this is a response1",
+//                                      isPrivate: false,
+//                                      rootPost:sample_post)
+//        let sample_comment2 = Comment(creator:sample_user,
+//                                      content: "2nd comment",
+//                                      isPrivate: false,
+//                                      rootPost:sample_post)
+//        
 //        print("whatttt")
 //        
-//        let pc:PostController = PostController()
+//        let dac:DatabaseAddController = DatabaseAddController()
+//        
+//        dac.addPost(post:sample_post)
+//        dac.addComment(comment:sample_comment1)
+//        dac.addComment(comment:sample_comment2)
+//        print("successfully added posts and comments")
+//        
+//        cc.get(post:sample_post)
+//        sleep(5)
+//        
+//        print("length of collectedComments")
+//        print(self.comments.count)
 //        //pc.post(post:sample_post)
-//        //pc.post(post:sample_post)
+//        
 //        
 //        let courseList:[(String, String)] = [("Computer Science","130"),
 //                                             ("Engineering","183EW")]
-//        let collectedPosts:[Post] = pc.getCoursePosts(courses:courseList)
-//        
-//        for post in collectedPosts {
-//            print("\(post.title)")
-//        }        
-//        group.notify(queue: .main){
-//        print("NUM OF COLLECTED POSTS:")
-//        print(collectedPosts.count)
 //        
 //        print("did stuff")
 //        }
-//        
-//        
-//    }
 //    
 //
 //}
