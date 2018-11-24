@@ -15,11 +15,12 @@
 		21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3EC2197E2ED000DAB8A /* User.swift */; };
 		221ACEF3165EDA2F7FE6EE91 /* Pods_cs130.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDF1E43BAFEC69442A47F5 /* Pods_cs130.framework */; };
 		83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557841218CF96800DAC3CF /* AppDelegate.swift */; };
-		83557844218CF96800DAC3CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557843218CF96800DAC3CF /* ViewController.swift */; };
+		83557844218CF96800DAC3CF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557843218CF96800DAC3CF /* LoginController.swift */; };
 		83557849218CF97200DAC3CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83557848218CF97200DAC3CF /* Assets.xcassets */; };
 		8355784C218CF97200DAC3CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8355784A218CF97200DAC3CF /* LaunchScreen.storyboard */; };
 		83557857218CF97300DAC3CF /* cs130Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557856218CF97300DAC3CF /* cs130Tests.swift */; };
 		83557862219538AD00DAC3CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83557861219538AD00DAC3CF /* GoogleService-Info.plist */; };
+		83AD696821A8753D003FD39F /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AD696721A8753D003FD39F /* UserProfileController.swift */; };
 		83F24E302196639B0012034D /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E2F2196639B0012034D /* Constraints.swift */; };
 		83F24E33219666010012034D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E32219666010012034D /* Extension.swift */; };
 		83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F24E3421968FB10012034D /* MainTabBarController.swift */; };
@@ -49,7 +50,7 @@
 		80CDF1E43BAFEC69442A47F5 /* Pods_cs130.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs130.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8355783E218CF96800DAC3CF /* cs130.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cs130.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83557841218CF96800DAC3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83557843218CF96800DAC3CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		83557843218CF96800DAC3CF /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		83557848218CF97200DAC3CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8355784B218CF97200DAC3CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8355784D218CF97200DAC3CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		83557856218CF97300DAC3CF /* cs130Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cs130Tests.swift; sourceTree = "<group>"; };
 		83557858218CF97300DAC3CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83557861219538AD00DAC3CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		83AD696721A8753D003FD39F /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		83F24E2F2196639B0012034D /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		83F24E32219666010012034D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		83F24E3421968FB10012034D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -139,7 +141,8 @@
 				83557841218CF96800DAC3CF /* AppDelegate.swift */,
 				83F24E3421968FB10012034D /* MainTabBarController.swift */,
 				83F24E36219693C50012034D /* SignUpController.swift */,
-				83557843218CF96800DAC3CF /* ViewController.swift */,
+				83557843218CF96800DAC3CF /* LoginController.swift */,
+				83AD696721A8753D003FD39F /* UserProfileController.swift */,
 				83557848218CF97200DAC3CF /* Assets.xcassets */,
 				8355784A218CF97200DAC3CF /* LaunchScreen.storyboard */,
 				8355784D218CF97200DAC3CF /* Info.plist */,
@@ -361,10 +364,11 @@
 				83F24E302196639B0012034D /* Constraints.swift in Sources */,
 				21BD0B7C219934F300797852 /* CourseTableViewController.swift in Sources */,
 				21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */,
-				83557844218CF96800DAC3CF /* ViewController.swift in Sources */,
+				83557844218CF96800DAC3CF /* LoginController.swift in Sources */,
 				83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */,
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
+				83AD696821A8753D003FD39F /* UserProfileController.swift in Sources */,
 				21BD0B7B219934F300797852 /* Post.swift in Sources */,
 				88ACB14F219C0277000375D2 /* PostCollector.swift in Sources */,
 				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
