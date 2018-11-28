@@ -9,6 +9,9 @@
 import UIKit
 
 class ReplyController: UIViewController {
+    var post:Post? = nil
+
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -81,7 +84,23 @@ class ReplyController: UIViewController {
     }
     
     // TODO: setup submit button functionality
-    @objc fileprivate func submitAction() {
+    @objc fileprivate func submitHandle() {
+        guard let body = replyField.text, body.count > 0 else {self.errorLabel.text = "Please fill out the form"; return}
         self.navigationController?.popViewController(animated: true)
+        
+        if ((Auth.auth().currentUser?.uid) != nil) {
+            let userID:String = (Auth.auth().currentUser?.uid)!
+            let newComment = Comment(creator:userID, 
+                content:body, 
+                isPrivate:false, 
+                rootPost:nil, 
+                isResponse:false, 
+                respondeeID:"", 
+                creationTime:nil, 
+                ID:nil)
+
+            let db = DatabaseAddController()
+            db.addComment(comment:newComment)
+        }
     }
 }
