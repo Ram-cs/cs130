@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ReplyController: UIViewController {
     var post:Post? = nil

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainTabBarController = MainTabBarController()
         
         let navigationController = UINavigationController(rootViewController: mainTabBarController)
-        window?.rootViewController = CreatePostController()
+        window?.rootViewController = ReplyController()
         // print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
         return true
     }
