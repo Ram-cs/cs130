@@ -25,7 +25,7 @@ class DatabaseAddController {
         let dateString = self.formatter.string(from: post.creationTime)
         
         let dbEntry:[String:Any] = ["creationTime": dateString,
-                                    "creatorID": post.creator.getID(),
+                                    "creatorID": post.creator,
                                     "description": post.content,
                                     "isClosed": post.isClosed,
                                     "isTutorSearch": post.isTutorSearch,
@@ -45,7 +45,7 @@ class DatabaseAddController {
         
         let dbEntry:[String:Any] = ["content": comment.content,
                                     "creationTime": dateString,
-                                    "creatorID": comment.creator.getID(),
+                                    "creatorID": comment.creator,
                                     "isPrivate": comment.isPrivate,
                                     "isResponse": comment.isResponse,
                                     "respondeeID": comment.respondeeID]

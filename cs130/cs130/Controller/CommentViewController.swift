@@ -43,14 +43,14 @@ class CommentViewController: UITableViewController {
             for item in DataSnapshot.children {
                 let comment = item as! DataSnapshot
                 let dic = comment.value as! NSDictionary
-                let creator:User = User(id: dic["creatorID"] as! String)
+                let creator:String = dic["creatorID"] as! String
                 let content:String = dic["content"] as! String
                 let isPrivate:Bool = dic["isPrivate"] as! Bool
                 let isResponse:Bool = dic["isResponse"] as! Bool
                 let respondeeID:String = dic["respondeeID"] as! String
                 let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
                 let ID:String = comment.key
-                print("created Comment(\(creator.getID),\n\(content),\n\(isPrivate),\n\(isResponse),\n\(respondeeID),\n\(creationTime),\n\(ID)")
+                print("created Comment(\(creator),\n\(content),\n\(isPrivate),\n\(isResponse),\n\(respondeeID),\n\(creationTime),\n\(ID)")
                 let fetchedComment:Comment = Comment(creator:creator,
                                                      content:content,
                                                      isPrivate:isPrivate,

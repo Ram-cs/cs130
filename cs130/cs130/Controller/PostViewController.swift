@@ -40,12 +40,12 @@ class PostViewController: UITableViewController {
             for item in DataSnapshot.children {
                 let post = item as! DataSnapshot
                 let dic = post.value as! NSDictionary
-                let creator:User = User(id: dic["creatorID"] as! String)
+                let creator:String = dic["creatorID"] as! String
                 let title:String = dic["title"] as! String
                 let description:String = dic["description"] as! String
                 let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
                 let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
-                print("created Post(\(creator.getID()), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
+                print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
                 let fetchedPost:Post = Post(creator:creator,
                                             title:title,
                                             content:description,
@@ -70,7 +70,7 @@ class PostViewController: UITableViewController {
         let dateString = self.formatter.string(from: post.creationTime)
         
         let dbEntry:[String:Any] = ["creationTime": dateString,
-                                    "creatorID": post.creator.getID(),
+                                    "creatorID": post.creator,
                                     "description": post.content,
                                     "isClosed": post.isClosed,
                                     "isTutorSearch": post.isTutorSearch,
