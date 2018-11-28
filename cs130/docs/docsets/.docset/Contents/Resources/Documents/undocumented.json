@@ -1,0 +1,26 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/jesse/Documents/cs130/cs130/cs130/Model/Comment.swift",
+      "line": 12,
+      "symbol": "Comment",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jesse/Documents/cs130/cs130/cs130/Model/Post.swift",
+      "line": 12,
+      "symbol": "Post",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jesse/Documents/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 12,
+      "symbol": "TextItem",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/jesse/Documents/cs130/cs130"
+}

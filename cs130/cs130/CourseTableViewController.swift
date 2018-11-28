@@ -13,7 +13,7 @@ import FirebaseDatabase
 class CourseTableViewController: UITableViewController {
 
     var ref: DatabaseReference?
-    var Courses = [Course]()
+    var courses = [Course]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class CourseTableViewController: UITableViewController {
 
     // Get course list from database
     func fetchCourses() {
-        self.ref?.observe(.value, with: { (DataSnapshot) in
+        self.ref?.observe(.value) { (DataSnapshot) in
             var fetchedCourses = [Course]()
             for item in DataSnapshot.children {
                 let major = item as! DataSnapshot
@@ -41,9 +41,9 @@ class CourseTableViewController: UITableViewController {
                     fetchedCourses.append(newCourse)
                 }
             }
-            self.Courses = fetchedCourses
+            self.courses = fetchedCourses
             self.tableView.reloadData()
-        })
+        }
     }
     
     // MARK: - Table view data source
@@ -52,13 +52,13 @@ class CourseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.Courses.count
+        return self.courses.count
     }
     
     // Display the cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseTableViewCell
-        let course = self.Courses[indexPath.row]
+        let course = self.courses[indexPath.row]
         cell.setupContent(course: course)
         return cell
     }
@@ -69,7 +69,7 @@ class CourseTableViewController: UITableViewController {
     
     // Pressing a cell redirects to the course info page
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let course = self.Courses[indexPath.row]
+        let course = self.courses[indexPath.row]
         let courseDetailViewController = CourseDetailViewController()
         courseDetailViewController.course = course
         self.navigationController?.pushViewController(courseDetailViewController, animated: true)

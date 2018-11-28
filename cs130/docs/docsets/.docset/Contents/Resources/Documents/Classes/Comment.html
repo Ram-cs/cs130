@@ -14,7 +14,7 @@
     <a title="Comment Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (7% documented)</p>
+        <p><a href="../index.html"> Docs</a> (11% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -35,6 +35,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comment.html">Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CommentController.html">CommentController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Course.html">Course</a>
@@ -64,7 +67,7 @@
                 <a href="../Classes/Post.html">Post</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/PostCollector.html">PostCollector</a>
+                <a href="../Classes/PostViewController.html">PostViewController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SignUpController.html">SignUpController</a>
@@ -116,7 +119,7 @@
             <h1>Comment</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">Comment</span> <span class="p">:</span> <span class="kt"><a href="../Classes/TextItem.html">TextItem</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Comment</span> <span class="p">:</span> <span class="kt"><a href="../Classes/TextItem.html">TextItem</a></span></code></pre>
 
                 </div>
               </div>
@@ -126,33 +129,6 @@
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1307CommentC6parentAA8TextItemCvp"></a>
-                    <a name="//apple_ref/swift/Property/parent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1307CommentC6parentAA8TextItemCvp">parent</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Classes/TextItem.html">TextItem</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -210,9 +186,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5cs1307CommentC7creator7content6parent9isPrivate8rootPostAcA4UserC_SSAA8TextItemCSbAA0I0Ctcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(creator:content:parent:isPrivate:rootPost:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1307CommentC7creator7content6parent9isPrivate8rootPostAcA4UserC_SSAA8TextItemCSbAA0I0Ctcfc">init(creator:content:parent:isPrivate:rootPost:)</a>
+                    <a name="/s:5cs1307CommentC10isResponseSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isResponse" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5cs1307CommentC10isResponseSbvp">isResponse</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -227,7 +203,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">creator</span><span class="p">:</span><span class="kt"><a href="../Classes/User.html">User</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">parent</span><span class="p">:</span><span class="kt"><a href="../Classes/TextItem.html">TextItem</a></span><span class="p">,</span> <span class="nv">isPrivate</span><span class="p">:</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">rootPost</span><span class="p">:</span><span class="kt"><a href="../Classes/Post.html">Post</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">isResponse</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -237,9 +213,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5cs1307CommentC4postyyF"></a>
-                    <a name="//apple_ref/swift/Method/post()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1307CommentC4postyyF">post()</a>
+                    <a name="/s:5cs1307CommentC11respondeeIDSSvp"></a>
+                    <a name="//apple_ref/swift/Property/respondeeID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5cs1307CommentC11respondeeIDSSvp">respondeeID</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -254,7 +230,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">post</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">respondeeID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -264,9 +240,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5cs1307CommentC10setPrivateyyF"></a>
-                    <a name="//apple_ref/swift/Method/setPrivate()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1307CommentC10setPrivateyyF">setPrivate()</a>
+                    <a name="/s:5cs1307CommentC7creator7content9isPrivate8rootPost0E8Response11respondeeID12creationTime0K0AcA4UserC_SSSbAA0H0CSbSS10Foundation4DateVSgSSSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(creator:content:isPrivate:rootPost:isResponse:respondeeID:creationTime:ID:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5cs1307CommentC7creator7content9isPrivate8rootPost0E8Response11respondeeID12creationTime0K0AcA4UserC_SSSbAA0H0CSbSS10Foundation4DateVSgSSSgtcfc">init(creator:content:isPrivate:rootPost:isResponse:respondeeID:creationTime:ID:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,70 +250,123 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes a Post object</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setPrivate</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">creator</span><span class="p">:</span><span class="kt"><a href="../Classes/User.html">User</a></span><span class="p">,</span> <span class="nv">content</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span> <span class="nv">isPrivate</span><span class="p">:</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">rootPost</span><span class="p">:</span><span class="kt"><a href="../Classes/Post.html">Post</a></span><span class="p">,</span> <span class="nv">isResponse</span><span class="p">:</span><span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">respondeeID</span><span class="p">:</span><span class="kt">String</span> <span class="o">=</span> <span class="s">""</span><span class="p">,</span> <span class="nv">creationTime</span><span class="p">:</span><span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="kt">ID</span><span class="p">:</span><span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1307CommentC9setPublicyyF"></a>
-                    <a name="//apple_ref/swift/Method/setPublic()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1307CommentC9setPublicyyF">setPublic()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>creator</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the User that is the author of the Comment</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>content</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the content of the Comment</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isPrivate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>whether the message can be seen by everyone or only by the poster and rootPost poster</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rootPost</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Post that this comment is replying to</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isResponse</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>whether this Comment is a response to another Comment</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>respondeeID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the ID of the User that thie comment is responding to</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>creationTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>time that this Post was created/posted</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Post identifier in the database</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setPublic</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1307CommentC10deleteSelfyyF"></a>
-                    <a name="//apple_ref/swift/Method/deleteSelf()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1307CommentC10deleteSelfyyF">deleteSelf()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">deleteSelf</span><span class="p">()</span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a new Comment object</p>
                       </div>
                     </section>
                   </div>

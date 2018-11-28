@@ -9,8 +9,26 @@
 import UIKit
 import Firebase
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+//        DispatchQueue.main.async { //must put in dispatchque because of thead
+            if Auth.auth().currentUser == nil {
+                let logInController = LoginController()
+                let navController = UINavigationController(rootViewController: logInController)
+                self.present(navController, animated: true, completion: nil)
+                
+            }
+            
+       // }
+        
+//        // window?.rootViewController = controller
+//        let courseTableViewController = CourseTableViewController()
+//        let userProfileController = UserProfileController()
+        
+        let userProfileController = UserProfileController()
+        let navController = UINavigationController(rootViewController: userProfileController)
+        self.present(navController, animated: true, completion: nil)
     }
 }
