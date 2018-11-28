@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PersonalBoardController: UIViewController {
+import Firebase
+
+class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
@@ -24,21 +26,13 @@ class PersonalBoardController: UIViewController {
         accountButton.isEnabled = true
         let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
         navigationItem.leftBarButtonItem = accountButtonItem
-        let logOutButton = UIButton(type: .system);
-        logOutButton.setTitle("Log Out", for: .normal)
-        logOutButton.clipsToBounds = true
-        logOutButton.setTitleColor(UIColor.white, for: .normal)
-        logOutButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        logOutButton.isEnabled = true
-        let logOutButtonItem = UIBarButtonItem.init(customView: logOutButton)
-        navigationItem.rightBarButtonItem = logOutButtonItem
         
         view.backgroundColor = .white
         
         setUpName()
         setUpCreatePost()
+        setUplogOutButton()
         setUpPost()
-        
     }
     
     // name field
@@ -49,20 +43,8 @@ class PersonalBoardController: UIViewController {
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
         label.textAlignment = NSTextAlignment.center
+        label.adjustsFontSizeToFitWidth = true
         return label
-    }()
-    
-    // TODO: setup a class for this
-    let PostButton: UIButton = {
-        let button = UIButton(type: .system);
-        button.setTitle("Placeholder", for: .normal)
-        button.layer.cornerRadius = 5
-        button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.isEnabled = true
-        return button
     }()
     
     // create the "Create Post" button
@@ -78,48 +60,60 @@ class PersonalBoardController: UIViewController {
         return button
     }()
     
+    // create scrollview container for posts
+    let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.isUserInteractionEnabled = true
+        scroll.showsVerticalScrollIndicator = true
+        // scroll.backgroundColor = UIColor.green
+        scroll.showsHorizontalScrollIndicator = false
+        return scroll
+    }()
+    
+    // create view to go inside to scrollview
+    let insideScrollView: UIView = {
+        let view = UIView()
+        // view.backgroundColor = UIColor.cyan
+        return view
+    }()
+    
+    // function that sets up the posts section
     fileprivate func setUpPost() {
-        // placeholder "posts"
-        let button1 = UIButton(type: .system);
-        button1.setTitle("Placeholder", for: .normal)
-        button1.layer.cornerRadius = 5
-        button1.clipsToBounds = true
-        button1.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
-        button1.setTitleColor(UIColor.white, for: .normal)
-        button1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button1.isEnabled = true
-
-        let button2 = UIButton(type: .system);
-        button2.setTitle("Placeholder", for: .normal)
-        button2.layer.cornerRadius = 5
-        button2.clipsToBounds = true
-        button2.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
-        button2.setTitleColor(UIColor.white, for: .normal)
-        button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button2.isEnabled = true
-        let button3 = UIButton(type: .system);
-        button3.setTitle("Placeholder", for: .normal)
-        button3.layer.cornerRadius = 5
-        button3.clipsToBounds = true
-        button3.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
-        button3.setTitleColor(UIColor.white, for: .normal)
-        button3.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button3.isEnabled = true
+        // set scrollView delegate to view
+        scrollView.delegate = self
         
-        // not sure how the stack view will behave with large number of posts. will probably do something wonky
+        // add scrollView and the view inside scrollView to the view and create anchors
+        view.addSubview(scrollView)
+        scrollView.addSubview(insideScrollView)
+        
+        scrollView.anchor(left: view.leftAnchor, leftPadding: 5, right: view.rightAnchor, rightPadding: -5, top: view.topAnchor, topPadding: 180, bottom: view.bottomAnchor, bottomPadding: -150, width: 0, height: 0)
+        
+        insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
+        
+        // placeholder posts
+        let button1 = UIButton.createPostButton(title:"Looking for tutor!")
+        button1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+
+        let button2 = UIButton.createPostButton(title: "Help me!")
+        button2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+
+        let button3 = UIButton.createPostButton(title: "Placeholder")
+        button3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+
+        // create a stackview and add it to the scrollview and set anchors
         let stackView = UIStackView(arrangedSubviews: [button1, button2, button3])
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalCentering
         stackView.axis = .vertical
         stackView.spacing = 10
-        view.addSubview(stackView)
         
-        stackView.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: nil, bottomPadding: 0, width: 0, height: 0)
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        scrollView.addSubview(stackView)
         
+        stackView.anchor(left: insideScrollView.leftAnchor, leftPadding: 10, right: insideScrollView.rightAnchor, rightPadding: -15, top: insideScrollView.topAnchor, topPadding: 0, bottom: nil, bottomPadding: 0, width: view.bounds.size.width - 30, height: 0)
+        stackView.centerXAnchor.constraint(equalTo: insideScrollView.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: insideScrollView.centerYAnchor).isActive = true
     }
     
-    // set constratints for the name label
+    // set constraints for the name label
     fileprivate func setUpName() {
         view.addSubview(name)
         
@@ -131,5 +125,67 @@ class PersonalBoardController: UIViewController {
         view.addSubview(CreatePostButton)
 
         CreatePostButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -70, width: 100, height: 40)
+    }
+    
+    // setup logout button
+    // TODO: button will work when merged into main
+    private func setUplogOutButton() {
+        let imageName = "gear.png"
+        let image = UIImage(named: imageName)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
+    }
+    
+    // set logoutbutton action
+    @objc func handleLogOut() {
+        // TODO: uncomment when merged into main
+        
+        /*let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Log Out", style: .default, handler: { (_) in
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError {
+                print("Problem signing Out:", signOutError)
+            }
+            
+            let loginController = LoginController()
+            let navController = UINavigationController(rootViewController: loginController)
+            self.present(navController, animated: true, completion: nil)
+        }))
+        alertController.addAction((UIAlertAction(title: "Cancel", style: .cancel, handler: nil)))
+        present(alertController, animated: true, completion: nil)*/
+    }
+    
+    // button action function. use sender.tag to specify the action
+    @objc fileprivate func buttonAction(sender: UIButton) {
+        let postController = PostController()
+        if (sender.tag == 1) {
+            self.navigationController?.pushViewController(postController, animated: true)
+        }
+    }
+    
+    // function that stops ScrollView from scrolling horizontally
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
+}
+
+// extension of UIButton class to create a post button
+// use button.tag for the buttonAction
+extension UIButton {
+    static func createPostButton(title:String) -> UIButton {
+        let button = UIButton(type: .system);
+        button.tag = 1
+        button.setTitle(title, for: .normal)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.isEnabled = true
+        return button
     }
 }

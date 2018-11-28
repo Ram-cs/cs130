@@ -27,8 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let mainTabBarController = MainTabBarController()
         // let signUpController = SignUpController()
         // window?.rootViewController = controller
-        let courseTableViewController = CourseTableViewController()
-        let navigationController = UINavigationController(rootViewController: courseTableViewController)
+        //let courseTableViewController = CourseTableViewController()
+        //let navigationController = UINavigationController(rootViewController: courseTableViewController)
+        let personalBoardController = PersonalBoardController()
+        let navigationController = UINavigationController(rootViewController: personalBoardController)
         window?.rootViewController = navigationController
         return true
     }
