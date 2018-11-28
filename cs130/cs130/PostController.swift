@@ -130,6 +130,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
     // set up reply button functionality
     @objc fileprivate func replyAction() {
         let replyController = ReplyController()
+        //replyController.post = self.post
         self.navigationController?.pushViewController(replyController, animated: true)
     }
     
