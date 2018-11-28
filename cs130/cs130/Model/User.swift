@@ -47,33 +47,11 @@ class User {
         self.observeCourses()
     }
     
-<<<<<<< HEAD:cs130/cs130/User.swift
     // Get user with given id from database
     func retriveUser(uid: String) {
         self.userRef? = Database.database().reference().child("users").child(uid)
         self.uid = uid
         self.observeUserInfo()
-=======
-    // Get user from database, based on user ID
-    init(id: String) {
-        self.userRef = Database.database().reference().child("users").child(id)
-        self.id = id
-        var userMajor = ""
-        self.userRef?.observeSingleEvent(of: .value, with: { (DataSnapshot) in
-            let dic = DataSnapshot.value as? NSDictionary
-            userMajor = (dic?["major"] as? String)!
-        })
-        self.major = userMajor
-        self.observeCourses()
-    }
-    
-    init(snapshot: DataSnapshot) {
-        self.id = snapshot.key
-        self.userRef = snapshot.ref
-        let dic = snapshot.value as? NSDictionary
-        if let dicMajor = dic?["major"] as? String {self.major = dicMajor}
-        else {self.major = ""}
->>>>>>> backendbois:cs130/cs130/Model/User.swift
         self.observeCourses()
     }
     
