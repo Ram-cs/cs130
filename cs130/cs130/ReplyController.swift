@@ -82,6 +82,23 @@ class ReplyController: UIViewController {
         replyField.anchor(left: view.leftAnchor, leftPadding: 15, right: view.rightAnchor, rightPadding: -15, top: view.topAnchor, topPadding: 100, bottom: view.bottomAnchor, bottomPadding: -350, width: 0, height: 0)
         
     }
+
+
+
+    let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175) //render background color
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    func addErrorLabel() {
+        view.addSubview(errorLabel)
+        errorLabel.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -310, width: 0, height: 40)
+    }
+    
     
     // TODO: setup submit button functionality
     @objc fileprivate func submitHandle() {
