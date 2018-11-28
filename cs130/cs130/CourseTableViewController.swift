@@ -30,7 +30,7 @@ class CourseTableViewController: UITableViewController {
         tableView.register(CourseTableViewCell.self, forCellReuseIdentifier: "courseCell")
     }
 
-    // Get course list from database
+    /// Get a list of all available courses from the database
     func fetchCourses() {
         self.ref?.observe(.value) { (DataSnapshot) in
             var fetchedCourses = [Course]()
@@ -46,7 +46,6 @@ class CourseTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

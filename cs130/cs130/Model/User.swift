@@ -19,15 +19,17 @@ class User {
     var userRef:DatabaseReference?
     var courses = [(String,String)]()
     
-    // Store newly created user in database
+    /// Store newly created user in database, then set up observers to observe the change in user info in database
+    /// - parameters:
+    ///     - uid, email, password, username: relevant information about the user
     func storeUser(uid: String, email: String, password: String, username: String) {
         self.uid = uid
         self.email = email
         self.password = password
         self.username = username
         self.userRef = Database.database().reference().child("users").child(uid)
-        // Add the user to the database as an entry (when creating a new user)
-      
+        
+        // Add the user to the database as an entry
         let ref = Database.database().reference().child("users")
         let dictionary = ["Email": email, "Username": username, "Password": password]
         let values = [uid: dictionary]
@@ -47,7 +49,9 @@ class User {
         self.observeCourses()
     }
     
-    // Get user with given id from database
+    /// Retrieve user with given id from database and store information in self, then set up observers to observe the change in user info in database
+    /// - parameters:
+    ///     - uid: User's unique identifier
     func retriveUser(uid: String) {
         self.userRef? = Database.database().reference().child("users").child(uid)
         self.uid = uid
@@ -68,6 +72,7 @@ class User {
         return false
     }
     
+    /// Set up observer to asynchronously listen to changes in user info in database, updating email, password and username stored in self
     func observeUserInfo() {
         self.userRef?.observe(.value) { (DataSnapshot) in
             let val = DataSnapshot.value as? NSDictionary
@@ -108,8 +113,7 @@ class User {
         }
     }
     
-    /// Set up an observer to asynchronously listen to changes in the user's courses. This is called
-    /// within the constructor
+    /// Set up an observer to asynchronously listen to changes in the user's courses, updating the list of courses stored in self
     func observeCourses() {
         self.userRef?.child("courses").observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
@@ -124,13 +128,12 @@ class User {
         }
     }
     
-
+    /// Gets the unique identifier of user
+    /// - returns: the user's unique identifier, a string
     func getID() -> String {
         return self.uid
     }
     
-    //returns of array of (major, courseID)
-
     /// Gets the courses of the user
     /// - returns: an array of (major, courseID) that the user is currently enrolled in
     func getCourses() -> [(String,String)] {

@@ -68,7 +68,6 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return label
     }()
     
-    // Enroll button
     let enroll: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.rgb(red: 181, green: 252, blue: 161)
@@ -94,6 +93,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
 //        self.viewDidLoad() // Refresh the page
 //    }
     
+    /// Displays information of the current course
     func displayCourse() {
         // Set up the course title
         self.courseTitle.text = self.course!.title
