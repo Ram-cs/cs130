@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 // This global variable is the currently logged-in user
-var appUser = User(id: "TESTUSER", major: "Computer Science")
+// var appUser = User(id: "TESTUSER", major: "Computer Science")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController(rootViewController: mainTabBarController)
         window?.rootViewController = navigationController
-        print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
+        // print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
         return true
     }
 }
