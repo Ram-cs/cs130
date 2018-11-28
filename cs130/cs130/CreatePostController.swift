@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Firebase
+
 class CreatePostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +27,11 @@ class CreatePostController: UIViewController {
         navigationItem.leftBarButtonItem = backButtonItem
         createFields()
         createPostButton()
+        addErrorLabel()
     }
     
     fileprivate func createFields() {
-        let stackView = UIStackView(arrangedSubviews: [postName, courseName, postBody, userType, submitButton])
+        let stackView = UIStackView(arrangedSubviews: [postName, majorName, courseName, postBody, userType, submitButton])
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing=10
@@ -48,7 +51,19 @@ class CreatePostController: UIViewController {
         let button = UITextField();
         button.backgroundColor = .white
         button.textColor = .black
-        button.attributedPlaceholder = NSAttributedString(string: "Post Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        button.attributedPlaceholder = NSAttributedString(string: "Post Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        button.borderStyle = .roundedRect
+        button.font = UIFont.systemFont(ofSize: 16)
+        button.sizeToFit()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let majorName: UITextField = {
+        let button = UITextField();
+        button.backgroundColor = .white
+        button.textColor = .black
+        button.attributedPlaceholder = NSAttributedString(string: "Major", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         button.borderStyle = .roundedRect
         button.font = UIFont.systemFont(ofSize: 16)
         button.sizeToFit()
@@ -60,7 +75,7 @@ class CreatePostController: UIViewController {
         let button = UITextField();
         button.backgroundColor = .white
         button.textColor = .black
-        button.attributedPlaceholder = NSAttributedString(string: "Course Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        button.attributedPlaceholder = NSAttributedString(string: "Course Number", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         button.borderStyle = .roundedRect
         button.font = UIFont.systemFont(ofSize: 16)
         button.sizeToFit()
@@ -108,6 +123,38 @@ class CreatePostController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(submitHandle), for: .touchUpInside)
         return button
     }()
+    
+    let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175) //render background color
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    func addErrorLabel() {
+        view.addSubview(errorLabel)
+        errorLabel.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -310, width: 0, height: 40)
+    }
+    
+    @objc func submitHandle() {
+        guard let major = majorName.text, major.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+        guard let course = courseName.text, course.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+        guard let title = postName.text, title.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+        guard let body = postBody.text, body.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+        var type = false
+        if(userType.titleForSegment(at: userType.selectedSegmentIndex) == "Tutor"){
+            type = true
+        }
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            let newPost = Post(creator: userID, title: title, content: body, major: major, course: course, isTutorSearch: type, creationTime: nil, ID: nil )
+            let db = DatabaseAddController()
+            db.addPost(post: newPost)
+        }
+    }
 }

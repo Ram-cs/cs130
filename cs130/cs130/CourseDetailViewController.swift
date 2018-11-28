@@ -89,10 +89,10 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return view
     }()
     
-    @objc func enrollButtonPress(sender: UIButton) {
-        appUser.addCourse(course: self.course!)
-        self.viewDidLoad() // Refresh the page
-    }
+//    @objc func enrollButtonPress(sender: UIButton) {
+//        appUser.addCourse(course: self.course!)
+//        self.viewDidLoad() // Refresh the page
+//    }
     
     func displayCourse() {
         // Set up the course title
@@ -123,7 +123,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(subStack)
         
         // Set up enroll button action
-        self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
+//        self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
         self.enroll.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // The empty view
