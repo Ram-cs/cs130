@@ -27,7 +27,7 @@ public class Post: TextItem {
     ///     - creationTime: time that this Post was created/posted
     ///     - ID: Post identifier in the database
     /// - returns: a new Post object
-    init(creator:User, title:String, content:String, major:String, course:String, isTutorSearch:Bool, creationTime:Date? = nil, ID:String? = nil) {
+    init(creator:String, title:String, content:String, major:String, course:String, isTutorSearch:Bool, creationTime:Date? = nil, ID:String? = nil) {
         self.title = title
         self.major = major
         self.course = course
@@ -62,6 +62,6 @@ public class Post: TextItem {
         self.course = course
         self.isTutorSearch = postIsTutorSearch
         self.isClosed = postIsClosed
-        super.init(creator:User(id:postCreatorID), content:postContent, creationTime:postCreationTime, ID:ID)
+        super.init(creator:postCreatorID, content:postContent, creationTime:postCreationTime, ID:ID)
     }
 }

@@ -10,7 +10,8 @@ import Foundation
 import FirebaseDatabase
 
 public class TextItem {
-    let creator:User
+    //let creator:User
+    let creator:String
     var content:String
     let creationTime:Date
     var ID:String?
@@ -25,7 +26,7 @@ public class TextItem {
     ///     - creationTime: time that this TextItem was created/posted
     ///     - ID: TextItem identifier in the database
     /// - returns: a new TextItem object
-    init(creator:User, content:String, creationTime:Date? = nil, ID:String? = nil) {
+    init(creator:String, content:String, creationTime:Date? = nil, ID:String? = nil) {
         self.creator = creator
         self.content = content
         if creationTime == nil {

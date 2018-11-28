@@ -126,7 +126,7 @@ class User {
     
 
     func getID() -> String {
-        return self.id
+        return self.uid
     }
     
     //returns of array of (major, courseID)

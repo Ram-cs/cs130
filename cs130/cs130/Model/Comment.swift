@@ -26,7 +26,7 @@ public class Comment: TextItem {
     ///     - creationTime: time that this Post was created/posted
     ///     - ID: Post identifier in the database
     /// - returns: a new Comment object
-    init(creator:User, content:String, isPrivate:Bool = false, rootPost:Post? = nil, isResponse:Bool = false, respondeeID:String = "", creationTime:Date? = nil, ID:String? = nil) {
+    init(creator:String, content:String, isPrivate:Bool = false, rootPost:Post? = nil, isResponse:Bool = false, respondeeID:String = "", creationTime:Date? = nil, ID:String? = nil) {
         self.isPrivate = isPrivate
         self.rootPost = rootPost
         self.isResponse = isResponse
