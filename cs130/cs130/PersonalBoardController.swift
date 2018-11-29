@@ -14,6 +14,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     static var singletonUser: User?
     var formatter = DateFormatter()
     var posts = [Post]()
+    var buttonList = [UIButton]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +82,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             }
             self.posts += posts
             self.scrollView.setNeedsDisplay()
+            self.setUpPost()
         })
     }
     
@@ -106,6 +108,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(createHandle), for: .touchUpInside)
         return button
     }()
     
@@ -163,23 +166,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
         
-        var buttonList = [UIButton]()
 
         for post in self.posts {
             let button = UIButton.createPostButton(title:post.title)
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-            buttonList.append(button)
+            self.buttonList.append(button)
         }
-
-        // placeholder posts
-        //let button1 = UIButton.createPostButton(title:"Looking for tutor!")
-        //button1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        //let button2 = UIButton.createPostButton(title: "Help me!")
-        //button2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        //let button3 = UIButton.createPostButton(title: "Placeholder")
-        //button3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         // create a stackview and add it to the scrollview and set anchors
         let stackView = UIStackView(arrangedSubviews: buttonList)
@@ -204,7 +196,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     // set constraints for the "Create Post" Button
     fileprivate func setUpCreatePost() {
         view.addSubview(CreatePostButton)
-
         CreatePostButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -70, width: 100, height: 40)
     }
     
@@ -243,6 +234,11 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         if (sender.tag == 1) {
             self.navigationController?.pushViewController(postController, animated: true)
         }
+    }
+
+    @objc fileprivate func createHandle() {
+        let createPostController = CreatePostController()
+        self.navigationController?.pushViewController(createPostController, animated:true)
     }
     
     // function that stops ScrollView from scrolling horizontally
