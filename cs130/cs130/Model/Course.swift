@@ -9,7 +9,6 @@
 import Foundation
 import FirebaseDatabase
 
-/// This class defines a course that users can enroll in and view the posts
 class Course {
     let major: String
     let id: String
@@ -34,6 +33,10 @@ class Course {
         self.setUpObserver()
     }
     
+    /// Initializes self, given the major and a data snapshot
+    /// - parameters:
+    ///     - major: the major of the course
+    ///     - snapshot: snapshot of the course from the database retrieved by listeners
     init(major: String, snapshot: DataSnapshot) {
         self.major = major
         self.id = snapshot.key

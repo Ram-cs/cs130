@@ -14,6 +14,7 @@
 		21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3EA2197E0EF000DAB8A /* Course.swift */; };
 		21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5F3EC2197E2ED000DAB8A /* User.swift */; };
 		221ACEF3165EDA2F7FE6EE91 /* Pods_cs130.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CDF1E43BAFEC69442A47F5 /* Pods_cs130.framework */; };
+		83403C6021AF9E7100FD51A3 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83403C5F21AF9E7100FD51A3 /* Attributes.swift */; };
 		83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557841218CF96800DAC3CF /* AppDelegate.swift */; };
 		83557844218CF96800DAC3CF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83557843218CF96800DAC3CF /* LoginController.swift */; };
 		83557849218CF97200DAC3CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83557848218CF97200DAC3CF /* Assets.xcassets */; };
@@ -35,6 +36,9 @@
 		88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostViewController.swift */; };
 		88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573921A0C009009B7852 /* DatabaseAddController.swift */; };
 		88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573B21A0DA4D009B7852 /* CommentViewController.swift */; };
+		90EA3D4121AF6A25006EFCE4 /* PersonalBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */; };
+		90EA3D4321AF6A2F006EFCE4 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4221AF6A2F006EFCE4 /* PostController.swift */; };
+		90EA3D4521AF6A36006EFCE4 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,7 @@
 		21D5F3EC2197E2ED000DAB8A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B7579CCD2407B483A884040 /* Pods-cs130.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.release.xcconfig"; sourceTree = "<group>"; };
 		80CDF1E43BAFEC69442A47F5 /* Pods_cs130.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cs130.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83403C5F21AF9E7100FD51A3 /* Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
 		8355783E218CF96800DAC3CF /* cs130.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cs130.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83557841218CF96800DAC3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83557843218CF96800DAC3CF /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -80,6 +85,9 @@
 		88C13AAB219D159F00F54B30 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		88CC573921A0C009009B7852 /* DatabaseAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAddController.swift; sourceTree = "<group>"; };
 		88CC573B21A0DA4D009B7852 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalBoardController.swift; sourceTree = "<group>"; };
+		90EA3D4221AF6A2F006EFCE4 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
 		C156AB094F174432F22202B0 /* Pods-cs130.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130/Pods-cs130.debug.xcconfig"; sourceTree = "<group>"; };
 		D6246BE0A06B63ED09BABDC6 /* Pods-cs130Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC2D6914668F7CFAE62543C4 /* Pods-cs130Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cs130Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cs130Tests/Pods-cs130Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +154,9 @@
 		83557840218CF96800DAC3CF /* cs130 */ = {
 			isa = PBXGroup;
 			children = (
+				90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */,
+				90EA3D4221AF6A2F006EFCE4 /* PostController.swift */,
+				90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */,
 				88C13AA6219C201E00F54B30 /* Model */,
 				88C13AA5219C201500F54B30 /* Controller */,
 				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
@@ -205,6 +216,7 @@
 				881ADBCF2199052900A76EB9 /* TextItem.swift */,
 				881ADBD12199053B00A76EB9 /* Comment.swift */,
 				21D5F3EC2197E2ED000DAB8A /* User.swift */,
+				83403C5F21AF9E7100FD51A3 /* Attributes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83403C6021AF9E7100FD51A3 /* Attributes.swift in Sources */,
 				21BD0B7D219934F300797852 /* CourseDetailViewController.swift in Sources */,
 				83F24E302196639B0012034D /* Constraints.swift in Sources */,
 				88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */,
@@ -410,11 +423,14 @@
 				88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */,
 				8887E03721AF3697009246B9 /* PostController.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
+				90EA3D4321AF6A2F006EFCE4 /* PostController.swift in Sources */,
 				83AD696821A8753D003FD39F /* UserProfileController.swift in Sources */,
 				21BD0B7B219934F300797852 /* Post.swift in Sources */,
 				881ADBD22199053B00A76EB9 /* Comment.swift in Sources */,
 				881ADBD02199052900A76EB9 /* TextItem.swift in Sources */,
+				90EA3D4521AF6A36006EFCE4 /* ReplyController.swift in Sources */,
 				83F24E33219666010012034D /* Extension.swift in Sources */,
+				90EA3D4121AF6A25006EFCE4 /* PersonalBoardController.swift in Sources */,
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,
 				88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */,
 				8887E03821AF3697009246B9 /* PersonalBoardController.swift in Sources */,

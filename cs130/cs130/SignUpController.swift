@@ -96,6 +96,7 @@ class SignUpController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(signUpHandle), for: .touchUpInside)
         return button
     }()
     
@@ -135,8 +136,8 @@ class SignUpController: UIViewController {
             } else {
                 //now store the credentials to our databse
                 guard let uid = user?.uid else {return}
-                let ref = Database.database().reference().child("accountHolders")
-                let dictionary = ["Email": email, "Username": username, "Password": password]
+                let ref = Database.database().reference().child("users")
+                let dictionary = [UsersAttributes.EMAIL: email, UsersAttributes.USERNAME: username, UsersAttributes.PASSWORD: password]
                 let values = [uid: dictionary]
                 
                 ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
@@ -151,8 +152,8 @@ class SignUpController: UIViewController {
                         
                         //dismiss this view controller now
 //                        self.dismiss(animated: true, completion: nil)
-                        let userProfileController = UserProfileController()
-                        let navController = UINavigationController(rootViewController: userProfileController)
+                        let personalBoardController = PersonalBoardController()
+                        let navController = UINavigationController(rootViewController: personalBoardController)
                         self.present(navController, animated: true, completion: nil)
                     }
                 })

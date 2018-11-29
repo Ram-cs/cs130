@@ -27,7 +27,8 @@ class ReplyController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.title = "Create Reply"
+        navigationItem.title = "Reply"
+        
         view.backgroundColor = .white
         let backButton = UIButton(type: .system);
         backButton.setTitle("Back", for: .normal)
@@ -111,10 +112,16 @@ class ReplyController: UIViewController {
             height: 40)
     }
     
+    // set constraints for submit button
+    fileprivate func setUpSubmitButton() {
+        view.addSubview(submitButton)
+        submitButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: replyField.bottomAnchor, topPadding: 20, bottom: view.bottomAnchor, bottomPadding: -375, width: 0, height: 0)
+    }
+    
     // set constraints for replyfield
-    // TODO: make replyfield take into account keyboard size (current constraints only work on iphone)
     fileprivate func setUpReplyField() {
         view.addSubview(replyField)
+
         replyField.anchor(left: view.leftAnchor,
                           leftPadding: 15,
                           right: view.rightAnchor,
@@ -125,7 +132,6 @@ class ReplyController: UIViewController {
                           bottomPadding: -350,
                           width: 0,
                           height: 0)
-        
     }
 
 
@@ -148,7 +154,6 @@ class ReplyController: UIViewController {
     @objc fileprivate func submitHandle() {
         guard let body = replyField.text, body.count > 0 else {self.errorLabel.text = "Please fill out the form"; return}
         
-        print("in submitHandle!!!")
         if ((Auth.auth().currentUser?.uid) == nil) {
             //let userID:String = (Auth.auth().currentUser?.uid)!
             let newComment = Comment(creator:"204578044",//userID, 

@@ -32,8 +32,12 @@ class UserProfileController: UIViewController {
             
             let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                let userEmail = (snapshot.value as! NSDictionary)["email"] as! String
-                let userName = (snapshot.value as! NSDictionary)["userName"] as! String
+                var userEmail = ""
+                var userName = ""
+                if((snapshot.value) != nil) {
+                   userEmail = (snapshot.value as! NSDictionary)["email"] as! String
+                   userName = (snapshot.value as! NSDictionary)["userName"] as! String
+                }
                 
                 self.userNameLabel.text = "Email:"+userEmail +  " Username:" + userName
             }

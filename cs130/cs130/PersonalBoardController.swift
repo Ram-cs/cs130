@@ -16,6 +16,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     var posts = [Post]()
     var buttonList = [UIButton]()
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
@@ -84,6 +85,26 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             self.scrollView.setNeedsDisplay()
             self.setUpPost()
         })
+    
+    private func storeCredentials() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
+                
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
+                
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
     }
     
     // name field
@@ -201,7 +222,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // setup logout button
-    // TODO: button will work when merged into main
     private func setUplogOutButton() {
         let imageName = "gear.png"
         let image = UIImage(named: imageName)
@@ -210,8 +230,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     // set logoutbutton action
     @objc func handleLogOut() {
-        // TODO: uncomment when merged into main
-        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Log Out", style: .default, handler: { (_) in

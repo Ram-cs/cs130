@@ -68,7 +68,6 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return label
     }()
     
-    // Enroll button
     let enroll: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor.rgb(red: 181, green: 252, blue: 161)
@@ -89,16 +88,17 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return view
     }()
     
-//    @objc func enrollButtonPress(sender: UIButton) {
-//        appUser.addCourse(course: self.course!)
-//        self.viewDidLoad() // Refresh the page
-//    }
+    @objc func enrollButtonPress(sender: UIButton) {
+        PersonalBoardController.singletonUser?.addCourse(course: self.course!)
+        self.viewDidLoad() // Refresh the page
+    }
     
+    /// Displays information of the current course
     func displayCourse() {
         // Set up the course title
         self.courseTitle.text = self.course!.title
         self.courseTitle.heightAnchor.constraint(equalToConstant: 200).isActive = true
-
+        
         // Register the info table
         self.infoTable.dataSource = self
         self.infoTable.delegate = self
@@ -112,7 +112,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         self.userCnt.item.text = "Students"
         self.postCnt.number.text = String(self.course!.postCnt)
         self.postCnt.item.text = "Posts"
-    
+        
         // Substack containing stats
         let subStack = UIStackView(arrangedSubviews: [self.userCnt, self.postCnt])
         subStack.axis = .horizontal
@@ -123,7 +123,14 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(subStack)
         
         // Set up enroll button action
-//        self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
+        if (PersonalBoardController.singletonUser?.hasCourse(course: self.course!))! {
+            self.enroll.backgroundColor = UIColor.gray
+            self.enroll.setTitle("Enrolled", for: .normal)
+        }
+            
+        else {
+            self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
+        }
         self.enroll.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // The empty view
