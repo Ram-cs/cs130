@@ -89,7 +89,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     }()
     
     @objc func enrollButtonPress(sender: UIButton) {
-        LoginController.singletonUser?.addCourse(course: self.course!)
+        PersonalBoardController.singletonUser?.addCourse(course: self.course!)
         self.viewDidLoad() // Refresh the page
     }
     
@@ -123,7 +123,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(subStack)
         
         // Set up enroll button action
-        if (LoginController.singletonUser?.hasCourse(course: self.course!))! {
+        if (PersonalBoardController.singletonUser?.hasCourse(course: self.course!))! {
             self.enroll.backgroundColor = UIColor.gray
             self.enroll.setTitle("Enrolled", for: .normal)
         }

@@ -21,9 +21,9 @@ class User {
     
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
-        self.username = dictionary["userName"] as? String ?? ""
-        self.email = dictionary["email"] as? String ?? ""
-        self.userRef = Database.database().reference().child("users").child(uid)
+        self.username = dictionary[UsersAttributes.USERNAME] as? String ?? ""
+        self.email = dictionary[UsersAttributes.EMAIL] as? String ?? ""
+        self.userRef = Database.database().reference().child(UsersAttributes.USERS).child(uid)
         self.observeCourses()
     }
     

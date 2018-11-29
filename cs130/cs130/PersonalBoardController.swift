@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 
 class PersonalBoardController: UIViewController, UIScrollViewDelegate {
+    static var singletonUser: User?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
@@ -29,10 +30,38 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
+        storeCredentials() //store the credentials
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
         setUpPost()
+        
+        
+        
+        //print the credentials
+        print("Singleton: ",PersonalBoardController.singletonUser?.email );
+        print("Singleton: ",PersonalBoardController.singletonUser?.username );
+    }
+    
+    private func storeCredentials() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
+                
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
+                
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
     }
     
     // name field
