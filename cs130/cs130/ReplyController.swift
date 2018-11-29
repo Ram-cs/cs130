@@ -36,7 +36,7 @@ class ReplyController: UIViewController {
         backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
         backButton.isEnabled = true
         let backButtonItem = UIBarButtonItem.init(customView: backButton)
-        backButtonItem.addTarget(self, action: self.navigationController?.popViewController(), for: .touchUpInside)
+        //backButtonItem.addTarget(self, action: self.navigationController?.popViewController(), for: .touchUpInside)
         navigationItem.leftBarButtonItem = backButtonItem
 
         displayRootPost()

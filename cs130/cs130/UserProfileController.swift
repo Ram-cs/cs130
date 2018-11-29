@@ -58,23 +58,22 @@ class UserProfileController: UIViewController {
                 
                 //need to fill out singletonUser's fields
                 UserProfileController.singletonUser = User() //User(uid: userID, dictionary: dictionary)
-                UserProfileController.singletonUser!.retriveUser(uid:userID)
+                UserProfileController.singletonUser!.retrieveUserTriggerTransition(uid:userID, upc:self)
                 
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["userName"] as! String)
                 print("Singleton value: ", (UserProfileController.singletonUser?.email)!)
                 print("Singleton value: ", (UserProfileController.singletonUser?.username)!)
-
-                let personalBoardController = PersonalBoardController()
-                //let navController = UINavigationController(rootViewController:personalBoardController)
-                //self.present(navController, animated:true, completion:nil)
-                self.navigationController?.pushViewController(personalBoardController, animated:true)
             }
         } else {
             print("Error, couldn't get user credentails")
         }
     }
     
+    func transitionToBoard() {
+        let personalBoardController = PersonalBoardController()
+        self.navigationController?.pushViewController(personalBoardController, animated:true)
+    }
     
     let userNameLabel: UILabel = {
         let label = UILabel()
