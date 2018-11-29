@@ -15,7 +15,6 @@ import FirebaseAuth
 class User {
     var uid:String = ""
     var email:String = ""
-    var password:String = ""
     var username:String = ""
     var userRef:DatabaseReference?
     var courses = [(String,String)]()
@@ -24,10 +23,10 @@ class User {
         self.uid = uid
         self.username = dictionary["userName"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
-        self.password = dictionary["password"] as? String ?? ""
+        self.userRef = Database.database().reference().child("users").child(uid)
         self.observeCourses()
     }
-        
+    
     /// Check if the user is already enrolled in a course
     /// - parameters:
     ///     - course: a course of interest
@@ -51,7 +50,7 @@ class User {
         }
         else {
             let courseInfo = ["major": course.major, "id": course.id]
-            self.userRef?.child("courses").child(course.toString()).setValue(courseInfo)
+            self.userRef?.child("majors").child(course.toString()).setValue(courseInfo)
             course.updateUserCnt(add: true)
             return true
         }
@@ -63,7 +62,7 @@ class User {
     /// - returns: whether the course is successfully dropped or not (because the user has not yet enrolled)
     func removeCourse(course: Course) -> Bool{
         if self.hasCourse(course: course) {
-            self.userRef?.child("courses").child(course.toString()).removeValue()
+            self.userRef?.child("majors").child(course.toString()).removeValue()
             course.updateUserCnt(add: false)
             return true
         }
@@ -74,7 +73,7 @@ class User {
     
     /// Set up an observer to asynchronously listen to changes in the user's courses, updating the list of courses stored in self
     func observeCourses() {
-        self.userRef?.child("courses").observe(.value) { (DataSnapshot) in
+        self.userRef?.child("majors").observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             for item in DataSnapshot.children {
                 let course = item as! DataSnapshot
@@ -98,47 +97,5 @@ class User {
     func getCourses() -> [(String,String)] {
         // return [(String, String)]()
         return self.courses
-    }
-    
-    struct LoginErrorCode {
-        static let NETWORK_ERROR = "Network error occured"
-        static let INVALID_EMAIL = "Invalid Email"
-        static let WEAK_PASSWORD = "Weak Password,must be 6 at least character"
-        static let WRONG_PASSWORD = "Invalid Username or Password"
-        static let EMAIL_ALREADY_USE = "Email has already been used"
-        static let USET_NOT_FOUND = "User not found"
-        static let CREDENTIAL_IN_USE = "Email already exist"
-    }
-    
-    private func errorHandler(err: NSError)->String {
-        var error = ""
-        if let errorCode = AuthErrorCode(rawValue: err.code) {
-            switch errorCode {
-            case .networkError:
-                error = (LoginErrorCode.NETWORK_ERROR);
-                break;
-            case .invalidEmail:
-                error = (LoginErrorCode.INVALID_EMAIL);
-                break;
-            case .weakPassword:
-                error = (LoginErrorCode.WEAK_PASSWORD);
-                break;
-            case .wrongPassword:
-                error = (LoginErrorCode.WRONG_PASSWORD);
-                break;
-            case .emailAlreadyInUse:
-                error = (LoginErrorCode.EMAIL_ALREADY_USE);
-                break;
-            case .userNotFound:
-                error = (LoginErrorCode.USET_NOT_FOUND);
-                break;
-            case .credentialAlreadyInUse:
-                error = (LoginErrorCode.CREDENTIAL_IN_USE);
-                break;
-            default:
-                break;
-            }
-        }
-        return error
     }
 }
