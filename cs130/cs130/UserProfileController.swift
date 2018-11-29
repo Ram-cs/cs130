@@ -26,10 +26,15 @@ class UserProfileController: UIViewController {
             let userID : String = (Auth.auth().currentUser?.uid)!
             print("Current user is: ", userID)
             
-            let ref = Database.database().reference().child("accountHolders").child(userID)
+            let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                let userEmail = (snapshot.value as! NSDictionary)["Email"] as! String
-                let userName = (snapshot.value as! NSDictionary)["Username"] as! String
+                var userEmail = ""
+                var userName = ""
+                if((snapshot.value) != nil) {
+                   userEmail = (snapshot.value as! NSDictionary)["email"] as! String
+                   userName = (snapshot.value as! NSDictionary)["username"] as! String
+                }
+                
                 
                 self.userNameLabel.text = "Email:"+userEmail +  " Username:" + userName
             }

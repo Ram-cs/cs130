@@ -10,7 +10,25 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
+
 /// This class defines a user
+
+struct Users {
+    var uid:String = ""
+    var email:String = ""
+    var password:String = ""
+    var username:String = ""
+    var courses = [(String,String)]()
+    
+    init(uid: String, dictionary: [String: Any]) {
+        self.uid = uid
+        self.username = dictionary["userName"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.password = dictionary["password"] as? String ?? ""
+    }
+}
+
+
 class User {
     var uid:String = ""
     var email:String = ""
@@ -19,12 +37,18 @@ class User {
     var userRef:DatabaseReference?
     var courses = [(String,String)]()
     
+    init(uid: String, dictionary: [String: Any]) {
+        self.uid = uid
+        self.username = dictionary["userName"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.password = dictionary["password"] as? String ?? ""
+        self.observeUserInfo()
+        self.observeCourses()
+    }
+    
     // Store newly created user in database
     func storeUser(uid: String, email: String, password: String, username: String) {
-        self.uid = uid
-        self.email = email
-        self.password = password
-        self.username = username
+    
         self.userRef = Database.database().reference().child("users").child(uid)
         // Add the user to the database as an entry (when creating a new user)
       

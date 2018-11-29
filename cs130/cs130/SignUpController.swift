@@ -135,8 +135,8 @@ class SignUpController: UIViewController {
             } else {
                 //now store the credentials to our databse
                 guard let uid = user?.uid else {return}
-                let ref = Database.database().reference().child("accountHolders")
-                let dictionary = ["Email": email, "Username": username, "Password": password]
+                let ref = Database.database().reference().child("users")
+                let dictionary = ["email": email, "userName": username, "password": password]
                 let values = [uid: dictionary]
                 
                 ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
