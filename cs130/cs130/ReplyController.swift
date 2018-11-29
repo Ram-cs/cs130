@@ -10,8 +10,18 @@ import UIKit
 import Firebase
 
 class ReplyController: UIViewController {
-    var rootPost:Post!
+    let rootPost:Post?
 
+    init(rootPost:Post) {
+        self.rootPost = rootPost
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        rootPost = nil
+        super.init(coder:aDecoder)
+    }
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -79,7 +89,7 @@ class ReplyController: UIViewController {
             right: view.rightAnchor, 
             rightPadding: -24,
             top:view.topAnchor, 
-            topPadding: 24,
+            topPadding: 72,
             bottom: nil,
             bottomPadding: -24,
             width: 100,
@@ -104,7 +114,16 @@ class ReplyController: UIViewController {
     // TODO: make replyfield take into account keyboard size (current constraints only work on iphone)
     fileprivate func setUpReplyField() {
         view.addSubview(replyField)
-        replyField.anchor(left: view.leftAnchor, leftPadding: 15, right: view.rightAnchor, rightPadding: -15, top: view.topAnchor, topPadding: 100, bottom: view.bottomAnchor, bottomPadding: -350, width: 0, height: 0)
+        replyField.anchor(left: view.leftAnchor,
+                          leftPadding: 15,
+                          right: view.rightAnchor,
+                          rightPadding: -15,
+                          top: view.topAnchor,
+                          topPadding: 250,
+                          bottom: view.bottomAnchor,
+                          bottomPadding: -350,
+                          width: 0,
+                          height: 0)
         
     }
 
@@ -127,22 +146,21 @@ class ReplyController: UIViewController {
     // TODO: setup submit button functionality
     @objc fileprivate func submitHandle() {
         guard let body = replyField.text, body.count > 0 else {self.errorLabel.text = "Please fill out the form"; return}
-        self.navigationController?.popViewController(animated: true)
         
-        if ((Auth.auth().currentUser?.uid) != nil) {
-            let userID:String = (Auth.auth().currentUser?.uid)!
-            let newComment = Comment(creator:userID, 
+        print("in submitHandle!!!")
+        if ((Auth.auth().currentUser?.uid) == nil) {
+            //let userID:String = (Auth.auth().currentUser?.uid)!
+            let newComment = Comment(creator:"204578044",//userID, 
                 content:body, 
                 isPrivate:false, 
-                rootPost:nil, 
+                rootPost:self.rootPost, 
                 isResponse:false, 
                 respondeeID:"", 
                 creationTime:nil, 
                 ID:nil)
-
             let db = DatabaseAddController()
             db.addComment(comment:newComment)
         }
-        _ = navigationController?.popViewController(animated:true)
+        self.navigationController?.popViewController(animated:true)
     }
 }

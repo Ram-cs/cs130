@@ -9,6 +9,8 @@
 import UIKit
 
 class PostController: UIViewController, UIScrollViewDelegate {
+    let post:Post? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
@@ -129,9 +131,9 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     // set up reply button functionality
     @objc fileprivate func replyAction() {
-        let replyController = ReplyController()
+        //let replyController = ReplyController(self.post)
         //replyController.post = self.post
-        self.navigationController?.pushViewController(replyController, animated: true)
+        //self.navigationController?.pushViewController(replyController, animated: true)
     }
     
     // prevent scrollview from scrolling horizontally
