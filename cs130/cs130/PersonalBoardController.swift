@@ -11,8 +11,15 @@ import UIKit
 import Firebase
 
 class PersonalBoardController: UIViewController, UIScrollViewDelegate {
+    static var singletonUser: User?
+    var formatter = DateFormatter()
+    var posts = [Post]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        get(user:singletonUser)
+
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Personal Board"
@@ -32,7 +39,48 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        setUpPost()
+        setUpPost()        
+        
+        //print the credentials
+        print("Singleton: ",PersonalBoardController.singletonUser?.email );
+        print("Singleton: ",PersonalBoardController.singletonUser?.username );
+    }
+    
+    func get(user:User)  {
+        let userCourses:[(String, String)] = user.getCourses()
+        for course in userCourses {
+            print("fetch course")
+            fetchUserPosts(major: course.0, course: course.1)
+        }
+    }
+
+    func fetchUserPosts(major: String, course: String) {
+        let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
+        db.observe(.value, with: { (DataSnapshot) in
+            var posts: [Post] = []
+            for item in DataSnapshot.children {
+                let post = item as! DataSnapshot
+                let dic = post.value as! NSDictionary
+                let creator:String = dic["creatorID"] as! String
+                let title:String = dic["title"] as! String
+                let description:String = dic["description"] as! String
+                let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
+                let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
+                print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
+                let fetchedPost:Post = Post(creator:creator,
+                                            title:title,
+                                            content:description,
+                                            major:major,
+                                            course:course,
+                                            isTutorSearch:isTutorSearch,
+                                            creationTime:creationTime,
+                                            ID:post.key)
+                posts.append(fetchedPost)
+                
+            }
+            self.posts += posts
+            self.scrollView.reloadData()
+        })
     }
     
     // name field
@@ -77,6 +125,27 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    fileprivate func storeCredentials() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
+                
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
+                
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
+    }
+
     // function that sets up the posts section
     fileprivate func setUpPost() {
         // set scrollView delegate to view
@@ -90,18 +159,26 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
         
+        var buttonList = [UIButton]()
+
+        for post in self.posts {
+            let button = UIButton.createPostButton(title:post.title)
+            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            buttonList.append(button)
+        }
+
         // placeholder posts
-        let button1 = UIButton.createPostButton(title:"Looking for tutor!")
-        button1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        //let button1 = UIButton.createPostButton(title:"Looking for tutor!")
+        //button1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
-        let button2 = UIButton.createPostButton(title: "Help me!")
-        button2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        //let button2 = UIButton.createPostButton(title: "Help me!")
+        //button2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
-        let button3 = UIButton.createPostButton(title: "Placeholder")
-        button3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        //let button3 = UIButton.createPostButton(title: "Placeholder")
+        //button3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
         // create a stackview and add it to the scrollview and set anchors
-        let stackView = UIStackView(arrangedSubviews: [button1, button2, button3])
+        let stackView = UIStackView(arrangedSubviews: buttonList)
         stackView.distribution = .equalCentering
         stackView.axis = .vertical
         stackView.spacing = 10
