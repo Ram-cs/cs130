@@ -54,13 +54,13 @@ class DatabaseAddController {
     }
 
     static func parseUserCourseData(userCourseData:String) -> [(String, String)] {
-        var parsedCourses:[(String, String)]()
-        var courses:[String] = userCourseData.split(separator:"#")
+        var parsedCourses:[(String, String)] = [(String, String)]()
+        var courses:[Substring] = userCourseData.split(separator:"#")
         for course in courses { 
-            var splitCourse = course.split('.')
-            parsedCourses.append((splitCourse[0], splitCourse[1]))
+            var splitCourse = course.split(separator:".")
+            parsedCourses.append((String(splitCourse[0]), String(splitCourse[1])))
         }
-        return parsedCousrses
+        return parsedCourses
     }
     
 }

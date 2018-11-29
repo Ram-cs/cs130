@@ -135,9 +135,9 @@ class User {
         self.userRef?.observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             let val = DataSnapshot.value as? NSDictionary
-            var unparsedData:String
+            var unparsedData:String = ""
             if let data = val?["courses"] as? String {unparsedData = data}
-            self.courses = DatabaseAddController.parseUserCourseData(uparsedData)
+            self.courses = DatabaseAddController.parseUserCourseData(userCourseData:unparsedData)
             print("about to transtion!!")
 
             upc.transitionToBoard()
