@@ -10,8 +10,7 @@ import UIKit
 import Firebase
 
 class ReplyController: UIViewController {
-    var post:Post? = nil
-
+    var rootPost:Post!
 
     override func viewDidLoad() {
 
@@ -28,17 +27,6 @@ class ReplyController: UIViewController {
         backButton.isEnabled = true
         let backButtonItem = UIBarButtonItem.init(customView: backButton)
         navigationItem.leftBarButtonItem = backButtonItem
-        
-        // setup submit button
-        //let submit = UIButton(type: .system);
-        //submit.setTitle("Submit", for: .normal)
-        //submit.isEnabled = true
-        //submit.addTarget(self, action: #selector(submitAction), for: .touchUpInside)
-        //let submitItem = UIBarButtonItem.init(customView: submit)
-        //navigationItem.rightBarButtonItem = submitItem
-        
-        //view.backgroundColor = .white
-        
 
         displayRootPost()
         setUpReplyField()
@@ -47,10 +35,11 @@ class ReplyController: UIViewController {
     }
     
     //display post that is responding to
-    let postBody:UITextView = {
+    lazy var postBody:UITextView = {
         let body = UITextView()
         body.isEditable = false
-        body.text = post.content
+        //var content:String { return rootPost.content }
+        body.text = self.rootPost?.content
         body.backgroundColor = .white
         body.textColor = UIColor.black
         body.font = UIFont.systemFont(ofSize:16)
