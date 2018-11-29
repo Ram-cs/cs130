@@ -35,16 +35,16 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
-        storeCredentials()
-        get(user:PersonalBoardController.singletonUser!)
+        //storeCredentials()
+        get(user:UserProfileController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
         setUpPost()        
         
         //print the credentials
-        print("Singleton: ",PersonalBoardController.singletonUser?.email );
-        print("Singleton: ",PersonalBoardController.singletonUser?.username );
+        print("Singleton: ",UserProfileController.singletonUser?.email );
+        print("Singleton: ",UserProfileController.singletonUser?.username );
     }
     
     func get(user:User)  {
@@ -220,7 +220,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     @objc func handleLogOut() {
         // TODO: uncomment when merged into main
         
-        /*let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Log Out", style: .default, handler: { (_) in
             do {
@@ -234,7 +234,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             self.present(navController, animated: true, completion: nil)
         }))
         alertController.addAction((UIAlertAction(title: "Cancel", style: .cancel, handler: nil)))
-        present(alertController, animated: true, completion: nil)*/
+        present(alertController, animated: true, completion: nil)
     }
     
     // button action function. use sender.tag to specify the action
