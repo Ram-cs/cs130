@@ -29,6 +29,9 @@
 		8813BE4721AE26B900A69C5E /* CreatePostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8813BE4621AE26B900A69C5E /* CreatePostController.swift */; };
 		881ADBD02199052900A76EB9 /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBCF2199052900A76EB9 /* TextItem.swift */; };
 		881ADBD22199053B00A76EB9 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881ADBD12199053B00A76EB9 /* Comment.swift */; };
+		8887E03621AF3697009246B9 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887E03321AF3696009246B9 /* ReplyController.swift */; };
+		8887E03721AF3697009246B9 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887E03421AF3696009246B9 /* PostController.swift */; };
+		8887E03821AF3697009246B9 /* PersonalBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8887E03521AF3696009246B9 /* PersonalBoardController.swift */; };
 		88B8C753219BBBC200BE7A09 /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8C752219BBBC200BE7A09 /* DemoController.swift */; };
 		88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostViewController.swift */; };
 		88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573921A0C009009B7852 /* DatabaseAddController.swift */; };
@@ -75,6 +78,9 @@
 		8813BE4621AE26B900A69C5E /* CreatePostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostController.swift; sourceTree = "<group>"; };
 		881ADBCF2199052900A76EB9 /* TextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
 		881ADBD12199053B00A76EB9 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8887E03321AF3696009246B9 /* ReplyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
+		8887E03421AF3696009246B9 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		8887E03521AF3696009246B9 /* PersonalBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalBoardController.swift; sourceTree = "<group>"; };
 		88B8C752219BBBC200BE7A09 /* DemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
 		88C13AAB219D159F00F54B30 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		88CC573921A0C009009B7852 /* DatabaseAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAddController.swift; sourceTree = "<group>"; };
@@ -154,6 +160,9 @@
 				88C13AA6219C201E00F54B30 /* Model */,
 				88C13AA5219C201500F54B30 /* Controller */,
 				21BD0B7A219934F300797852 /* CourseDetailViewController.swift */,
+				8887E03521AF3696009246B9 /* PersonalBoardController.swift */,
+				8887E03421AF3696009246B9 /* PostController.swift */,
+				8887E03321AF3696009246B9 /* ReplyController.swift */,
 				21BD0B79219934F300797852 /* CourseTableViewController.swift */,
 				88B8C752219BBBC200BE7A09 /* DemoController.swift */,
 				83F24E2E219663730012034D /* Utilities */,
@@ -409,8 +418,10 @@
 				21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */,
 				83557844218CF96800DAC3CF /* LoginController.swift in Sources */,
 				83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */,
+				8887E03621AF3697009246B9 /* ReplyController.swift in Sources */,
 				21D5F3ED2197E2ED000DAB8A /* User.swift in Sources */,
 				88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */,
+				8887E03721AF3697009246B9 /* PostController.swift in Sources */,
 				83557842218CF96800DAC3CF /* AppDelegate.swift in Sources */,
 				90EA3D4321AF6A2F006EFCE4 /* PostController.swift in Sources */,
 				83AD696821A8753D003FD39F /* UserProfileController.swift in Sources */,
@@ -422,6 +433,7 @@
 				90EA3D4121AF6A25006EFCE4 /* PersonalBoardController.swift in Sources */,
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,
 				88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */,
+				8887E03821AF3697009246B9 /* PersonalBoardController.swift in Sources */,
 				88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

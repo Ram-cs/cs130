@@ -17,7 +17,7 @@ public class Comment: TextItem {
     
     /// Initializes a Post object
     /// - parameters:
-    ///     - creator: the User that is the author of the Comment
+    ///     - creator: the userID that is the author of the Comment
     ///     - content: the content of the Comment
     ///     - isPrivate: whether the message can be seen by everyone or only by the poster and rootPost poster
     ///     - rootPost: the Post that this comment is replying to
