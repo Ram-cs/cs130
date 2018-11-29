@@ -96,6 +96,7 @@ class SignUpController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(signUpHandle), for: .touchUpInside)
         return button
     }()
     
