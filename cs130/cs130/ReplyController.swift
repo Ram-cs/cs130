@@ -18,21 +18,27 @@ class ReplyController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Reply"
         
-        // setup submit button
-        let submit = UIButton(type: .system);
-        submit.setTitle("Submit", for: .normal)
-        submit.isEnabled = true
-        submit.addTarget(self, action: #selector(submitAction), for: .touchUpInside)
-        let submitItem = UIBarButtonItem.init(customView: submit)
-        navigationItem.rightBarButtonItem = submitItem
-        
         view.backgroundColor = .white
         
         setUpReplyField()
+        setUpSubmitButton()
         replyField.becomeFirstResponder()
     }
     
-
+    // submit button
+    let submitButton: UIButton = {
+        let button = UIButton(type: .system);
+        button.setTitle("Submit", for: .normal)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(submitAction), for: .touchUpInside)
+        return button
+    }()
+    
     // reply textfield
     let replyField: UITextView = {
         let reply = UITextView();
@@ -43,11 +49,16 @@ class ReplyController: UIViewController {
         return reply
     }()
     
+    // set constraints for submit button
+    fileprivate func setUpSubmitButton() {
+        view.addSubview(submitButton)
+        submitButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: replyField.bottomAnchor, topPadding: 20, bottom: view.bottomAnchor, bottomPadding: -375, width: 0, height: 0)
+    }
+    
     // set constraints for replyfield
-    // TODO: make replyfield take into account keyboard size (current constraints only work on iphone)
     fileprivate func setUpReplyField() {
         view.addSubview(replyField)
-        replyField.anchor(left: view.leftAnchor, leftPadding: 15, right: view.rightAnchor, rightPadding: -15, top: view.topAnchor, topPadding: 100, bottom: view.bottomAnchor, bottomPadding: -350, width: 0, height: 0)
+        replyField.anchor(left: view.leftAnchor, leftPadding: 15, right: view.rightAnchor, rightPadding: -15, top: view.topAnchor, topPadding: 100, bottom: view.bottomAnchor, bottomPadding: -450, width: 0, height: 0)
         
     }
     
