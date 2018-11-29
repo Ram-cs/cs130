@@ -40,12 +40,23 @@ class ReplyController: UIViewController {
         //view.backgroundColor = .white
         
 
-
+        displayRootPost()
         setUpReplyField()
-        createPostButton()
+        createSubmitButton()
         replyField.becomeFirstResponder()
     }
     
+    //display post that is responding to
+    let postBody:UITextView = {
+        let body = UITextView()
+        body.isEditable = false
+        body.text = post.content
+        body.backgroundColor = .white
+        body.textColor = UIColor.black
+        body.font = UIFont.systemFont(ofSize:16)
+        body.sizeToFit()
+        return body
+    }()
 
     // reply textfield
     let replyField: UITextView = {
@@ -58,6 +69,7 @@ class ReplyController: UIViewController {
     }()
 
 
+    //submiti comment button
     let submitButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Post Comment", for: .normal)
@@ -71,9 +83,32 @@ class ReplyController: UIViewController {
         return button
     }()
 
-    fileprivate func createPostButton(){
+    fileprivate func displayRootPost() {
+        view.addSubview(postBody)
+        postBody.anchor(left: view.leftAnchor, 
+            leftPadding: 24, 
+            right: view.rightAnchor, 
+            rightPadding: -24,
+            top:view.topAnchor, 
+            topPadding: 24,
+            bottom: nil,
+            bottomPadding: -24,
+            width: 100,
+            height:200)
+    }
+
+    fileprivate func createSubmitButton() { 
         view.addSubview(submitButton)
-        submitButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -70, width: 100, height: 40)
+        submitButton.anchor(left: view.leftAnchor, 
+            leftPadding: 24, 
+            right: view.rightAnchor, 
+            rightPadding: -24, 
+            top: nil, 
+            topPadding: 0, 
+            bottom: view.bottomAnchor, 
+            bottomPadding: -70, 
+            width: 100, 
+            height: 40)
     }
     
     // set constraints for replyfield
@@ -83,7 +118,6 @@ class ReplyController: UIViewController {
         replyField.anchor(left: view.leftAnchor, leftPadding: 15, right: view.rightAnchor, rightPadding: -15, top: view.topAnchor, topPadding: 100, bottom: view.bottomAnchor, bottomPadding: -350, width: 0, height: 0)
         
     }
-
 
 
     let errorLabel: UILabel = {
@@ -120,5 +154,6 @@ class ReplyController: UIViewController {
             let db = DatabaseAddController()
             db.addComment(comment:newComment)
         }
+        _ = navigationController?.popViewController(animated:true)
     }
 }
