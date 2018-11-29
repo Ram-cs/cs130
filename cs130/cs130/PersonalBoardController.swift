@@ -37,8 +37,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
-        //storeCredentials()
-        get(user:UserProfileController.singletonUser!)
+        storeCredentials()
+        //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
+        get(user:PersonalBoardController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
@@ -85,6 +86,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             self.scrollView.setNeedsDisplay()
             self.setUpPost()
         })
+    }
     
     private func storeCredentials() {
         if((Auth.auth().currentUser?.uid) != nil) {
@@ -150,30 +152,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
-    fileprivate func storeCredentials() {
-        if((Auth.auth().currentUser?.uid) != nil) {
-            let userID : String = (Auth.auth().currentUser?.uid)!
-            print("Current user is: ", userID)
-            
-            let ref = Database.database().reference().child("users").child(userID)
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                guard let dictionary = snapshot.value as? [String: Any] else {return}
-                
-                //need to fill out singletonUser's fields
-                PersonalBoardController.singletonUser = User() //User(uid: userID, dictionary: dictionary)
-                PersonalBoardController.singletonUser!.retriveUser(uid:userID)
-                
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
-                print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
-                print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
-                
-            }
-        } else {
-            print("Error, couldn't get user credentails")
-        }
-    }
-
     // function that sets up the posts section
     fileprivate func setUpPost() {
         // set scrollView delegate to view
@@ -285,3 +263,4 @@ extension UIButton {
         return button
     }
 }
+

@@ -61,7 +61,7 @@ class UserProfileController: UIViewController {
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
                 
                 //need to fill out singletonUser's fields
-                UserProfileController.singletonUser = User() //User(uid: userID, dictionary: dictionary)
+                UserProfileController.singletonUser = User(uid: userID, dictionary: dictionary)
                 UserProfileController.singletonUser!.retrieveUserTriggerTransition(uid:userID, upc:self)
                 
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)

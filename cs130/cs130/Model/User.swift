@@ -27,10 +27,11 @@ class User {
         self.observeCourses()
     }
     
+    //this doesnt work
     func retrieveUserTriggerTransition(uid: String, upc:UserProfileController) {
         self.userRef? = Database.database().reference().child("users").child(uid)
         self.uid = uid
-        self.observeUserInfo()
+        //self.observeUserInfo()
         self.observeCoursesTriggerTransition(upc:upc)
     }
     
@@ -93,6 +94,7 @@ class User {
         }
     }
     
+    //dont use this
     func observeCoursesTriggerTransition(upc:UserProfileController) {
         self.userRef?.observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
