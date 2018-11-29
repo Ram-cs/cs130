@@ -41,7 +41,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        setUpPost()        
+        //setUpPost()        
         
         //print the credentials
         print("Singleton: ",UserProfileController.singletonUser?.email );
@@ -89,7 +89,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     // name field
     let name: UILabel = {
         let label = UILabel();
-        label.text = "Joe Bruin"
+        label.text = UserProfileController.singletonUser?.username
         label.textColor = UIColor.black
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
@@ -188,6 +188,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     // set constraints for the name label
     fileprivate func setUpName() {
+        print("setupname()!!")
         view.addSubview(name)
         
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)
