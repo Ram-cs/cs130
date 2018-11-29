@@ -12,8 +12,15 @@ import Firebase
 
 class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     static var singletonUser: User?
+    var formatter = DateFormatter()
+    var posts = [Post]()
+    var buttonList = [UIButton]()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Personal Board"
@@ -30,18 +37,54 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
-        storeCredentials() //store the credentials
+        //storeCredentials()
+        get(user:UserProfileController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        setUpPost()
-        
-        
+        //setUpPost()        
         
         //print the credentials
-        print("Singleton: ",PersonalBoardController.singletonUser?.email );
-        print("Singleton: ",PersonalBoardController.singletonUser?.username );
+        print("Singleton: ",UserProfileController.singletonUser?.email );
+        print("Singleton: ",UserProfileController.singletonUser?.username );
     }
+    
+    func get(user:User)  {
+        let userCourses:[(String, String)] = user.getCourses()
+        for course in userCourses {
+            print("fetch course")
+            fetchUserPosts(major: course.0, course: course.1)
+        }
+    }
+
+    func fetchUserPosts(major: String, course: String) {
+        let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
+        db.observe(.value, with: { (DataSnapshot) in
+            var posts: [Post] = []
+            for item in DataSnapshot.children {
+                let post = item as! DataSnapshot
+                let dic = post.value as! NSDictionary
+                let creator:String = dic["creatorID"] as! String
+                let title:String = dic["title"] as! String
+                let description:String = dic["description"] as! String
+                let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
+                let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
+                print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
+                let fetchedPost:Post = Post(creator:creator,
+                                            title:title,
+                                            content:description,
+                                            major:major,
+                                            course:course,
+                                            isTutorSearch:isTutorSearch,
+                                            creationTime:creationTime,
+                                            ID:post.key)
+                posts.append(fetchedPost)
+                
+            }
+            self.posts += posts
+            self.scrollView.setNeedsDisplay()
+            self.setUpPost()
+        })
     
     private func storeCredentials() {
         if((Auth.auth().currentUser?.uid) != nil) {
@@ -67,7 +110,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     // name field
     let name: UILabel = {
         let label = UILabel();
-        label.text = "Joe Bruin"
+        label.text = UserProfileController.singletonUser?.username
         label.textColor = UIColor.black
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
@@ -86,6 +129,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.isEnabled = true
+        button.addTarget(self, action: #selector(createHandle), for: .touchUpInside)
         return button
     }()
     
@@ -106,6 +150,30 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         return view
     }()
     
+    fileprivate func storeCredentials() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                
+                //need to fill out singletonUser's fields
+                PersonalBoardController.singletonUser = User() //User(uid: userID, dictionary: dictionary)
+                PersonalBoardController.singletonUser!.retriveUser(uid:userID)
+                
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
+                print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
+                
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
+    }
+
     // function that sets up the posts section
     fileprivate func setUpPost() {
         // set scrollView delegate to view
@@ -119,18 +187,15 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
         
-        // placeholder posts
-        let button1 = UIButton.createPostButton(title:"Looking for tutor!")
-        button1.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
 
-        let button2 = UIButton.createPostButton(title: "Help me!")
-        button2.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-
-        let button3 = UIButton.createPostButton(title: "Placeholder")
-        button3.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        for post in self.posts {
+            let button = UIButton.createPostButton(title:post.title)
+            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            self.buttonList.append(button)
+        }
 
         // create a stackview and add it to the scrollview and set anchors
-        let stackView = UIStackView(arrangedSubviews: [button1, button2, button3])
+        let stackView = UIStackView(arrangedSubviews: buttonList)
         stackView.distribution = .equalCentering
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -144,6 +209,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     // set constraints for the name label
     fileprivate func setUpName() {
+        print("setupname()!!")
         view.addSubview(name)
         
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)
@@ -152,7 +218,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     // set constraints for the "Create Post" Button
     fileprivate func setUpCreatePost() {
         view.addSubview(CreatePostButton)
-
         CreatePostButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -70, width: 100, height: 40)
     }
     
@@ -188,6 +253,11 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         if (sender.tag == 1) {
             self.navigationController?.pushViewController(postController, animated: true)
         }
+    }
+
+    @objc fileprivate func createHandle() {
+        let createPostController = CreatePostController()
+        self.navigationController?.pushViewController(createPostController, animated:true)
     }
     
     // function that stops ScrollView from scrolling horizontally

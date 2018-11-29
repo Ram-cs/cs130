@@ -27,6 +27,13 @@ class User {
         self.observeCourses()
     }
     
+    func retrieveUserTriggerTransition(uid: String, upc:UserProfileController) {
+        self.userRef? = Database.database().reference().child("users").child(uid)
+        self.uid = uid
+        self.observeUserInfo()
+        self.observeCoursesTriggerTransition(upc:upc)
+    }
+    
     /// Check if the user is already enrolled in a course
     /// - parameters:
     ///     - course: a course of interest
@@ -83,6 +90,31 @@ class User {
                 newCourses.append((major, id))
             }
             self.courses = newCourses
+        }
+    }
+    
+    func observeCoursesTriggerTransition(upc:UserProfileController) {
+        self.userRef?.observe(.value) { (DataSnapshot) in
+            var newCourses = [(String,String)]()
+            let val = DataSnapshot.value as? NSDictionary
+            var unparsedData:String = ""
+            if let data = val?["courses"] as? String {unparsedData = data}
+            self.courses = DatabaseAddController.parseUserCourseData(userCourseData:unparsedData)
+            print("about to transtion!!")
+
+            upc.transitionToBoard()
+
+
+            //for item in DataSnapshot.children {
+
+                //let course = item as! DataSnapshot
+                //let dic = course.value as! NSDictionary
+                //let major = dic["major"] as! String
+                //let id = dic["id"] as! String
+                //newCourses.append((major, id))
+            //}
+            //self.courses = newCourses
+            //upc.transitionToBoard()
         }
     }
     

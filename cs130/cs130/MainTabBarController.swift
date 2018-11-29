@@ -18,7 +18,6 @@ class MainTabBarController: UIViewController {
                 let logInController = LoginController()
                 let navController = UINavigationController(rootViewController: logInController)
                 self.present(navController, animated: true, completion: nil)
-                
             }
             
        // }
