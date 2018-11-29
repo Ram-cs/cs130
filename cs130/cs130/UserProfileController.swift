@@ -32,7 +32,7 @@ class UserProfileController: UIViewController {
                 var userName = ""
                 if((snapshot.value) != nil) {
                    userEmail = (snapshot.value as! NSDictionary)["email"] as! String
-                   userName = (snapshot.value as! NSDictionary)["username"] as! String
+                   userName = (snapshot.value as! NSDictionary)["userName"] as! String
                 }
                 
                 
