@@ -132,17 +132,27 @@ class User {
     }
     
     func observeCoursesTriggerTransition(upc:UserProfileController) {
-        self.userRef?.child("majors").observe(.value) { (DataSnapshot) in
+        self.userRef?.observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
-            for item in DataSnapshot.children {
-                let course = item as! DataSnapshot
-                let dic = course.value as! NSDictionary
-                let major = dic["major"] as! String
-                let id = dic["id"] as! String
-                newCourses.append((major, id))
-            }
-            self.courses = newCourses
+            let val = DataSnapshot.value as? NSDictionary
+            var unparsedData:String
+            if let data = val?["courses"] as? String {unparsedData = data}
+            self.courses = DatabaseAddController.parseUserCourseData(uparsedData)
+            print("about to transtion!!")
+
             upc.transitionToBoard()
+
+
+            //for item in DataSnapshot.children {
+
+                //let course = item as! DataSnapshot
+                //let dic = course.value as! NSDictionary
+                //let major = dic["major"] as! String
+                //let id = dic["id"] as! String
+                //newCourses.append((major, id))
+            //}
+            //self.courses = newCourses
+            //upc.transitionToBoard()
         }
     }
     

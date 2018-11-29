@@ -52,5 +52,15 @@ class DatabaseAddController {
         db.updateChildValues(["/\(key)":dbEntry])
         comment.ID = key
     }
+
+    static func parseUserCourseData(userCourseData:String) -> [(String, String)] {
+        var parsedCourses:[(String, String)]()
+        var courses:[String] = userCourseData.split(separator:"#")
+        for course in courses { 
+            var splitCourse = course.split('.')
+            parsedCourses.append((splitCourse[0], splitCourse[1]))
+        }
+        return parsedCousrses
+    }
     
 }
