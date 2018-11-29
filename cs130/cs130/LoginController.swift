@@ -85,8 +85,9 @@ class LoginController: UIViewController {
             }
             
             print("Succefully signed In")
-            let userProfileController = UserProfileController()
-            let navController = UINavigationController(rootViewController: userProfileController)
+            //let userProfileController = UserProfileController()
+            let nextController = PersonalBoardController()
+            let navController = UINavigationController(rootViewController: nextController)
             self.present(navController, animated: true, completion: nil)
         }
     }

@@ -18,7 +18,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        get(user:singletonUser)
 
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -36,6 +35,8 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
+        storeCredentials()
+        get(user:PersonalBoardController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
@@ -79,7 +80,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                 
             }
             self.posts += posts
-            self.scrollView.reloadData()
+            self.scrollView.setNeedsDisplay()
         })
     }
     
@@ -133,7 +134,10 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
-                PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
+                
+                //need to fill out singletonUser's fields
+                PersonalBoardController.singletonUser = User() //User(uid: userID, dictionary: dictionary)
+                PersonalBoardController.singletonUser!.retriveUser(uid:userID)
                 
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)

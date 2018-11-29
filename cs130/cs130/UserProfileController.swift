@@ -22,20 +22,22 @@ class UserProfileController: UIViewController {
     
     private func showUserCredentials() {
         
+        
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
             print("Current user is: ", userID)
             
-            let ref = Database.database().reference().child("accountHolders").child(userID)
+            let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
-                let userEmail = (snapshot.value as! NSDictionary)["Email"] as! String
-                let userName = (snapshot.value as! NSDictionary)["Username"] as! String
+                let userEmail = (snapshot.value as! NSDictionary)["email"] as! String
+                let userName = (snapshot.value as! NSDictionary)["userName"] as! String
                 
                 self.userNameLabel.text = "Email:"+userEmail +  " Username:" + userName
             }
             
             view.addSubview(userNameLabel)
             userNameLabel.anchor(left: view.leftAnchor, leftPadding: 10, right: view.rightAnchor, rightPadding: -10, top: view.topAnchor, topPadding: 100, bottom: nil, bottomPadding: 0, width: 0, height: 40)
+            
         } else {
             print("Error, couldn't get user credentails")
         }
