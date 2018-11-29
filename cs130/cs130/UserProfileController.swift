@@ -11,12 +11,15 @@ import UIKit
 import Firebase
 
 class UserProfileController: UIViewController {
+    static var singletonUser: User?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUplogOutButton()
         
         showUserCredentials()
+        storeUserInfo()
         
     }
     
@@ -42,6 +45,33 @@ class UserProfileController: UIViewController {
             print("Error, couldn't get user credentails")
         }
        
+    }
+
+    private func storeUserInfo() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                
+                //need to fill out singletonUser's fields
+                UserProfileController.singletonUser = User() //User(uid: userID, dictionary: dictionary)
+                UserProfileController.singletonUser!.retriveUser(uid:userID)
+                
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
+                print("Singleton value: ", (UserProfileController.singletonUser?.email)!)
+                print("Singleton value: ", (UserProfileController.singletonUser?.username)!)
+
+                let personalBoardController = PersonalBoardController()
+                let navController = UINavigationController(rootViewController:personalBoardController)
+                self.present(navController, animated:true, completion:nil)
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
     }
     
     
