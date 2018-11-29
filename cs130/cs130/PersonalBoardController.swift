@@ -128,7 +128,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // setup logout button
-    // TODO: button will work when merged into main
     private func setUplogOutButton() {
         let imageName = "gear.png"
         let image = UIImage(named: imageName)
@@ -137,9 +136,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     // set logoutbutton action
     @objc func handleLogOut() {
-        // TODO: uncomment when merged into main
-        
-        /*let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(UIAlertAction(title: "Log Out", style: .default, handler: { (_) in
             do {
@@ -153,7 +150,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             self.present(navController, animated: true, completion: nil)
         }))
         alertController.addAction((UIAlertAction(title: "Cancel", style: .cancel, handler: nil)))
-        present(alertController, animated: true, completion: nil)*/
+        present(alertController, animated: true, completion: nil)
     }
     
     // button action function. use sender.tag to specify the action

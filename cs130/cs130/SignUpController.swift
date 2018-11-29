@@ -151,8 +151,8 @@ class SignUpController: UIViewController {
                         
                         //dismiss this view controller now
 //                        self.dismiss(animated: true, completion: nil)
-                        let userProfileController = UserProfileController()
-                        let navController = UINavigationController(rootViewController: userProfileController)
+                        let personalBoardController = PersonalBoardController()
+                        let navController = UINavigationController(rootViewController: personalBoardController)
                         self.present(navController, animated: true, completion: nil)
                     }
                 })

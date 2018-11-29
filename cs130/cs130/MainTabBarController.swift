@@ -27,8 +27,8 @@ class MainTabBarController: UIViewController {
 //        let courseTableViewController = CourseTableViewController()
 //        let userProfileController = UserProfileController()
         
-        let userProfileController = UserProfileController()
-        let navController = UINavigationController(rootViewController: userProfileController)
+        let personalBoardController = PersonalBoardController()
+        let navController = UINavigationController(rootViewController: personalBoardController)
         self.present(navController, animated: true, completion: nil)
     }
 }
