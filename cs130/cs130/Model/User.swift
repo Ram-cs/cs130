@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
+
 /// This class defines a user
 class User {
     var uid:String = ""
@@ -19,46 +20,14 @@ class User {
     var userRef:DatabaseReference?
     var courses = [(String,String)]()
     
-    /// Store newly created user in database, then set up observers to observe the change in user info in database
-    /// - parameters:
-    ///     - uid, email, password, username: relevant information about the user
-    func storeUser(uid: String, email: String, password: String, username: String) {
+    init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
-        self.email = email
-        self.password = password
-        self.username = username
-        self.userRef = Database.database().reference().child("users").child(uid)
-        
-        // Add the user to the database as an entry
-        let ref = Database.database().reference().child("users")
-        let dictionary = ["Email": email, "Username": username, "Password": password]
-        let values = [uid: dictionary]
-        
-        ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
-            if let error = err {
-                print("Error with creating account", error)
-                let get_error = self.errorHandler(err: error as NSError)
-                print(get_error)
-                return
-            } else {
-                print("Account succefully created!")
-                print("Succefully data saved!")
-            }
-        })
-        self.observeUserInfo()
+        self.username = dictionary["userName"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.password = dictionary["password"] as? String ?? ""
         self.observeCourses()
     }
-    
-    /// Retrieve user with given id from database and store information in self, then set up observers to observe the change in user info in database
-    /// - parameters:
-    ///     - uid: User's unique identifier
-    func retriveUser(uid: String) {
-        self.userRef? = Database.database().reference().child("users").child(uid)
-        self.uid = uid
-        self.observeUserInfo()
-        self.observeCourses()
-    }
-    
+        
     /// Check if the user is already enrolled in a course
     /// - parameters:
     ///     - course: a course of interest
@@ -70,16 +39,6 @@ class User {
             }
         }
         return false
-    }
-    
-    /// Set up observer to asynchronously listen to changes in user info in database, updating email, password and username stored in self
-    func observeUserInfo() {
-        self.userRef?.observe(.value) { (DataSnapshot) in
-            let val = DataSnapshot.value as? NSDictionary
-            if let data = val?["email"] as? String {self.email = data}
-            if let data = val?["password"] as? String {self.password = data}
-            if let data = val?["username"] as? String {self.username = data}
-        }
     }
     
     /// Let the user enroll in a course
