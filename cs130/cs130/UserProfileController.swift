@@ -61,13 +61,14 @@ class UserProfileController: UIViewController {
                 UserProfileController.singletonUser!.retriveUser(uid:userID)
                 
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
+                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["userName"] as! String)
                 print("Singleton value: ", (UserProfileController.singletonUser?.email)!)
                 print("Singleton value: ", (UserProfileController.singletonUser?.username)!)
 
                 let personalBoardController = PersonalBoardController()
-                let navController = UINavigationController(rootViewController:personalBoardController)
-                self.present(navController, animated:true, completion:nil)
+                //let navController = UINavigationController(rootViewController:personalBoardController)
+                //self.present(navController, animated:true, completion:nil)
+                self.navigationController?.pushViewController(personalBoardController, animated:true)
             }
         } else {
             print("Error, couldn't get user credentails")
