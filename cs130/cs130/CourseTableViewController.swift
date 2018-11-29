@@ -75,18 +75,6 @@ class CourseTableViewController: UITableViewController {
     }
 }
 
-// Header
-class CourseTableViewHeader: UITableViewHeaderFooterView {
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = APP_BLUE
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 // Cells
 class CourseTableViewCell: UITableViewCell {
     
