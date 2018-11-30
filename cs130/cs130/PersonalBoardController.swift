@@ -69,7 +69,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
     func fetchUserPosts(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
-        db.observe(.value, with: { (DataSnapshot) in
+        db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
             var posts: [Post] = []
             for item in DataSnapshot.children {
                 let post = item as! DataSnapshot
@@ -91,18 +91,19 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                 posts.append(fetchedPost)
                 
             }
-            self.posts = posts
+            self.posts += posts
             self.scrollView.setNeedsDisplay()
             let headColor = self.colorList.remove(at:0)
             self.colorList.append(headColor)
             self.preSetupPost()
-            //self.setUpPost()
         })
     }
 
     private func preSetupPost() {
         self.fetchedCourseCount+=1
-        if(self.fetchedCourseCount >= LoadUserController.courses.count) {
+        if(self.fetchedCourseCount >= (LoadUserController.singletonUser?.courses.count)!) {
+            //sort self.posts by chronological order
+            self.posts = self.posts.sorted(by: {$0.creationTime > $1.creationTime})
             self.setUpPost()
         }
     }
