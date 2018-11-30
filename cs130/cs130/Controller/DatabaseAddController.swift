@@ -38,7 +38,7 @@ class DatabaseAddController {
         let major:String = comment.rootPost!.major
         let course:String = comment.rootPost!.course
         let rootPostID:String = comment.rootPost!.ID as! String
-        let db:DatabaseReference = Database.database().reference().child("/comments/\(major)/\(course)/\(rootPostID)")
+        let db:DatabaseReference = Database.database().reference().child("comments/\(major)/\(course)/\(rootPostID)")
         let key = db.childByAutoId().key
         
         let dateString = self.formatter.string(from: comment.creationTime)

@@ -29,11 +29,34 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         backButton.isEnabled = true
         let backButtonItem = UIBarButtonItem.init(customView: backButton)
         navigationItem.leftBarButtonItem = backButtonItem
-        ref = Database.database().reference().child("")
         getUsername()
         getCourses()
-        display()
+        //display()
     }
+
+    
+    func getCourses() {
+        let userCourses:[(String, String)] = LoadUserController.singletonUser!.courses
+        for course in userCourses {
+            fetchCourse(major: course.0, course: course.1)
+        }
+    }
+
+    func fetchCourse(major: String, course: String) {
+        let db:DatabaseReference = Database.database().reference().child(Majors.MAJORS).child(major).child(course)
+        db.observeSingleEvent(of: .value, with: { (snapshot) in 
+            let fetchedCourse:Course = Course(major:major, snapshot:snapshot)
+            self.courses.append(fetchedCourse)
+            self.preDisplay()
+            })
+    }
+
+    private func preDisplay() {
+        if(self.courses.count >= (LoadUserController.singletonUser!.courses.count)) {
+            self.display()
+        }
+    }
+
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -96,10 +119,6 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-    }
-    
-    fileprivate func getCourses() {
-        //gonna have to fetch  some shit
     }
     
     fileprivate func getUsername(){

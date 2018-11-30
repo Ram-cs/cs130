@@ -155,10 +155,9 @@ class ReplyController: UIViewController {
     // TODO: setup submit button functionality
     @objc fileprivate func submitHandle() {
         guard let body = replyField.text, body.count > 0 else {self.errorLabel.text = "Please fill out the form"; return}
-        
-        if ((Auth.auth().currentUser?.uid) == nil) {
+        if ((Auth.auth().currentUser?.uid) != nil) {
             //let userID:String = (Auth.auth().currentUser?.uid)!
-            let newComment = Comment(creator:"204578044",//userID, 
+            let newComment = Comment(creator:LoadUserController.singletonUser!.uid,
                 content:body, 
                 isPrivate:false, 
                 rootPost:self.rootPost, 

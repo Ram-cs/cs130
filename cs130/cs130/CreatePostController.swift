@@ -164,7 +164,14 @@ class CreatePostController: UIViewController {
         }
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
-            let newPost = Post(creator: userID, title: title, content: body, major: major, course: course, isTutorSearch: type, creationTime: nil, ID: nil )
+            let newPost = Post(creator: userID, 
+                title: title, 
+                content: body, 
+                major: major, 
+                course: course, 
+                isTutorSearch: type, 
+                creationTime: nil, 
+                ID: nil )
             let db = DatabaseAddController()
             db.addPost(post: newPost)
         }
