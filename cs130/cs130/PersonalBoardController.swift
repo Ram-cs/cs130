@@ -22,6 +22,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                      UIColor.purple,
                      UIColor.gray]
     var buttonList = [UIButton]()
+    var fetchedCourseCount:Int = 0
     
 
 
@@ -53,7 +54,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        //setUpPost()
         
         //print the credentials
         print("Singleton: ",LoadUserController.singletonUser!.email );
@@ -63,7 +63,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     func get(user:User)  {
         let userCourses:[(String, String)] = user.getCourses()
         for course in userCourses {
-            print("fetch course")
             fetchUserPosts(major: course.0, course: course.1)
         }
     }
@@ -96,8 +95,16 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             self.scrollView.setNeedsDisplay()
             let headColor = self.colorList.remove(at:0)
             self.colorList.append(headColor)
-            self.setUpPost()
+            self.preSetupPost()
+            //self.setUpPost()
         })
+    }
+
+    private func preSetupPost() {
+        self.fetchedCourseCount+=1
+        if(self.fetchedCourseCount >= LoadUserController.courses.count) {
+            self.setUpPost()
+        }
     }
     
     // name field
