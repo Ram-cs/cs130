@@ -17,14 +17,10 @@ class CreatePostController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Create Post"
         view.backgroundColor = .white
-        let backButton = UIButton(type: .system);
-        backButton.setTitle("Back", for: .normal)
-        backButton.clipsToBounds = true
-        backButton.setTitleColor(UIColor.white, for: .normal)
-        backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
-        backButton.isEnabled = true
-        let backButtonItem = UIBarButtonItem.init(customView: backButton)
+        
+        let backButtonItem = navigationItem.backBarButtonItem
         navigationItem.leftBarButtonItem = backButtonItem
+        
         createFields()
         createPostButton()
         addErrorLabel()
@@ -119,7 +115,7 @@ class CreatePostController: UIViewController {
         button.setTitle("Create Post", for: .normal)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true

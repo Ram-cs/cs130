@@ -92,7 +92,7 @@ class SignUpController: UIViewController {
         button.setTitle("Sign Up", for: .normal)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
@@ -165,7 +165,7 @@ class SignUpController: UIViewController {
     let alreadyHaveAccountButtton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        attributedTitle.append(NSAttributedString(string: "Sign In.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        attributedTitle.append(NSAttributedString(string: "Sign In.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: APP_BLUE]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleAlreadyHaveAccount), for: .touchUpInside)
         return button

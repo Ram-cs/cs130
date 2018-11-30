@@ -36,7 +36,10 @@ class ReplyController: UIViewController {
         backButton.setTitleColor(UIColor.white, for: .normal)
         backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
         backButton.isEnabled = true
-        let backButtonItem = UIBarButtonItem.init(customView: backButton)
+        //let backButtonItem = UIBarButtonItem.init(customView: backButton)
+        //backButtonItem.addTarget(self, action: self.navigationController?.popViewController(), for: .touchUpInside)
+        
+        let backButtonItem = navigationItem.backBarButtonItem
         navigationItem.leftBarButtonItem = backButtonItem
 
         displayRootPost()
@@ -75,7 +78,7 @@ class ReplyController: UIViewController {
         button.setTitle("Post Comment", for: .normal)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true

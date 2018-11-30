@@ -52,5 +52,4 @@ class DatabaseAddController {
         db.updateChildValues(["/\(key)":dbEntry])
         comment.ID = key
     }
-    
 }
