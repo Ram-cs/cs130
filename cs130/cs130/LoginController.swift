@@ -105,7 +105,7 @@ class LoginController: UIViewController {
             let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
-                LoginController.singletonUser = User(uid: userID, dictionary: dictionary, lc:self)
+                //LoadUserController.singletonUser = User(uid: userID, dictionary: dictionary, luc:self)
             }
         } else {
             print("Error, couldn't get user credentails")

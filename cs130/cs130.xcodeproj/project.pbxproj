@@ -36,6 +36,7 @@
 		88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13AAB219D159F00F54B30 /* PostViewController.swift */; };
 		88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573921A0C009009B7852 /* DatabaseAddController.swift */; };
 		88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573B21A0DA4D009B7852 /* CommentViewController.swift */; };
+		88E4126421B0D671004C6E69 /* LoadUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4126321B0D671004C6E69 /* LoadUserController.swift */; };
 		90EA3D4121AF6A25006EFCE4 /* PersonalBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */; };
 		90EA3D4321AF6A2F006EFCE4 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4221AF6A2F006EFCE4 /* PostController.swift */; };
 		90EA3D4521AF6A36006EFCE4 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */; };
@@ -85,6 +86,7 @@
 		88C13AAB219D159F00F54B30 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		88CC573921A0C009009B7852 /* DatabaseAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAddController.swift; sourceTree = "<group>"; };
 		88CC573B21A0DA4D009B7852 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		88E4126321B0D671004C6E69 /* LoadUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadUserController.swift; sourceTree = "<group>"; };
 		90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalBoardController.swift; sourceTree = "<group>"; };
 		90EA3D4221AF6A2F006EFCE4 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */,
+				88E4126321B0D671004C6E69 /* LoadUserController.swift */,
 				90EA3D4221AF6A2F006EFCE4 /* PostController.swift */,
 				90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */,
 				88C13AA6219C201E00F54B30 /* Model */,
@@ -434,6 +437,7 @@
 				83F24E37219693C50012034D /* SignUpController.swift in Sources */,
 				88C13AAC219D159F00F54B30 /* PostViewController.swift in Sources */,
 				8887E03821AF3697009246B9 /* PersonalBoardController.swift in Sources */,
+				88E4126421B0D671004C6E69 /* LoadUserController.swift in Sources */,
 				88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

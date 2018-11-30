@@ -46,8 +46,8 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         //setUpPost()        
         
         //print the credentials
-        print("Singleton: ",LoginController.singletonUser!.email );
-        print("Singleton: ",LoginController.singletonUser!.username );
+        print("Singleton: ",LoadUserController.singletonUser!.email );
+        print("Singleton: ",LoadUserController.singletonUser!.username );
     }
     
     func get(user:User)  {

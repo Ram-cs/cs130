@@ -105,7 +105,7 @@ class User {
     
     //dont use this
     func observeCourses(luc:LoadUserController) {
-        self.userRef?.observe(.value) { (DataSnapshot) in
+        self.userRef?.child("majors").observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             /*let val = DataSnapshot.value as? NSDictionary
             var unparsedData:String = ""

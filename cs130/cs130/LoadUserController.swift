@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoadUsercontroller: UIViewController {
+class LoadUserController: UIViewController {
     static var singletonUser: User?
 
     override func viewDidLoad() {
