@@ -21,14 +21,16 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Account"
         view.backgroundColor = .white
-        let backButton = UIButton(type: .system);
-        backButton.setTitle("Back", for: .normal)
-        backButton.clipsToBounds = true
-        backButton.setTitleColor(UIColor.white, for: .normal)
-        backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
-        backButton.isEnabled = true
-        let backButtonItem = UIBarButtonItem.init(customView: backButton)
-        navigationItem.leftBarButtonItem = backButtonItem
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
+//        let backButton = UIButton(type: .system);
+//        backButton.setTitle("Back", for: .normal)
+//        backButton.clipsToBounds = true
+//        backButton.setTitleColor(UIColor.white, for: .normal)
+//        backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
+//        backButton.isEnabled = true
+//        let backButtonItem = UIBarButtonItem.init(customView: backButton)
+//        navigationItem.leftBarButtonItem = backButtonItem
 
         getUsername()
         getCourses()

@@ -32,7 +32,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.title = "Personal Board"  
+        navigationItem.title = "Personal Board"
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+
         view.backgroundColor = .white
         
         get(user:LoadUserController.singletonUser!)
