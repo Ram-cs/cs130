@@ -27,12 +27,12 @@ class User {
         self.observeCourses()
     }
 
-    init(uid: String, dictionary: [String: Any], lc:LoginController) {
+    init(uid: String, dictionary: [String: Any], luc:LoadUserController) {
         self.uid = uid
         self.username = dictionary[UsersAttributes.USERNAME] as? String ?? ""
         self.email = dictionary[UsersAttributes.EMAIL] as? String ?? ""
         self.userRef = Database.database().reference().child(UsersAttributes.USERS).child(uid)
-        self.observeCourses(lc:lc)
+        self.observeCourses(luc:luc)
     }
 
     
@@ -104,7 +104,7 @@ class User {
     }
     
     //dont use this
-    func observeCourses(lc:LoginController) {
+    func observeCourses(luc:LoadUserController) {
         self.userRef?.observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             /*let val = DataSnapshot.value as? NSDictionary
@@ -115,6 +115,7 @@ class User {
 
             lc.transitionToBoard()*/
 
+            print("observeCourses(LoadUserController)")
             for item in DataSnapshot.children {
                 print("for course in userdatabase!!!")
                 let course = item as! DataSnapshot
@@ -125,7 +126,7 @@ class User {
                 print("got a course, got a course!!")
             }
             self.courses = newCourses
-            lc.transitionToBoard()
+            luc.transitionToBoard()
         }
     }
     

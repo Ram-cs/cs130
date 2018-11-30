@@ -90,10 +90,10 @@ class LoginController: UIViewController {
             }
             
             print("Succefully signed In")
-            self.storeCredentials()
-            //let personalBoardController = PersonalBoardController()
-            //let navController = UINavigationController(rootViewController: personalBoardController)
-            //self.present(navController, animated: true, completion: nil)
+            //// go to LoadUserController
+            let loadUserController = LoadUserController()
+            let navController = UINavigationController(rootViewController: loadUserController)
+            self.present(navController, animated: true, completion: nil)
         }
     }
 

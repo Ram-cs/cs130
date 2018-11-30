@@ -39,7 +39,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         //storeCredentials()
         //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
-        get(user:LoginController.singletonUser!)
+        get(user:LoadUserController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
@@ -112,7 +112,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     // name field
     let name: UILabel = {
         let label = UILabel();
-        label.text = UserProfileController.singletonUser?.username
+        label.text = LoadUserController.singletonUser?.username
         label.textColor = UIColor.black
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
