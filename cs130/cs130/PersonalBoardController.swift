@@ -163,7 +163,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             //let button = postButton.createPostButton(title:post.title)
             let button = PostButton(post:post)
             //button.backgroundColor = self.colorList[0]
-            let colorIndex:Int = LoadUserController.singletonUser?.courses.firstIndexOf((button.post.major, button.post.course))
+            let colorIndex:Int = (LoadUserController.singletonUser?.courses.firstIndex(where: {$0.0 == button.post.major && $0.1 == button.post.course}))!
             button.backgroundColor = self.colorList[colorIndex]
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             self.buttonList.append(button)
