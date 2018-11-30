@@ -34,7 +34,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         navigationItem.title = "Personal Board"
         
         // TODO: Set up functionalities for the buttons
-        let accountButton = UIButton(type: .system);
+        /*let accountButton = UIButton(type: .system);
         accountButton.setTitle("Account", for: .normal)
         accountButton.clipsToBounds = true
         accountButton.setTitleColor(UIColor.white, for: .normal)
@@ -42,13 +42,14 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         accountButton.isEnabled = true
         accountButton.addTarget(self, action: #selector(goToAccountPage), for: .touchUpInside)
         let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
-        navigationItem.leftBarButtonItem = accountButtonItem
+        navigationItem.leftBarButtonItem = accountButtonItem*/
         
         view.backgroundColor = .white
         
         //storeCredentials()
         //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
         get(user:LoadUserController.singletonUser!)
+        setUpAccountButton()
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
@@ -111,6 +112,17 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
+    let accountButton: UIButton = {
+        let button = UIButton(type: .system);
+        button.setTitle("Account", for: .normal)
+        button.clipsToBounds = true
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(goToAccountPage), for: .touchUpInside)
+        return button
+    }
+
     // create the "Create Post" button
     let CreatePostButton: UIButton = {
         let button = UIButton(type: .system);
@@ -159,6 +171,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         for post in self.posts {
             let button = UIButton.createPostButton(title:post.title)
             button.backgroundColor = self.colorList[0]
+            button.tag = post
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             self.buttonList.append(button)
         }
@@ -183,7 +196,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)
     }
-    
+
+    fileprivate func setUpAccountButton() {
+        let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
+        navigationItem.leftBarButtonItem = accountButtonItem
+    }    
+
     // set constraints for the "Create Post" Button
     fileprivate func setUpCreatePost() {
         view.addSubview(CreatePostButton)
@@ -218,15 +236,21 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     // button action function. use sender.tag to specify the action
     @objc fileprivate func buttonAction(sender: UIButton) {
-        let postController = PostController()
-        if (sender.tag == 1) {
-            self.navigationController?.pushViewController(postController, animated: true)
-        }
+        let postController = PostController(sender.tag)
+        self.navigationController?.pushViewController(postController, animated:true)
+        //if (sender.tag == 1) {
+          //  self.navigationController?.pushViewController(postController, animated: true)
+        //}
     }
 
     @objc fileprivate func createHandle() {
         let createPostController = CreatePostController()
         self.navigationController?.pushViewController(createPostController, animated:true)
+    }
+
+    @objc fileprivate func goToAccountPage() {
+        let userProfileController = UserProfileController()
+        self.navigationController?.pushViewController(userProfileController, animated:true)
     }
     
     // function that stops ScrollView from scrolling horizontally
