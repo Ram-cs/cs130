@@ -78,7 +78,7 @@ class ReplyController: UIViewController {
         button.setTitle("Post Comment", for: .normal)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
