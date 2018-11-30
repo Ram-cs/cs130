@@ -49,6 +49,8 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
             let fetchedCourse:Course = Course(major:major, snapshot:snapshot)
             self.courses.append(fetchedCourse)
             self.preDisplay()
+            print(self.courses.count)
+            self.table.reloadData()
             })
     }
 
@@ -72,6 +74,7 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         let cell =  tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseTableViewCell
         let course = self.courses[indexPath.row]
         cell.setupContent(course: course)
+        print("Displayed a cell")
         return cell
     }
 
