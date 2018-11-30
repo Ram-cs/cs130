@@ -112,6 +112,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
+    // create the "Account" button
     let accountButton: UIButton = {
         let button = UIButton(type: .system);
         button.setTitle("Account", for: .normal)
@@ -121,7 +122,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         button.isEnabled = true
         button.addTarget(self, action: #selector(goToAccountPage), for: .touchUpInside)
         return button
-    }
+    }()
 
     // create the "Create Post" button
     let CreatePostButton: UIButton = {
@@ -169,9 +170,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
 
         for post in self.posts {
-            let button = UIButton.createPostButton(title:post.title)
+            //let button = postButton.createPostButton(title:post.title)
+            let button = PostButton(post:post)
             button.backgroundColor = self.colorList[0]
-            button.tag = post
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             self.buttonList.append(button)
         }
@@ -197,8 +198,13 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)
     }
 
+    // set constraints for the "Account" button
     fileprivate func setUpAccountButton() {
-        let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
+        //let accountButtonItem = UIBarButtonItem.init(customView: accountButton, target:#selector(goToAccountPage))
+        let accountButtonItem = UIBarButtonItem(title: "Account",
+                                                style: .done,
+                                                target: self,
+                                                action: #selector(goToAccountPage))
         navigationItem.leftBarButtonItem = accountButtonItem
     }    
 
@@ -235,12 +241,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // button action function. use sender.tag to specify the action
-    @objc fileprivate func buttonAction(sender: UIButton) {
-        let postController = PostController(sender.tag)
+    @objc fileprivate func buttonAction(sender: PostButton) {
+        //todo put sender.post = PostController(sender.post)
+        let tempPost = sender.post
+        print(tempPost.title)
+        let postController = PostController()
         self.navigationController?.pushViewController(postController, animated:true)
-        //if (sender.tag == 1) {
-          //  self.navigationController?.pushViewController(postController, animated: true)
-        //}
     }
 
     @objc fileprivate func createHandle() {
@@ -263,7 +269,26 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
 // extension of UIButton class to create a post button
 // use button.tag for the buttonAction
-extension UIButton {
+class PostButton: UIButton {
+    var post:Post
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) is not implemented")
+    }
+    
+    init(post:Post) {
+        self.post = post
+        super.init(frame: .zero)
+        self.setTitle(self.post.title, for: .normal)
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        self.backgroundColor = UIColor.rgb(red:17, green:154, blue:237)
+        self.setTitleColor(UIColor.white, for: .normal)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.isEnabled = true
+    }
+    
     static func createPostButton(title:String) -> UIButton {
         let button = UIButton(type: .system);
         button.tag = 1

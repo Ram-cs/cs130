@@ -11,20 +11,18 @@ import UIKit
 import Firebase
 
 class UserProfileController: UIViewController {
-    static var singletonUser: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUplogOutButton()
+        print("userprofile viewdidload()")
         
         showUserCredentials()
         
     }
     
     private func showUserCredentials() {
-        
-        
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
             print("Current user is: ", userID)
@@ -55,10 +53,16 @@ class UserProfileController: UIViewController {
     
     let userNameLabel: UILabel = {
         let label = UILabel()
+        label.text = "poopybuttface"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.backgroundColor = .white
         return label
     }()
+    
+    fileprivate func setUpLabel() {
+        view.addSubview(userNameLabel)
+        userNameLabel.anchor(left: view.leftAnchor, leftPadding: 10, right: view.rightAnchor, rightPadding: -10, top: view.topAnchor, topPadding: 100, bottom: nil, bottomPadding: 0, width: 0, height: 40)
+    }
     
     private func setUplogOutButton() {
         let imageName = "gear.png"
