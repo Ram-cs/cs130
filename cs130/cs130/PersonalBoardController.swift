@@ -259,7 +259,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc fileprivate func createHandle() {
-        let createPostController = CreatePostController()
+        let createPostController = CreatePostController(personalBoard:self)
         self.navigationController?.pushViewController(createPostController, animated:true)
     }
 
@@ -269,7 +269,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.pushViewController(accountController, animated:true)
     }
 
-    @objc fileprivate func refreshBoard() {
+    @objc func refreshBoard() {
         /*print("refreshingsfiaofjaifjaof")
         self.scrollView.setNeedsDisplay()
         self.buttonList = [UIButton]()
@@ -284,6 +284,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         let navController = UINavigationController(rootViewController:personalBoardController)
         self.present(navController, animated:true, completion:nil)
         refreshControl.endRefreshing()
+        self.dismiss(animated:true, completion:nil)
     }
     
     // function that stops ScrollView from scrolling horizontally
