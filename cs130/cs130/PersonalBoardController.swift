@@ -95,13 +95,16 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     //refresh stuff
     let refreshControl: UIRefreshControl = {
         let rfc = UIRefreshControl();
-        rfc.addTarget(self, action: #selector(refreshBoard), for: .touchUpInisde)
-    }
+        rfc.addTarget(self, action: #selector(refreshBoard), for: .valueChanged)
+        return rfc
+    }()
 
     // name field
     let name: UILabel = {
         let label = UILabel();
+        label.text = "BobbyB"
         label.text = LoadUserController.singletonUser?.username
+        print(LoadUserController.singletonUser?.username)
         label.textColor = UIColor.black
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
@@ -191,7 +194,10 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     fileprivate func setUpRefresh() {
-        view.addSubview(refreshControl)
+        self.scrollView.alwaysBounceVertical = true
+        self.scrollView.isScrollEnabled = true
+        self.scrollView.addSubview(refreshControl)
+        //self.scrollView.refreshControl = refreshControl
     }
 
     // set constraints for the name label
@@ -264,9 +270,20 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc fileprivate func refreshBoard() {
+        /*print("refreshingsfiaofjaifjaof")
+        self.scrollView.setNeedsDisplay()
         self.buttonList = [UIButton]()
         self.posts = [Post]()
         self.fetchedCourseCount = 0
+        print("refreshing shit")
+        self.scrollView.subviews.forEach({($0 as? PostButton)?.removeFromSuperview() })
+        get(user:LoadUserController.singletonUser!)
+        refreshControl.endRefreshing()*/
+        
+        let personalBoardController = PersonalBoardController()
+        let navController = UINavigationController(rootViewController:personalBoardController)
+        self.present(navController, animated:true, completion:nil)
+        refreshControl.endRefreshing()
     }
     
     // function that stops ScrollView from scrolling horizontally
