@@ -23,8 +23,12 @@ class CreatePostController: UIViewController {
         backButton.setTitleColor(UIColor.white, for: .normal)
         backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
         backButton.isEnabled = true
-        let backButtonItem = UIBarButtonItem.init(customView: backButton)
+        //let backButtonItem = UIBarButtonItem.init(customView: backButton)
+        //navigationItem.leftBarButtonItem = backButtonItem
+        
+        let backButtonItem = navigationItem.backBarButtonItem
         navigationItem.leftBarButtonItem = backButtonItem
+        
         createFields()
         createPostButton()
         addErrorLabel()

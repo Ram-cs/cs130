@@ -14,7 +14,15 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     static var singletonUser: User?
     var formatter = DateFormatter()
     var posts = [Post]()
+    var colorList = [UIColor.blue,
+                     UIColor.green,
+                     UIColor.brown,
+                     UIColor.red,
+                     UIColor.orange,
+                     UIColor.purple,
+                     UIColor.gray]
     var buttonList = [UIButton]()
+    
 
 
     override func viewDidLoad() {
@@ -32,6 +40,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         accountButton.setTitleColor(UIColor.white, for: .normal)
         accountButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         accountButton.isEnabled = true
+        accountButton.addTarget(self, action: #selector(goToAccountPage), for: .touchUpInside)
         let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
         navigationItem.leftBarButtonItem = accountButtonItem
         
@@ -43,7 +52,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        //setUpPost()        
+        //setUpPost()
         
         //print the credentials
         print("Singleton: ",LoadUserController.singletonUser!.email );
@@ -70,7 +79,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                 let description:String = dic["description"] as! String
                 let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
                 let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
-                print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
+                //print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
                 let fetchedPost:Post = Post(creator:creator,
                                             title:title,
                                             content:description,
@@ -82,31 +91,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                 posts.append(fetchedPost)
                 
             }
-            self.posts += posts
+            self.posts = posts
             self.scrollView.setNeedsDisplay()
+            let headColor = self.colorList.remove(at:0)
+            self.colorList.append(headColor)
             self.setUpPost()
         })
-    }
-    
-    private func storeCredentials() {
-        if((Auth.auth().currentUser?.uid) != nil) {
-            let userID : String = (Auth.auth().currentUser?.uid)!
-            print("Current user is: ", userID)
-            
-            let ref = Database.database().reference().child("users").child(userID)
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                guard let dictionary = snapshot.value as? [String: Any] else {return}
-                //PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
-                
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
-                //print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
-                //print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
-                
-            }
-        } else {
-            print("Error, couldn't get user credentails")
-        }
     }
     
     // name field
@@ -168,6 +158,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
         for post in self.posts {
             let button = UIButton.createPostButton(title:post.title)
+            button.backgroundColor = self.colorList[0]
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             self.buttonList.append(button)
         }
