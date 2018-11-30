@@ -28,7 +28,7 @@ class CreatePostController: UIViewController {
     }
     
     fileprivate func createFields() {
-        let stackView = UIStackView(arrangedSubviews: [postName, majorName, courseName, postBody, errorLabel, userType, submitButton])
+        let stackView = UIStackView(arrangedSubviews: [postName, majorName, courseName, bodyLabel, postBody, errorLabel, userType, submitButton])
         stackView.distribution = .fillProportionally
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -37,7 +37,7 @@ class CreatePostController: UIViewController {
         view.addSubview(stackView)
         
         postBody.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        errorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        errorLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[v]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-160-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
@@ -87,12 +87,20 @@ class CreatePostController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
+    let bodyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.text = "Type your post here"
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
     let postBody: UITextView = {
         let body = UITextView();
-        body.text = "Sample Post Body"
-        body.backgroundColor = .white
-        body.textColor = UIColor.lightGray
+        // body.text = "Sample Post Body"
+        body.backgroundColor = PANEL_GRAY
+        body.textColor = UIColor.black
         func textViewPlaceHolder(_ body: UITextView) {
             if body.textColor == UIColor.lightGray{
                 body.text=nil
