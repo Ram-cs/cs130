@@ -53,15 +53,15 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     func fetchUserPosts(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
-            var posts: [Post] = []
+            var posts:[Post] = []
             for item in DataSnapshot.children {
                 let post = item as! DataSnapshot
                 let dic = post.value as! NSDictionary
-                let creator:String = dic["creatorID"] as! String
-                let title:String = dic["title"] as! String
-                let description:String = dic["description"] as! String
-                let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
-                let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
+                let creator:String = dic[Posts.CREATOR_ID] as! String
+                let title:String = dic[Posts.TITLE] as! String
+                let description:String = dic[Posts.DESCRIPTION] as! String
+                let isTutorSearch:Bool = dic[Posts.IS_TUTOR_SEARCH] as! Bool
+                let creationTime:Date? = self.formatter.date(from: dic[Posts.CREATION_TIME] as! String)
                 //print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
                 let fetchedPost:Post = Post(creator:creator,
                                             title:title,
@@ -72,7 +72,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                                             creationTime:creationTime,
                                             ID:post.key)
                 posts.append(fetchedPost)
-                
             }
             self.posts += posts
             self.scrollView.setNeedsDisplay()
@@ -197,7 +196,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         self.scrollView.alwaysBounceVertical = true
         self.scrollView.isScrollEnabled = true
         self.scrollView.addSubview(refreshControl)
-        //self.scrollView.refreshControl = refreshControl
     }
 
     // set constraints for the name label
@@ -267,17 +265,8 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.pushViewController(accountController, animated:true)
     }
 
-    @objc func refreshBoard() {
-        /*print("refreshingsfiaofjaifjaof")
-        self.scrollView.setNeedsDisplay()
-        self.buttonList = [UIButton]()
-        self.posts = [Post]()
-        self.fetchedCourseCount = 0
-        print("refreshing shit")
-        self.scrollView.subviews.forEach({($0 as? PostButton)?.removeFromSuperview() })
-        get(user:LoadUserController.singletonUser!)
-        refreshControl.endRefreshing()*/
-        
+    //refreshes this page
+    @objc func refreshBoard() {        
         let personalBoardController = PersonalBoardController()
         let navController = UINavigationController(rootViewController:personalBoardController)
         self.present(navController, animated:true, completion:nil)
