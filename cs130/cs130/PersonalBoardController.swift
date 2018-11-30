@@ -32,32 +32,14 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.title = "Personal Board"
-        
-        // TODO: Set up functionalities for the buttons
-        /*let accountButton = UIButton(type: .system);
-        accountButton.setTitle("Account", for: .normal)
-        accountButton.clipsToBounds = true
-        accountButton.setTitleColor(UIColor.white, for: .normal)
-        accountButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        accountButton.isEnabled = true
-        accountButton.addTarget(self, action: #selector(goToAccountPage), for: .touchUpInside)
-        let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
-        navigationItem.leftBarButtonItem = accountButtonItem*/
-        
+        navigationItem.title = "Personal Board"  
         view.backgroundColor = .white
         
-        //storeCredentials()
-        //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
         get(user:LoadUserController.singletonUser!)
         setUpAccountButton()
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        
-        //print the credentials
-        print("Singleton: ",LoadUserController.singletonUser!.email );
-        print("Singleton: ",LoadUserController.singletonUser!.username );
     }
     
     func get(user:User)  {
@@ -93,8 +75,8 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             }
             self.posts += posts
             self.scrollView.setNeedsDisplay()
-            let headColor = self.colorList.remove(at:0)
-            self.colorList.append(headColor)
+            //let headColor = self.colorList.remove(at:0)
+            //self.colorList.append(headColor)
             self.preSetupPost()
         })
     }
@@ -180,7 +162,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         for post in self.posts {
             //let button = postButton.createPostButton(title:post.title)
             let button = PostButton(post:post)
-            button.backgroundColor = self.colorList[0]
+            //button.backgroundColor = self.colorList[0]
+            let colorIndex:Int = LoadUserController.singletonUser?.courses.firstIndexOf((button.post.major, button.post.course))
+            button.backgroundColor = self.colorList[colorIndex]
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             self.buttonList.append(button)
         }
