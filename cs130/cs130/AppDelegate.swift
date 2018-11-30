@@ -19,14 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //appUser = User(id:"204578044")
         let samplePost:Post = Post(creator: "204578044",
-<<<<<<< HEAD
-                                            title: "example Post",
-                                            content: "example post text post post textexample post post post post post post post po stpo stpos tpos tpost post post postpost pos tpos tpos tpos top stpo stop stpo stpo stpo st textexample comment text",
-                                            major: "Computer Science",
-                                            course: "130",
-                                            isTutorSearch: false,
-                                            ID:"LSO-csni3kK4gTCpHXB")
-=======
                                             title: "piggyboie",
                                             content: "pig1 post text post post textexample post post post post post post post po stpo stpos tpos tpost post post postpost pos tpos tpos tpos top stpo stop stpo stpo stpo st textexample comment text",
                                             major: "Mechanical Engineering",
@@ -34,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                             isTutorSearch: false)
         //let dac = DatabaseAddController()
         //dac.addPost(post:samplePost)
->>>>>>> cddbb2baa6df8ebf925ec3a4eee9084e2040de54
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -44,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController(rootViewController: mainTabBarController)
         //window?.rootViewController = ReplyController(rootPost: samplePost)
-        window?.rootViewController = PostController(rootPost: samplePost)
+        //window?.rootViewController = PostController(rootPost: samplePost)
+        window?.rootViewController = navigationController
         // print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
         return true
     }

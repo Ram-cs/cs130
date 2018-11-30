@@ -251,18 +251,8 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // button action function. use sender.tag to specify the action
-<<<<<<< HEAD
-    @objc fileprivate func buttonAction(sender: UIButton) {
-        //let postController = PostController()
-        if (sender.tag == 1) {
-            //self.navigationController?.pushViewController(postController, animated: true)
-        }
-=======
     @objc fileprivate func buttonAction(sender: PostButton) {
-        //todo put sender.post = PostController(sender.post)
-        let tempPost = sender.post
-        print(tempPost.title)
-        let postController = PostController()
+        let postController = PostController(rootPost:sender.post)
         self.navigationController?.pushViewController(postController, animated:true)
     }
 
@@ -272,8 +262,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc fileprivate func goToAccountPage() {
-        let userProfileController = UserProfileController()
-        self.navigationController?.pushViewController(userProfileController, animated:true)
+        //let userProfileController = UserProfileController()
+        let accountController = AccountController()
+        self.navigationController?.pushViewController(accountController, animated:true)
     }
 
     @objc fileprivate func refreshBoard() {
@@ -291,7 +282,6 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         let navController = UINavigationController(rootViewController:personalBoardController)
         self.present(navController, animated:true, completion:nil)
         refreshControl.endRefreshing()
->>>>>>> cddbb2baa6df8ebf925ec3a4eee9084e2040de54
     }
     
     // function that stops ScrollView from scrolling horizontally

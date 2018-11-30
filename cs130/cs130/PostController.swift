@@ -151,9 +151,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     // set up reply button functionality
     @objc fileprivate func replyAction() {
-        //let replyController = ReplyController(self.post)
-        //replyController.post = self.post
-        //self.navigationController?.pushViewController(replyController, animated: true)
+        let replyController = ReplyController(rootPost:self.rootPost!)
+        self.navigationController?.pushViewController(replyController, animated: true)
     }
     
     // prevent scrollview from scrolling horizontally
