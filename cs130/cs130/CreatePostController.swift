@@ -11,6 +11,18 @@ import UIKit
 import Firebase
 
 class CreatePostController: UIViewController {
+    let personalBoard:PersonalBoardController?
+    
+    init(personalBoard:PersonalBoardController) {
+        self.personalBoard = personalBoard
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.personalBoard = nil
+        super.init(coder:aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
@@ -159,5 +171,7 @@ class CreatePostController: UIViewController {
             let db = DatabaseAddController()
             db.addPost(post: newPost)
         }
+        self.navigationController?.popViewController(animated:true)
+        self.personalBoard.refreshBoard()
     }
 }
