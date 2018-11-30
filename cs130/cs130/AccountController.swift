@@ -14,25 +14,16 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
     var table = UITableView()
     var courses = [Course]()
     var username = String()
+    var email = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Account"
-        view.backgroundColor = .white
+        view.backgroundColor = PANEL_GRAY
         self.navigationController?.navigationBar.tintColor = UIColor.white
-
-//        let backButton = UIButton(type: .system);
-//        backButton.setTitle("Back", for: .normal)
-//        backButton.clipsToBounds = true
-//        backButton.setTitleColor(UIColor.white, for: .normal)
-//        backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
-//        backButton.isEnabled = true
-//        let backButtonItem = UIBarButtonItem.init(customView: backButton)
-//        navigationItem.leftBarButtonItem = backButtonItem
-
-        getUsername()
+        getInfo()
         getCourses()
         display()
     }
@@ -47,11 +38,10 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
 
     func fetchCourse(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child(Majors.MAJORS).child(major).child(course)
-        db.observeSingleEvent(of: .value, with: { (snapshot) in 
+        db.observe(.value, with: { (snapshot) in
             let fetchedCourse:Course = Course(major:major, snapshot:snapshot)
             self.courses.append(fetchedCourse)
             self.preDisplay()
-            print(self.courses.count)
             self.table.reloadData()
             })
     }
@@ -76,7 +66,6 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         let cell =  tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseTableViewCell
         let course = self.courses[indexPath.row]
         cell.setupContent(course: course)
-        print("Displayed a cell")
         return cell
     }
 
@@ -85,37 +74,85 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         return 75
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let course = self.courses[indexPath.row]
+        let courseDetailViewController = CourseDetailViewController()
+        courseDetailViewController.course = course
+        self.navigationController?.pushViewController(courseDetailViewController, animated: true)
+    }
+    
     let nameField: UILabel = {
-        let button = UILabel();
-        button.text = "Sample name"
-        button.textColor = UIColor.black
-        button.isEnabled = true
-        button.font = UIFont.boldSystemFont(ofSize: 16)
-        button.textAlignment = NSTextAlignment.center
-        return button
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(25.0)
+        label.textColor = UIColor.black
+        label.textAlignment = NSTextAlignment.center
+        label.backgroundColor = UIColor.white
+        label.layer.cornerRadius = 8
+        return label
+    }()
+    
+    let emailField: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(20.0)
+        label.textColor = UIColor.black
+        label.textAlignment = NSTextAlignment.center
+        label.backgroundColor = UIColor.white
+        label.layer.cornerRadius = 8
+        return label
     }()
     
     let classTitle: UILabel = {
         let button = UILabel();
-        button.text = "Class"
         button.textColor = UIColor.darkGray
+        button.text = "My classes"
         button.isEnabled = true
         button.font = UIFont.boldSystemFont(ofSize: 32)
         button.textAlignment = NSTextAlignment.center
         return button
     }()
     
+    let allCourses: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.rgb(red: 159, green: 249, blue: 84)
+        button.setTitle("Add a course", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = button.titleLabel?.font.withSize(30)
+        return button
+    } ()
+    
+    @objc func gotoAllCourses(sender: UIButton) {
+        self.navigationController?.pushViewController(CourseTableViewController(), animated: true)
+    }
+    
     fileprivate func display(){
-        nameField.text = username
-        nameField.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        classTitle.heightAnchor.constraint(equalToConstant: 200).isActive = true
+//        nameField.text = username
+//        nameField.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        nameField.text = self.username
+        nameField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        emailField.text = self.email
+        emailField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+        let userInfoStack = UIStackView(arrangedSubviews: [nameField, emailField])
+        userInfoStack.axis = .vertical
+        userInfoStack.distribution = .fillEqually
+        userInfoStack.alignment = .fill
+        userInfoStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        classTitle.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
         table.dataSource = self
         table.delegate = self
         table.register(CourseTableViewCell.self, forCellReuseIdentifier: "courseCell")
         table.tableFooterView = UIView(frame: .zero)
-        table.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        table.heightAnchor.constraint(equalToConstant: 375).isActive = true
         
-        let pageStack = UIStackView(arrangedSubviews: [nameField, classTitle, table])
+        allCourses.addTarget(self, action: #selector(self.gotoAllCourses), for: .touchUpInside)
+
+        
+        let pageStack = UIStackView(arrangedSubviews: [userInfoStack, classTitle, table, allCourses])
         pageStack.axis = .vertical
         pageStack.distribution = .fillProportionally
         pageStack.alignment = .fill
@@ -123,50 +160,51 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         view.addSubview(pageStack)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]-150-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
     }
     
-    fileprivate func getUsername(){
+    fileprivate func getInfo(){
         self.username = LoadUserController.singletonUser!.username
+        self.email = LoadUserController.singletonUser!.email
     }
     
 }
 
-class UserTableViewCell: UITableViewCell {
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    let name: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let id: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.gray
-        label.font = label.font.withSize(14.0)
-        return label
-    }()
-    
-    private func setupViews() {
-        self.addSubview(self.name)
-        self.addSubview(self.id)
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name]))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.id]))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-15-[v]-1-[v2]-15-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name, "v2": self.id]))
-    }
-    
-    func setupContent(course: Course) {
-        self.name.text = course.major + " " + course.id + ": " + course.title
-        self.id.text = course.professor + ", " + course.quarter + " " + String(course.year)
-    }
-}
+//class UserTableViewCell: UITableViewCell {
+//
+//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        self.setupViews()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    let name: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+//
+//    let id: UILabel = {
+//        let label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.textColor = UIColor.gray
+//        label.font = label.font.withSize(14.0)
+//        return label
+//    }()
+//
+//    private func setupViews() {
+//        self.addSubview(self.name)
+//        self.addSubview(self.id)
+//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name]))
+//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.id]))
+//        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-15-[v]-1-[v2]-15-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name, "v2": self.id]))
+//    }
+//
+//    func setupContent(course: Course) {
+//        self.name.text = course.major + " " + course.id + ": " + course.title
+//        self.id.text = course.professor + ", " + course.quarter + " " + String(course.year)
+//    }
+//}

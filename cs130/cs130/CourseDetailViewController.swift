@@ -18,7 +18,8 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
+        // self.navigationController?.navigationBar.isTranslucent = false
+        self.view.backgroundColor = PANEL_GRAY
         self.displayCourse()
     }
     
@@ -70,7 +71,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     let enroll: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.rgb(red: 181, green: 252, blue: 161)
+        button.backgroundColor = UIColor.rgb(red: 159, green: 249, blue: 84)
         button.setTitle("Enroll", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -89,8 +90,11 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     }()
     
     @objc func enrollButtonPress(sender: UIButton) {
-        PersonalBoardController.singletonUser?.addCourse(course: self.course!)
+        LoadUserController.singletonUser?.addCourse(course: self.course!)
         self.viewDidLoad() // Refresh the page
+        self.enroll.backgroundColor = UIColor.gray
+        self.enroll.setTitle("Enrolled", for: .normal)
+        // self.navigationController?.popViewController(animated: true)
     }
     
     /// Displays information of the current course
@@ -123,7 +127,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(subStack)
         
         // Set up enroll button action
-        if (PersonalBoardController.singletonUser?.hasCourse(course: self.course!))! {
+        if (LoadUserController.singletonUser?.hasCourse(course: self.course!))! {
             self.enroll.backgroundColor = UIColor.gray
             self.enroll.setTitle("Enrolled", for: .normal)
         }
@@ -145,7 +149,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(pageStack)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
     }
 }
 

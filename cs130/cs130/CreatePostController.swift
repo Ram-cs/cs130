@@ -29,7 +29,7 @@ class CreatePostController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Create Post"
-        view.backgroundColor = .white
+        view.backgroundColor = PANEL_GRAY
         
         let backButtonItem = navigationItem.backBarButtonItem
         navigationItem.leftBarButtonItem = backButtonItem
@@ -111,7 +111,7 @@ class CreatePostController: UIViewController {
     let postBody: UITextView = {
         let body = UITextView();
         // body.text = "Sample Post Body"
-        body.backgroundColor = PANEL_GRAY
+        body.backgroundColor = UIColor.white
         body.textColor = UIColor.black
         func textViewPlaceHolder(_ body: UITextView) {
             if body.textColor == UIColor.lightGray{
