@@ -257,7 +257,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc fileprivate func createHandle() {
-        let createPostController = CreatePostController()
+        let createPostController = CreatePostController(personalBoard:self)
         self.navigationController?.pushViewController(createPostController, animated:true)
     }
 

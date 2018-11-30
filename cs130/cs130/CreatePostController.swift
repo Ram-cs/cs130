@@ -188,6 +188,6 @@ class CreatePostController: UIViewController {
             db.addPost(post: newPost)
         }
         self.navigationController?.popViewController(animated:true)
-        self.personalBoard.refreshBoard()
+        self.personalBoard!.refreshBoard()
     }
 }
