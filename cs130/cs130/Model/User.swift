@@ -26,6 +26,15 @@ class User {
         self.userRef = Database.database().reference().child(UsersAttributes.USERS).child(uid)
         self.observeCourses()
     }
+
+    init(uid: String, dictionary: [String: Any], lc:LoginController) {
+        self.uid = uid
+        self.username = dictionary[UsersAttributes.USERNAME] as? String ?? ""
+        self.email = dictionary[UsersAttributes.EMAIL] as? String ?? ""
+        self.userRef = Database.database().reference().child(UsersAttributes.USERS).child(uid)
+        self.observeCourses(lc:lc)
+    }
+
     
     //this doesnt work
     func retrieveUserTriggerTransition(uid: String, upc:UserProfileController) {
@@ -95,28 +104,28 @@ class User {
     }
     
     //dont use this
-    func observeCoursesTriggerTransition(upc:UserProfileController) {
+    func observeCourses(lc:LoginController) {
         self.userRef?.observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
-            let val = DataSnapshot.value as? NSDictionary
+            /*let val = DataSnapshot.value as? NSDictionary
             var unparsedData:String = ""
             if let data = val?["courses"] as? String {unparsedData = data}
             self.courses = DatabaseAddController.parseUserCourseData(userCourseData:unparsedData)
             print("about to transtion!!")
 
-            upc.transitionToBoard()
+            lc.transitionToBoard()*/
 
+            for item in DataSnapshot.children {
 
-            //for item in DataSnapshot.children {
-
-                //let course = item as! DataSnapshot
-                //let dic = course.value as! NSDictionary
-                //let major = dic["major"] as! String
-                //let id = dic["id"] as! String
-                //newCourses.append((major, id))
-            //}
-            //self.courses = newCourses
-            //upc.transitionToBoard()
+                let course = item as! DataSnapshot
+                let dic = course.value as! NSDictionary
+                let major = dic["major"] as! String
+                let id = dic["id"] as! String
+                newCourses.append((major, id))
+                print("got a course, got a course!!")
+            }
+            self.courses = newCourses
+            lc.transitionToBoard()
         }
     }
     

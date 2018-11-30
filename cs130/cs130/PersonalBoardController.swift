@@ -37,9 +37,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
-        storeCredentials()
+        //storeCredentials()
         //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
-        get(user:PersonalBoardController.singletonUser!)
+        get(user:LoginController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
