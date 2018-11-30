@@ -36,6 +36,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         view.backgroundColor = .white
         
         get(user:LoadUserController.singletonUser!)
+        setUpRefresh()
         setUpAccountButton()
         setUpName()
         setUpCreatePost()
@@ -90,6 +91,13 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+
+    //refresh stuff
+    let refreshControl: UIRefreshControl = {
+        let rfc = UIRefreshControl();
+        rfc.addTarget(self, action: #selector(refreshBoard), for: .touchUpInisde)
+    }
+
     // name field
     let name: UILabel = {
         let label = UILabel();
@@ -182,6 +190,10 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         stackView.centerYAnchor.constraint(equalTo: insideScrollView.centerYAnchor).isActive = true
     }
     
+    fileprivate func setUpRefresh() {
+        view.addSubview(refreshControl)
+    }
+
     // set constraints for the name label
     fileprivate func setUpName() {
         print("setupname()!!")
@@ -249,6 +261,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     @objc fileprivate func goToAccountPage() {
         let userProfileController = UserProfileController()
         self.navigationController?.pushViewController(userProfileController, animated:true)
+    }
+
+    @objc fileprivate func refreshBoard() {
+        self.buttonList = [UIButton]()
+        self.posts = [Post]()
+        self.fetchedCourseCount = 0
     }
     
     // function that stops ScrollView from scrolling horizontally
