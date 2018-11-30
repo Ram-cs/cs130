@@ -14,7 +14,16 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     static var singletonUser: User?
     var formatter = DateFormatter()
     var posts = [Post]()
+    var colorList = [UIColor.blue,
+                     UIColor.green,
+                     UIColor.brown,
+                     UIColor.red,
+                     UIColor.orange,
+                     UIColor.purple,
+                     UIColor.gray]
     var buttonList = [UIButton]()
+    var fetchedCourseCount:Int = 0
+    
 
 
     override func viewDidLoad() {
@@ -23,44 +32,27 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationItem.title = "Personal Board"
-        
-        // TODO: Set up functionalities for the buttons
-        let accountButton = UIButton(type: .system);
-        accountButton.setTitle("Account", for: .normal)
-        accountButton.clipsToBounds = true
-        accountButton.setTitleColor(UIColor.white, for: .normal)
-        accountButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        accountButton.isEnabled = true
-        let accountButtonItem = UIBarButtonItem.init(customView: accountButton)
-        navigationItem.leftBarButtonItem = accountButtonItem
-        
+        navigationItem.title = "Personal Board"  
         view.backgroundColor = .white
         
-        //storeCredentials()
-        //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
         get(user:LoadUserController.singletonUser!)
+        setUpRefresh()
+        setUpAccountButton()
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
-        //setUpPost()        
-        
-        //print the credentials
-        print("Singleton: ",LoadUserController.singletonUser!.email );
-        print("Singleton: ",LoadUserController.singletonUser!.username );
     }
     
     func get(user:User)  {
         let userCourses:[(String, String)] = user.getCourses()
         for course in userCourses {
-            print("fetch course")
             fetchUserPosts(major: course.0, course: course.1)
         }
     }
 
     func fetchUserPosts(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
-        db.observe(.value, with: { (DataSnapshot) in
+        db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
             var posts: [Post] = []
             for item in DataSnapshot.children {
                 let post = item as! DataSnapshot
@@ -70,7 +62,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                 let description:String = dic["description"] as! String
                 let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
                 let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
-                print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
+                //print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
                 let fetchedPost:Post = Post(creator:creator,
                                             title:title,
                                             content:description,
@@ -84,35 +76,35 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             }
             self.posts += posts
             self.scrollView.setNeedsDisplay()
-            self.setUpPost()
+            //let headColor = self.colorList.remove(at:0)
+            //self.colorList.append(headColor)
+            self.preSetupPost()
         })
     }
-    
-    private func storeCredentials() {
-        if((Auth.auth().currentUser?.uid) != nil) {
-            let userID : String = (Auth.auth().currentUser?.uid)!
-            print("Current user is: ", userID)
-            
-            let ref = Database.database().reference().child("users").child(userID)
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                guard let dictionary = snapshot.value as? [String: Any] else {return}
-                //PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
-                
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
-                //print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
-                //print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
-                
-            }
-        } else {
-            print("Error, couldn't get user credentails")
+
+    private func preSetupPost() {
+        self.fetchedCourseCount+=1
+        if(self.fetchedCourseCount >= (LoadUserController.singletonUser?.courses.count)!) {
+            //sort self.posts by chronological order
+            self.posts = self.posts.sorted(by: {$0.creationTime > $1.creationTime})
+            self.setUpPost()
         }
     }
     
+
+    //refresh stuff
+    let refreshControl: UIRefreshControl = {
+        let rfc = UIRefreshControl();
+        rfc.addTarget(self, action: #selector(refreshBoard), for: .valueChanged)
+        return rfc
+    }()
+
     // name field
     let name: UILabel = {
         let label = UILabel();
+        label.text = "BobbyB"
         label.text = LoadUserController.singletonUser?.username
+        print(LoadUserController.singletonUser?.username)
         label.textColor = UIColor.black
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
@@ -121,6 +113,18 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         return label
     }()
     
+    // create the "Account" button
+    let accountButton: UIButton = {
+        let button = UIButton(type: .system);
+        button.setTitle("Account", for: .normal)
+        button.clipsToBounds = true
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(goToAccountPage), for: .touchUpInside)
+        return button
+    }()
+
     // create the "Create Post" button
     let CreatePostButton: UIButton = {
         let button = UIButton(type: .system);
@@ -167,7 +171,11 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
 
         for post in self.posts {
-            let button = UIButton.createPostButton(title:post.title)
+            //let button = postButton.createPostButton(title:post.title)
+            let button = PostButton(post:post)
+            //button.backgroundColor = self.colorList[0]
+            let colorIndex:Int = (LoadUserController.singletonUser?.courses.firstIndex(where: {$0.0 == button.post.major && $0.1 == button.post.course}))!
+            button.backgroundColor = self.colorList[colorIndex]
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             self.buttonList.append(button)
         }
@@ -185,6 +193,13 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         stackView.centerYAnchor.constraint(equalTo: insideScrollView.centerYAnchor).isActive = true
     }
     
+    fileprivate func setUpRefresh() {
+        self.scrollView.alwaysBounceVertical = true
+        self.scrollView.isScrollEnabled = true
+        self.scrollView.addSubview(refreshControl)
+        //self.scrollView.refreshControl = refreshControl
+    }
+
     // set constraints for the name label
     fileprivate func setUpName() {
         print("setupname()!!")
@@ -192,7 +207,17 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)
     }
-    
+
+    // set constraints for the "Account" button
+    fileprivate func setUpAccountButton() {
+        //let accountButtonItem = UIBarButtonItem.init(customView: accountButton, target:#selector(goToAccountPage))
+        let accountButtonItem = UIBarButtonItem(title: "Account",
+                                                style: .done,
+                                                target: self,
+                                                action: #selector(goToAccountPage))
+        navigationItem.leftBarButtonItem = accountButtonItem
+    }    
+
     // set constraints for the "Create Post" Button
     fileprivate func setUpCreatePost() {
         view.addSubview(CreatePostButton)
@@ -226,16 +251,39 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // button action function. use sender.tag to specify the action
-    @objc fileprivate func buttonAction(sender: UIButton) {
+    @objc fileprivate func buttonAction(sender: PostButton) {
+        //todo put sender.post = PostController(sender.post)
+        let tempPost = sender.post
+        print(tempPost.title)
         let postController = PostController()
-        if (sender.tag == 1) {
-            self.navigationController?.pushViewController(postController, animated: true)
-        }
+        self.navigationController?.pushViewController(postController, animated:true)
     }
 
     @objc fileprivate func createHandle() {
         let createPostController = CreatePostController()
         self.navigationController?.pushViewController(createPostController, animated:true)
+    }
+
+    @objc fileprivate func goToAccountPage() {
+        let userProfileController = UserProfileController()
+        self.navigationController?.pushViewController(userProfileController, animated:true)
+    }
+
+    @objc fileprivate func refreshBoard() {
+        /*print("refreshingsfiaofjaifjaof")
+        self.scrollView.setNeedsDisplay()
+        self.buttonList = [UIButton]()
+        self.posts = [Post]()
+        self.fetchedCourseCount = 0
+        print("refreshing shit")
+        self.scrollView.subviews.forEach({($0 as? PostButton)?.removeFromSuperview() })
+        get(user:LoadUserController.singletonUser!)
+        refreshControl.endRefreshing()*/
+        
+        let personalBoardController = PersonalBoardController()
+        let navController = UINavigationController(rootViewController:personalBoardController)
+        self.present(navController, animated:true, completion:nil)
+        refreshControl.endRefreshing()
     }
     
     // function that stops ScrollView from scrolling horizontally
@@ -248,7 +296,26 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
 // extension of UIButton class to create a post button
 // use button.tag for the buttonAction
-extension UIButton {
+class PostButton: UIButton {
+    var post:Post
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) is not implemented")
+    }
+    
+    init(post:Post) {
+        self.post = post
+        super.init(frame: .zero)
+        self.setTitle(self.post.title, for: .normal)
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        self.backgroundColor = UIColor.rgb(red:17, green:154, blue:237)
+        self.setTitleColor(UIColor.white, for: .normal)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.isEnabled = true
+    }
+    
     static func createPostButton(title:String) -> UIButton {
         let button = UIButton(type: .system);
         button.tag = 1

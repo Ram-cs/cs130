@@ -17,14 +17,10 @@ class CreatePostController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Create Post"
         view.backgroundColor = .white
-//        let backButton = UIButton(type: .system);
-//        backButton.setTitle("Back", for: .normal)
-//        backButton.clipsToBounds = true
-//        backButton.setTitleColor(UIColor.white, for: .normal)
-//        backButton.titleLabel?.font=UIFont.systemFont(ofSize: 12)
-//        backButton.isEnabled = true
-//        let backButtonItem = UIBarButtonItem.init(customView: backButton)
-//        navigationItem.leftBarButtonItem = backButtonItem
+        
+        let backButtonItem = navigationItem.backBarButtonItem
+        navigationItem.leftBarButtonItem = backButtonItem
+        
         createFields()
         createPostButton()
         addErrorLabel()
