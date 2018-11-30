@@ -41,7 +41,7 @@ class User {
         self.userRef? = Database.database().reference().child("users").child(uid)
         self.uid = uid
         //self.observeUserInfo()
-        self.observeCoursesTriggerTransition(upc:upc)
+        //self.observeCoursesTriggerTransition(upc:upc)
     }
     
     /// Check if the user is already enrolled in a course
@@ -116,7 +116,7 @@ class User {
             lc.transitionToBoard()*/
 
             for item in DataSnapshot.children {
-
+                print("for course in userdatabase!!!")
                 let course = item as! DataSnapshot
                 let dic = course.value as! NSDictionary
                 let major = dic["major"] as! String

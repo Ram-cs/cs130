@@ -79,6 +79,7 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text else {return}
         guard let password = passwordTextField.text else {return}
+        print("handleLogin()")
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             if let error = err {
@@ -90,9 +91,9 @@ class LoginController: UIViewController {
             
             print("Succefully signed In")
             self.storeCredentials()
-            let personalBoardController = PersonalBoardController()
-            let navController = UINavigationController(rootViewController: personalBoardController)
-            self.present(navController, animated: true, completion: nil)
+            //let personalBoardController = PersonalBoardController()
+            //let navController = UINavigationController(rootViewController: personalBoardController)
+            //self.present(navController, animated: true, completion: nil)
         }
     }
 
@@ -100,7 +101,7 @@ class LoginController: UIViewController {
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
             print("Current user is: ", userID)
-
+            
             let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
