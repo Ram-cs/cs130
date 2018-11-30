@@ -37,6 +37,7 @@
 		88CC573A21A0C009009B7852 /* DatabaseAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573921A0C009009B7852 /* DatabaseAddController.swift */; };
 		88CC573C21A0DA4D009B7852 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC573B21A0DA4D009B7852 /* CommentViewController.swift */; };
 		88E4126421B0D671004C6E69 /* LoadUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4126321B0D671004C6E69 /* LoadUserController.swift */; };
+		88E4126621B12DF0004C6E69 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4126521B12DEF004C6E69 /* AccountController.swift */; };
 		90EA3D4121AF6A25006EFCE4 /* PersonalBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */; };
 		90EA3D4321AF6A2F006EFCE4 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4221AF6A2F006EFCE4 /* PostController.swift */; };
 		90EA3D4521AF6A36006EFCE4 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */; };
@@ -87,6 +88,7 @@
 		88CC573921A0C009009B7852 /* DatabaseAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAddController.swift; sourceTree = "<group>"; };
 		88CC573B21A0DA4D009B7852 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		88E4126321B0D671004C6E69 /* LoadUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadUserController.swift; sourceTree = "<group>"; };
+		88E4126521B12DEF004C6E69 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		90EA3D4021AF6A25006EFCE4 /* PersonalBoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalBoardController.swift; sourceTree = "<group>"; };
 		90EA3D4221AF6A2F006EFCE4 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		83557840218CF96800DAC3CF /* cs130 */ = {
 			isa = PBXGroup;
 			children = (
+				88E4126521B12DEF004C6E69 /* AccountController.swift */,
 				90EA3D4421AF6A36006EFCE4 /* ReplyController.swift */,
 				88E4126321B0D671004C6E69 /* LoadUserController.swift */,
 				90EA3D4221AF6A2F006EFCE4 /* PostController.swift */,
@@ -419,6 +422,7 @@
 				21BD0B7C219934F300797852 /* CourseTableViewController.swift in Sources */,
 				8813BE4721AE26B900A69C5E /* CreatePostController.swift in Sources */,
 				21D5F3EB2197E0EF000DAB8A /* Course.swift in Sources */,
+				88E4126621B12DF0004C6E69 /* AccountController.swift in Sources */,
 				83557844218CF96800DAC3CF /* LoginController.swift in Sources */,
 				83F24E3521968FB10012034D /* MainTabBarController.swift in Sources */,
 				8887E03621AF3697009246B9 /* ReplyController.swift in Sources */,

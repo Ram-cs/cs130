@@ -99,11 +99,11 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     fileprivate func getCourses() {
-        
+        //gonna have to fetch  some shit
     }
     
     fileprivate func getUsername(){
-        
+        self.username = LoadUserController.singletonUser!.username
     }
     
 }

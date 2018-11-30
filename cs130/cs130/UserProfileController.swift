@@ -11,21 +11,18 @@ import UIKit
 import Firebase
 
 class UserProfileController: UIViewController {
-    static var singletonUser: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUplogOutButton()
+        print("userprofile viewdidload()")
         
         showUserCredentials()
-        storeUserInfo()
         
     }
     
     private func showUserCredentials() {
-        
-        
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
             print("Current user is: ", userID)
@@ -51,40 +48,21 @@ class UserProfileController: UIViewController {
        
     }
 
-    private func storeUserInfo() {
-        if((Auth.auth().currentUser?.uid) != nil) {
-            let userID : String = (Auth.auth().currentUser?.uid)!
-            print("Current user is: ", userID)
-            
-            let ref = Database.database().reference().child("users").child(userID)
-            ref.observeSingleEvent(of: .value) { (snapshot) in
-                guard let dictionary = snapshot.value as? [String: Any] else {return}
-                
-                //need to fill out singletonUser's fields
-                UserProfileController.singletonUser = User(uid: userID, dictionary: dictionary)
-                UserProfileController.singletonUser!.retrieveUserTriggerTransition(uid:userID, upc:self)
-                
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
-                print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["userName"] as! String)
-                print("Singleton value: ", (UserProfileController.singletonUser?.email)!)
-                print("Singleton value: ", (UserProfileController.singletonUser?.username)!)
-            }
-        } else {
-            print("Error, couldn't get user credentails")
-        }
-    }
-    
-    func transitionToBoard() {
-        let personalBoardController = PersonalBoardController()
-        self.navigationController?.pushViewController(personalBoardController, animated:true)
-    }
+
+
     
     let userNameLabel: UILabel = {
         let label = UILabel()
+        label.text = "poopybuttface"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.backgroundColor = .white
         return label
     }()
+    
+    fileprivate func setUpLabel() {
+        view.addSubview(userNameLabel)
+        userNameLabel.anchor(left: view.leftAnchor, leftPadding: 10, right: view.rightAnchor, rightPadding: -10, top: view.topAnchor, topPadding: 100, bottom: nil, bottomPadding: 0, width: 0, height: 40)
+    }
     
     private func setUplogOutButton() {
         let imageName = "gear.png"
