@@ -19,12 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //appUser = User(id:"204578044")
         let samplePost:Post = Post(creator: "204578044",
-                                            title: "example Post",
-                                            content: "example post text post post textexample post post post post post post post po stpo stpos tpos tpost post post postpost pos tpos tpos tpos top stpo stop stpo stpo stpo st textexample comment text",
-                                            major: "Computer Science",
-                                            course: "130",
-                                            isTutorSearch: false,
-                                            ID:"fjaieofjdksa;fjxcvm")
+                                            title: "piggyboie",
+                                            content: "pig1 post text post post textexample post post post post post post post po stpo stpos tpos tpost post post postpost pos tpos tpos tpos top stpo stop stpo stpo stpo st textexample comment text",
+                                            major: "Mechanical Engineering",
+                                            course: "101",
+                                            isTutorSearch: false)
+        //let dac = DatabaseAddController()
+        //dac.addPost(post:samplePost)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

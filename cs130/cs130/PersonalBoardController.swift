@@ -37,17 +37,17 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         
         view.backgroundColor = .white
         
-        storeCredentials()
+        //storeCredentials()
         //get(user:UserProfileController.singletonUser!) //need to discuss where to store singletonUser: PersonalBoardController isnot the best place
-        get(user:PersonalBoardController.singletonUser!)
+        get(user:LoadUserController.singletonUser!)
         setUpName()
         setUpCreatePost()
         setUplogOutButton()
         //setUpPost()        
         
         //print the credentials
-        print("Singleton: ",UserProfileController.singletonUser?.email );
-        print("Singleton: ",UserProfileController.singletonUser?.username );
+        print("Singleton: ",LoadUserController.singletonUser!.email );
+        print("Singleton: ",LoadUserController.singletonUser!.username );
     }
     
     func get(user:User)  {
@@ -96,12 +96,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
             let ref = Database.database().reference().child("users").child(userID)
             ref.observeSingleEvent(of: .value) { (snapshot) in
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
-                PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
+                //PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
                 
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["email"] as! String)
                 print("NON- Singleton value: ", (snapshot.value as! NSDictionary)["username"] as! String)
-                print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
-                print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
+                //print("Singleton value: ", (PersonalBoardController.singletonUser?.email)!)
+                //print("Singleton value: ", (PersonalBoardController.singletonUser?.username)!)
                 
             }
         } else {
@@ -112,7 +112,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     // name field
     let name: UILabel = {
         let label = UILabel();
-        label.text = UserProfileController.singletonUser?.username
+        label.text = LoadUserController.singletonUser?.username
         label.textColor = UIColor.black
         label.isEnabled = true
         label.font = UIFont.boldSystemFont(ofSize: 32)
