@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                             major: "Computer Science",
                                             course: "130",
                                             isTutorSearch: false,
-                                            ID:"fjaieofjdksa;fjxcvm")
+                                            ID:"LSO-csni3kK4gTCpHXB")
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainTabBarController = MainTabBarController()
         
         let navigationController = UINavigationController(rootViewController: mainTabBarController)
-//        window?.rootViewController = CreatePostController()
-        window?.rootViewController = navigationController
+        //window?.rootViewController = ReplyController(rootPost: samplePost)
+        window?.rootViewController = PostController(rootPost: samplePost)
         // print("Current user: " + appUser.id) // THIS STATEMENT PREVENTS LAZY EVALUATION OF the appUser global variable
         return true
     }

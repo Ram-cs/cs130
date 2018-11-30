@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import Firebase
 
 class PostController: UIViewController, UIScrollViewDelegate {
-    let post:Post? = nil
+    let rootPost:Post?
+    
+    init(rootPost:Post) {
+        self.rootPost = rootPost
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        rootPost = nil
+        super.init(coder:aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,15 +61,15 @@ class PostController: UIViewController, UIScrollViewDelegate {
     }()
     
     // Create the TextView for the post
-    let postText: UITextView = {
-        let label = UITextView.createPostComment(textContent: "Looking for tutor! Willing to pay however much!asdfasdfasdf", userID: "Joe Bruin")
+    lazy var postText: UITextView = {
+        let label = UITextView.createPostComment(textContent: self.rootPost!.content, userID: self.rootPost!.creator)
         return label
     }()
     
     // Create the post title
-    let postTitle: UILabel = {
+    lazy var postTitle: UILabel = {
         let label = UILabel();
-        label.text = "Looking for tutor!"
+        label.text = self.rootPost?.title
         label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textAlignment = NSTextAlignment.center
@@ -103,11 +114,20 @@ class PostController: UIViewController, UIScrollViewDelegate {
         insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
         
         // sample posts
-        let label1 = UITextView.createPostComment(textContent: "I'm interested!", userID: "Donkey Kong")
-
-        let label2 = UITextView.createPostComment(textContent: "I can help!", userID: "Gene D. Block")
         
-        let stackView = UIStackView(arrangedSubviews: [postTitle, postText, replyLabel,  label1, label2])
+        let commentViewController = CommentViewController(post: (self.rootPost ?? nil)!)
+    
+//        let label1 = UITextView.createPostComment(textContent: "I'm interested!", userID: "Donkey Kong")
+//
+//        let label2 = UITextView.createPostComment(textContent: "I can help!", userID: "Gene D. Block")
+//
+        //console.log(commentViewController.comments)
+        var subviews = [postTitle, postText, replyLabel]
+        for comment in commentViewController.comments{
+            let label = UITextView.createPostComment(textContent: comment.content, userID: comment.creator)
+            subviews.append(label)
+        }
+        let stackView = UIStackView(arrangedSubviews: subviews)
         
         stackView.distribution = .equalSpacing
         stackView.axis = .vertical

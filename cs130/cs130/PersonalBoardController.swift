@@ -184,9 +184,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     // button action function. use sender.tag to specify the action
     @objc fileprivate func buttonAction(sender: UIButton) {
-        let postController = PostController()
+        //let postController = PostController()
         if (sender.tag == 1) {
-            self.navigationController?.pushViewController(postController, animated: true)
+            //self.navigationController?.pushViewController(postController, animated: true)
         }
     }
     
