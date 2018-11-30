@@ -26,6 +26,7 @@ class CreatePostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Create Post"
         view.backgroundColor = .white
@@ -34,20 +35,28 @@ class CreatePostController: UIViewController {
         navigationItem.leftBarButtonItem = backButtonItem
         
         createFields()
-        createPostButton()
-        addErrorLabel()
+        // createPostButton()
+        // addErrorLabel()
     }
     
     fileprivate func createFields() {
-        let stackView = UIStackView(arrangedSubviews: [postName, majorName, courseName, postBody, userType, submitButton])
-        stackView.distribution = .fillEqually
+        let stackView = UIStackView(arrangedSubviews: [postName, majorName, courseName, postBody, errorLabel, userType, submitButton])
+        stackView.distribution = .fillProportionally
         stackView.axis = .vertical
-        stackView.spacing=10
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(stackView)
         
-        stackView.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: nil, bottomPadding: 0, width: 0, height: 0)
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        postBody.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        errorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[v]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-160-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
+        
+        // stackView.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: nil, bottomPadding: 0, width: 0, height: 0)
+        // stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        // stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     fileprivate func createPostButton(){
@@ -129,7 +138,7 @@ class CreatePostController: UIViewController {
         button.clipsToBounds = true
         button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.isEnabled = true
         button.addTarget(self, action: #selector(submitHandle), for: .touchUpInside)
         return button
@@ -138,8 +147,10 @@ class CreatePostController: UIViewController {
     let errorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175) //render background color
+        // label.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175) //render background color
         label.textColor = .red
+        label.text = "Please fill out the form"
+        label.alpha = 0.0
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
@@ -150,10 +161,15 @@ class CreatePostController: UIViewController {
     }
     
     @objc func submitHandle() {
-        guard let major = majorName.text, major.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
-        guard let course = courseName.text, course.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
-        guard let title = postName.text, title.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
-        guard let body = postBody.text, body.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+//        guard let major = majorName.text, major.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+//        guard let course = courseName.text, course.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+//        guard let title = postName.text, title.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+//        guard let body = postBody.text, body.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
+        guard let major = majorName.text, major.count > 0 else { self.errorLabel.alpha = 1.0; return }
+        guard let course = courseName.text, course.count > 0 else { self.errorLabel.alpha = 1.0; return }
+        guard let title = postName.text, title.count > 0 else { self.errorLabel.alpha = 1.0; return }
+        guard let body = postBody.text, body.count > 0 else { self.errorLabel.alpha = 1.0; return }
+        
         var type = false
         if(userType.titleForSegment(at: userType.selectedSegmentIndex) == "Tutor"){
             type = true

@@ -29,9 +29,10 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         backButton.isEnabled = true
         let backButtonItem = UIBarButtonItem.init(customView: backButton)
         navigationItem.leftBarButtonItem = backButtonItem
+
         getUsername()
         getCourses()
-        //display()
+        display()
     }
 
     
@@ -48,6 +49,8 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
             let fetchedCourse:Course = Course(major:major, snapshot:snapshot)
             self.courses.append(fetchedCourse)
             self.preDisplay()
+            print(self.courses.count)
+            self.table.reloadData()
             })
     }
 
@@ -57,14 +60,13 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
 
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     //how many rows are displayed
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.courses.count
     }
     
     //display each cell
@@ -72,6 +74,7 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         let cell =  tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseTableViewCell
         let course = self.courses[indexPath.row]
         cell.setupContent(course: course)
+        print("Displayed a cell")
         return cell
     }
 
@@ -106,7 +109,7 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         classTitle.heightAnchor.constraint(equalToConstant: 200).isActive = true
         table.dataSource = self
         table.delegate = self
-        table.register(CourseInfoTableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(CourseTableViewCell.self, forCellReuseIdentifier: "courseCell")
         table.tableFooterView = UIView(frame: .zero)
         table.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
