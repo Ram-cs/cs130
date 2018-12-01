@@ -82,7 +82,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     let enroll: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.rgb(red: 159, green: 249, blue: 84)
+        button.backgroundColor = GREEN_COLOR
         button.setTitle("Enroll", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -160,7 +160,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         
         // Set up enroll button action
         if (LoadUserController.singletonUser?.hasCourse(course: self.course!))! {
-            self.enroll.backgroundColor = UIColor.rgb(red: 249, green: 159, blue: 84)
+            self.enroll.backgroundColor = UIColor.orange
             self.enroll.setTitle("Drop course", for: .normal)
             self.enroll.addTarget(self, action: #selector(self.dropButtonPress), for: .touchUpInside)
         }
