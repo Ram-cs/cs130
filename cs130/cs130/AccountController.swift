@@ -114,8 +114,8 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
 
     let allCourses: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.rgb(red: 159, green: 249, blue: 84)
-        button.setTitle("Add a course", for: .normal)
+        button.backgroundColor = GREEN_COLOR
+        button.setTitle("Add course", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = button.titleLabel?.font.withSize(30)
@@ -163,6 +163,7 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]-150-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
+        
     }
     
     fileprivate func getInfo(){
