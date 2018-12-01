@@ -11,6 +11,27 @@ import Firebase
 @testable import cs130
 
 class cs130Tests: XCTestCase {
+    
+    /// Tests whether we can retrieve courses from the database correctly
+    func testCourseGet() {
+        Database.database().reference().child("majors").observeSingleEvent(of: .value) { (DataSnapshot) in
+            var fetchedCourses = [Course]()
+            for item in DataSnapshot.children {
+                let major = item as! DataSnapshot
+                for course in major.children {
+                    let newCourse = Course(major: major.key , snapshot: course as! DataSnapshot)
+                    fetchedCourses.append(newCourse)
+                }
+            }
+            XCTAssertEqual(fetchedCourses[0].major, "Computer Science")
+            XCTAssertEqual(fetchedCourses[0].id, "130")
+            XCTAssertEqual(fetchedCourses[0].title, "Software Engineering")
+            XCTAssertEqual(fetchedCourses[0].professor, "Miryung Kim")
+            print("All tests passed")
+        }
+        sleep(20)
+    }
+        
     func testUsernameEmpty() {
         var username:UITextField?
         XCTAssertNil(username)

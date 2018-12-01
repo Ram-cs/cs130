@@ -68,6 +68,9 @@ class Course {
     func updateUserCnt(add: Bool) {
         self.itemRef?.runTransactionBlock({ (MutableData) -> TransactionResult in
             var dic = MutableData.value as? [String: AnyObject]
+            if dic == nil {
+                return TransactionResult.success(withValue: MutableData)
+            }
             var cnt = dic?["users"] as! Int
             if add {
                 cnt += 1
