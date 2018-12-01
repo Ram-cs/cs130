@@ -15,12 +15,12 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     var formatter = DateFormatter()
     var posts = [Post]()
     var colorList = [UIColor.blue,
-                     UIColor.green,
                      UIColor.brown,
                      UIColor.red,
                      UIColor.orange,
                      UIColor.purple,
-                     UIColor.gray]
+                     UIColor.gray,
+                     UIColor.black]
     var buttonList = [UIButton]()
     var fetchedCourseCount:Int = 0
     
@@ -307,7 +307,7 @@ class PostButton: UIButton {
     init(post:Post) {
         self.post = post
         super.init(frame: .zero)
-        self.setTitle(self.post.title, for: .normal)
+        self.setTitle(self.post.course + ": " + self.post.title, for: .normal)
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
         self.backgroundColor = UIColor.rgb(red:17, green:154, blue:237)
