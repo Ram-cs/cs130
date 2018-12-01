@@ -180,7 +180,8 @@ class CreatePostController: UIViewController {
         }
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
-            let newPost = Post(creator: userID, 
+            let newPost = Post(creator: userID,
+                               creatorUsername:LoadUserController.singletonUser!.username,
                 title: title, 
                 content: body, 
                 major: major, 
