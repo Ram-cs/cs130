@@ -25,6 +25,7 @@ class DatabaseAddController {
         let dateString = self.formatter.string(from: post.creationTime)
         
         let dbEntry:[String:Any] = ["creationTime": dateString,
+                                    "creatorUsername": post.creatorUsername,
                                     "creatorID": post.creator,
                                     "description": post.content,
                                     "isClosed": post.isClosed,
@@ -44,6 +45,7 @@ class DatabaseAddController {
         let dateString = self.formatter.string(from: comment.creationTime)
         
         let dbEntry:[String:Any] = ["content": comment.content,
+                                    "creatorUsername": comment.creatorUsername,
                                     "creationTime": dateString,
                                     "creatorID": comment.creator,
                                     "isPrivate": comment.isPrivate,

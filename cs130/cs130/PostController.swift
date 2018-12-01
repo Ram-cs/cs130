@@ -59,7 +59,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
                 let comment = item as! DataSnapshot
                 let dic = comment.value as! NSDictionary
                 let creator:String = dic[Comments.CREATOR_ID] as! String
-                let creatorUsername:String = dic[Comments.CREATOR_ID] as! String
+                let creatorUsername:String = dic[Comments.CREATOR_USERNAME] as! String
                 let content:String = dic[Comments.CONTENT] as! String
                 let isPrivate:Bool = dic[Comments.IS_PRIVATE] as! Bool
                 let isResponse:Bool = dic[Comments.IS_RESPONSE] as! Bool
@@ -109,7 +109,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     // Create the TextView for the post
     lazy var postText: UITextView = {
-        let label = UITextView.createPostComment(textContent: self.rootPost!.content, userID: self.rootPost!.creator)
+        let label = UITextView.createPostComment(textContent: self.rootPost!.content, username: self.rootPost!.creatorUsername)
         return label
     }()
     
@@ -163,7 +163,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
         
         var subviews = [postTitle, postText, replyLabel]
         for comment in self.comments{
-            let label = UITextView.createPostComment(textContent: comment.content, userID: comment.creator)
+            let label = UITextView.createPostComment(textContent: comment.content, username: comment.creatorUsername)
             subviews.append(label)
         }
         let stackView = UIStackView(arrangedSubviews: subviews)
@@ -226,10 +226,10 @@ class PostController: UIViewController, UIScrollViewDelegate {
 
 // extend UITextView to contain a function that creates a Post/Comment
 extension UITextView{
-    static func createPostComment(textContent:String, userID: String) -> UITextView {
+    static func createPostComment(textContent:String, username: String) -> UITextView {
         let textView = UITextView();
         textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        textView.text = userID + ": \n" + textContent + "\n\n"
+        textView.text = username + ": \n" + textContent + "\n\n"
         textView.textColor = UIColor.black
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.textAlignment = NSTextAlignment.left
