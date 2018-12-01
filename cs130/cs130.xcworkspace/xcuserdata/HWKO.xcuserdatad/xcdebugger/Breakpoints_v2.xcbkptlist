@@ -74,29 +74,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "cs130/PostController.swift"
-            timestampString = "565232005.81637"
+            timestampString = "565344948.308162"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
             endingLineNumber = "124"
-            landmarkName = "setUpStack()"
-            landmarkType = "7">
+            landmarkName = "postTitle"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "cs130/PostController.swift"
-            timestampString = "565232005.828287"
+            timestampString = "565344948.389022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
             endingLineNumber = "126"
-            landmarkName = "setUpStack()"
-            landmarkType = "7">
+            landmarkName = "PostController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

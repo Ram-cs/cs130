@@ -10,8 +10,11 @@ import UIKit
 
 import Firebase
 
-class CreatePostController: UIViewController {
+class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
     let personalBoard:PersonalBoardController?
+    var majorOptions = [String]()
+    var courseOptions = [String]()
     
     init(personalBoard:PersonalBoardController) {
         self.personalBoard = personalBoard
@@ -33,10 +36,36 @@ class CreatePostController: UIViewController {
         
         let backButtonItem = navigationItem.backBarButtonItem
         navigationItem.leftBarButtonItem = backButtonItem
+
+        createOptions()
+
+        
+        let majorPickerView = UIPickerView()
+        let coursePickerView = UIPickerView()
+        
+        majorPickerView.delegate = self
+        coursePickerView.delegate = self
+        
+        majorPickerView.tag = 1
+        coursePickerView.tag = 2
+        
+        majorName.inputView = majorPickerView
+        courseName.inputView = coursePickerView
         
         createFields()
         // createPostButton()
         // addErrorLabel()
+    }
+    
+    fileprivate func createOptions() {
+        for course in LoadUserController.singletonUser!.courses {
+            if(!majorOptions.contains(course.0))  {
+                majorOptions.append(course.0)
+            }
+            if(!courseOptions.contains(course.1)) {
+                courseOptions.append(course.1)
+            }
+        }
     }
     
     fileprivate func createFields() {
@@ -64,6 +93,43 @@ class CreatePostController: UIViewController {
         submitButton.anchor(left: view.leftAnchor, leftPadding: 24, right: view.rightAnchor, rightPadding: -24, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -70, width: 100, height: 40)
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 1 {
+            return majorOptions.count
+        }
+        
+        if pickerView.tag == 2{
+            return courseOptions.count
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {
+            return majorOptions[row]
+        }
+        
+        if pickerView.tag == 2{
+            return courseOptions[row]
+        }
+        return nil
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {
+            majorName.text = majorOptions[row]
+        }
+        
+        if pickerView.tag == 2{
+            courseName.text = courseOptions[row]
+        }
+        
+    }
+    
     let postName: UITextField = {
         let button = UITextField();
         button.backgroundColor = .white
@@ -76,7 +142,7 @@ class CreatePostController: UIViewController {
         return button
     }()
     
-    let majorName: UITextField = {
+    var majorName: UITextField = {
         let button = UITextField();
         button.backgroundColor = .white
         button.textColor = .black
@@ -88,7 +154,10 @@ class CreatePostController: UIViewController {
         return button
     }()
     
-    let courseName: UITextField = {
+    
+    
+    
+    var courseName: UITextField = {
         let button = UITextField();
         button.backgroundColor = .white
         button.textColor = .black
