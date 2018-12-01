@@ -33,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         let mainTabBarController = MainTabBarController()
         
-        let navigationController = UINavigationController(rootViewController: mainTabBarController)
+        // let navigationController = UINavigationController(rootViewController: mainTabBarController)
+        let navigationController = UINavigationController(rootViewController: LoginController())
         //window?.rootViewController = ReplyController(rootPost: samplePost)
         //window?.rootViewController = PostController(rootPost: samplePost)
         window?.rootViewController = navigationController

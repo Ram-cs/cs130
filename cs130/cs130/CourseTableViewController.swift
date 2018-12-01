@@ -14,6 +14,7 @@ class CourseTableViewController: UITableViewController {
 
     var ref: DatabaseReference?
     var courses = [Course]()
+    var accountController: AccountController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +70,7 @@ class CourseTableViewController: UITableViewController {
     // Pressing a cell redirects to the course info page
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = self.courses[indexPath.row]
-        let courseDetailViewController = CourseDetailViewController()
-        courseDetailViewController.course = course
+        let courseDetailViewController = CourseDetailViewController(course: course, accountController: self.accountController)
         self.navigationController?.pushViewController(courseDetailViewController, animated: true)
     }
 }

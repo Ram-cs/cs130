@@ -14,11 +14,23 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     var course: Course?
     var infoTable = UITableView()
+    var accountController: AccountController?
+    
+    init (course: Course?, accountController: AccountController?) {
+        self.course = course
+        self.accountController = accountController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
+        // self.navigationController?.navigationBar.isTranslucent = false
+        self.view.backgroundColor = PANEL_GRAY
         self.displayCourse()
     }
     
@@ -70,7 +82,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     let enroll: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.rgb(red: 181, green: 252, blue: 161)
+        button.backgroundColor = UIColor.rgb(red: 159, green: 249, blue: 84)
         button.setTitle("Enroll", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -88,9 +100,33 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return view
     }()
     
+    func setAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {(UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+            if (self.accountController != nil) {
+                self.accountController?.refresh()
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @objc func enrollButtonPress(sender: UIButton) {
-        PersonalBoardController.singletonUser?.addCourse(course: self.course!)
-        self.viewDidLoad() // Refresh the page
+        if ((LoadUserController.singletonUser?.addCourse(course: self.course!))!) {
+            self.setAlert(title: "Success", message: "You are already enrolled")
+        }
+        else {
+            self.setAlert(title: "Error", message: "Error when enrolling into the course")
+        }
+    }
+    
+    @objc func dropButtonPress(sender: UIButton) {
+        if ((LoadUserController.singletonUser?.removeCourse(course: self.course!))!) {
+            self.setAlert(title: "Success", message: "You are already dropped")
+        }
+        else {
+            self.setAlert(title: "Error", message: "Error when dropping the course")
+        }
     }
     
     /// Displays information of the current course
@@ -123,9 +159,10 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(subStack)
         
         // Set up enroll button action
-        if (PersonalBoardController.singletonUser?.hasCourse(course: self.course!))! {
-            self.enroll.backgroundColor = UIColor.gray
-            self.enroll.setTitle("Enrolled", for: .normal)
+        if (LoadUserController.singletonUser?.hasCourse(course: self.course!))! {
+            self.enroll.backgroundColor = UIColor.rgb(red: 249, green: 159, blue: 84)
+            self.enroll.setTitle("Drop course", for: .normal)
+            self.enroll.addTarget(self, action: #selector(self.dropButtonPress), for: .touchUpInside)
         }
             
         else {
@@ -145,7 +182,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(pageStack)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
     }
 }
 

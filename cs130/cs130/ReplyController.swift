@@ -11,14 +11,17 @@ import Firebase
 
 class ReplyController: UIViewController {
     let rootPost:Post?
+    let postController:PostController?
 
-    init(rootPost:Post) {
+    init(rootPost:Post, postController:PostController) {
         self.rootPost = rootPost
+        self.postController = postController
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         rootPost = nil
+        postController = nil
         super.init(coder:aDecoder)
     }
     
@@ -169,5 +172,6 @@ class ReplyController: UIViewController {
             db.addComment(comment:newComment)
         }
         self.navigationController?.popViewController(animated:true)
+        self.postController!.refreshPost()
     }
 }
