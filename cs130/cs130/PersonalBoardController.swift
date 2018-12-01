@@ -202,6 +202,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     fileprivate func setUpName() {
         print("setupname()!!")
         view.addSubview(name)
+        //scrollView.addSubview(name)
         
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)
     }

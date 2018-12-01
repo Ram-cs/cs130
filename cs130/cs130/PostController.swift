@@ -11,6 +11,7 @@ import Firebase
 
 class PostController: UIViewController, UIScrollViewDelegate {
     let rootPost:Post?
+    var formatter = DateFormatter()
     var comments = [Comment]()
     
     init(rootPost:Post) {
@@ -25,6 +26,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -39,16 +42,17 @@ class PostController: UIViewController, UIScrollViewDelegate {
         navigationItem.rightBarButtonItem = emptyItem
         view.backgroundColor = .white
         
+        fetchPostComments()
         setUpRefresh()
-        setUpStack()
+        //setUpStack()
         setUpReplyButton()
     }
 
     func fetchPostComments() {
-        let major:String = comment.rootPost!.major
-        let course:String = comment.rootPost!.course
-        let rootPostID:String = comment.rootPost!.ID as! String
-        let db:DatabaseReference = Databse.database().reference().child("\(comments.COMMENTS)/\(major)/\(course)/\(rootPostID)")
+        let major:String = self.rootPost!.major
+        let course:String = self.rootPost!.course
+        let rootPostID:String = self.rootPost!.ID as! String
+        let db:DatabaseReference = Database.database().reference().child("comments/\(major)/\(course)/\(rootPostID)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in 
             var comments:[Comment] = []
             for item in DataSnapshot.children {
@@ -56,8 +60,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
                 let dic = comment.value as! NSDictionary
                 let creator:String = dic[Comments.CREATOR_ID] as! String
                 let content:String = dic[Comments.CONTENT] as! String
-                let isPrivate:Bool = dic[Comments.IS_PRIVATE] as! String
-                let isResponse:Bool = dic[Comments.IS_RESPONSE] as! String
+                let isPrivate:Bool = dic[Comments.IS_PRIVATE] as! Bool
+                let isResponse:Bool = dic[Comments.IS_RESPONSE] as! Bool
                 let respondeeID:String = dic[Comments.RESPONDEE_ID] as! String
                 let creationTime:Date? = self.formatter.date(from: dic[Comments.CREATION_TIME] as! String)
                 let ID:String = comment.key
@@ -155,9 +159,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
         
         // sample posts
         
-        let commentViewController = CommentViewController(post: (self.rootPost ?? nil)!)
         var subviews = [postTitle, postText, replyLabel]
-        for comment in commentViewController.comments{
+        for comment in self.comments{
             let label = UITextView.createPostComment(textContent: comment.content, userID: comment.creator)
             subviews.append(label)
         }
@@ -190,17 +193,24 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     // set up reply button functionality
     @objc fileprivate func replyAction() {
-        let replyController = ReplyController(rootPost:self.rootPost!)
+        let replyController = ReplyController(rootPost:self.rootPost!, postController:self)
         self.navigationController?.pushViewController(replyController, animated: true)
     }
 
+    func clear() {
+        for subview in self.scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        for subview in self.insideScrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        self.comments = []
+    }
     //refreshes this page
     @objc func refreshPost() {        
-        let postController = PostController(rootPost:self.rootPost)
-        let navController = UINavigationController(rootViewController:postController)
-        self.present(navController, animated:true, completion:nil)
         refreshControl.endRefreshing()
-        self.dismiss(animated:true, completion:nil)
+        self.clear()
+        self.viewDidLoad()
     }
 
     
