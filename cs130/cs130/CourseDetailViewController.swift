@@ -14,6 +14,17 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     var course: Course?
     var infoTable = UITableView()
+    var accountController: AccountController?
+    
+    init (course: Course?, accountController: AccountController?) {
+        self.course = course
+        self.accountController = accountController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,12 +100,33 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return view
     }()
     
+    func setAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {(UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+            if (self.accountController != nil) {
+                self.accountController?.refresh()
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @objc func enrollButtonPress(sender: UIButton) {
-        LoadUserController.singletonUser?.addCourse(course: self.course!)
-        self.viewDidLoad() // Refresh the page
-        self.enroll.backgroundColor = UIColor.gray
-        self.enroll.setTitle("Enrolled", for: .normal)
-        // self.navigationController?.popViewController(animated: true)
+        if ((LoadUserController.singletonUser?.addCourse(course: self.course!))!) {
+            self.setAlert(title: "Success", message: "You are already enrolled")
+        }
+        else {
+            self.setAlert(title: "Error", message: "Error when enrolling into the course")
+        }
+    }
+    
+    @objc func dropButtonPress(sender: UIButton) {
+        if ((LoadUserController.singletonUser?.removeCourse(course: self.course!))!) {
+            self.setAlert(title: "Success", message: "You are already dropped")
+        }
+        else {
+            self.setAlert(title: "Error", message: "Error when dropping the course")
+        }
     }
     
     /// Displays information of the current course
@@ -128,8 +160,9 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         
         // Set up enroll button action
         if (LoadUserController.singletonUser?.hasCourse(course: self.course!))! {
-            self.enroll.backgroundColor = UIColor.gray
-            self.enroll.setTitle("Enrolled", for: .normal)
+            self.enroll.backgroundColor = UIColor.rgb(red: 249, green: 159, blue: 84)
+            self.enroll.setTitle("Drop course", for: .normal)
+            self.enroll.addTarget(self, action: #selector(self.dropButtonPress), for: .touchUpInside)
         }
             
         else {
