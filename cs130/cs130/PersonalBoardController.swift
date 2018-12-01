@@ -52,6 +52,14 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { //make bar color white
+        return .lightContent
+    }
+    
+    
+    
+    
     func fetchUserPosts(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in

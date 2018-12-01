@@ -104,7 +104,7 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         button.textAlignment = NSTextAlignment.center
         return button
     }()
-    
+        
     fileprivate func display(){
         nameField.text = username
         nameField.heightAnchor.constraint(equalToConstant: 200).isActive = true
