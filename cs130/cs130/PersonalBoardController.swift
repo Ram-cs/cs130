@@ -58,12 +58,14 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
                 let post = item as! DataSnapshot
                 let dic = post.value as! NSDictionary
                 let creator:String = dic[Posts.CREATOR_ID] as! String
+                let creatorUsername:String = dic[Posts.CREATOR_USERNAME] as! String
                 let title:String = dic[Posts.TITLE] as! String
                 let description:String = dic[Posts.DESCRIPTION] as! String
                 let isTutorSearch:Bool = dic[Posts.IS_TUTOR_SEARCH] as! Bool
                 let creationTime:Date? = self.formatter.date(from: dic[Posts.CREATION_TIME] as! String)
                 //print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
                 let fetchedPost:Post = Post(creator:creator,
+                                            creatorUsername:creatorUsername,
                                             title:title,
                                             content:description,
                                             major:major,

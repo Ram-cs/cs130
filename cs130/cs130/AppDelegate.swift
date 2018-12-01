@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //appUser = User(id:"204578044")
         let samplePost:Post = Post(creator: "204578044",
+                                   creatorUsername:"bobthebuilder",
                                             title: "piggyboie",
                                             content: "pig1 post text post post textexample post post post post post post post po stpo stpos tpos tpost post post postpost pos tpos tpos tpos top stpo stop stpo stpo stpo st textexample comment text",
                                             major: "Mechanical Engineering",

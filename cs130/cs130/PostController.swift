@@ -59,6 +59,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
                 let comment = item as! DataSnapshot
                 let dic = comment.value as! NSDictionary
                 let creator:String = dic[Comments.CREATOR_ID] as! String
+                let creatorUsername:String = dic[Comments.CREATOR_ID] as! String
                 let content:String = dic[Comments.CONTENT] as! String
                 let isPrivate:Bool = dic[Comments.IS_PRIVATE] as! Bool
                 let isResponse:Bool = dic[Comments.IS_RESPONSE] as! Bool
@@ -66,6 +67,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
                 let creationTime:Date? = self.formatter.date(from: dic[Comments.CREATION_TIME] as! String)
                 let ID:String = comment.key
                 let fetchedComment:Comment = Comment(creator:creator,
+                                                     creatorUsername:creatorUsername,
                                                      content:content,
                                                      isPrivate:isPrivate,
                                                      isResponse:isResponse,
@@ -227,7 +229,7 @@ extension UITextView{
     static func createPostComment(textContent:String, userID: String) -> UITextView {
         let textView = UITextView();
         textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        textView.text = userID + ": \n" + textContent + "\n\n" + "Phone: 1-234-567-1234\n" + "email: genedblock@ucla.edu"
+        textView.text = userID + ": \n" + textContent + "\n\n"
         textView.textColor = UIColor.black
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.textAlignment = NSTextAlignment.left

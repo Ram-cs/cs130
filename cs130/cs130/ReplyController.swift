@@ -161,6 +161,7 @@ class ReplyController: UIViewController {
         if ((Auth.auth().currentUser?.uid) != nil) {
             //let userID:String = (Auth.auth().currentUser?.uid)!
             let newComment = Comment(creator:LoadUserController.singletonUser!.uid,
+                                     creatorUsername:LoadUserController.singletonUser!.username,
                 content:body, 
                 isPrivate:false, 
                 rootPost:self.rootPost, 

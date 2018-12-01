@@ -44,6 +44,7 @@ class CommentViewController: UITableViewController {
                 let comment = item as! DataSnapshot
                 let dic = comment.value as! NSDictionary
                 let creator:String = dic["creatorID"] as! String
+                let creatorUsername:String = dic["creatorUsername"] as! String
                 let content:String = dic["content"] as! String
                 let isPrivate:Bool = dic["isPrivate"] as! Bool
                 let isResponse:Bool = dic["isResponse"] as! Bool
@@ -52,6 +53,7 @@ class CommentViewController: UITableViewController {
                 let ID:String = comment.key
                 print("created Comment(\(creator),\n\(content),\n\(isPrivate),\n\(isResponse),\n\(respondeeID),\n\(creationTime),\n\(ID)")
                 let fetchedComment:Comment = Comment(creator:creator,
+                                                     creatorUsername:creatorUsername,
                                                      content:content,
                                                      isPrivate:isPrivate,
                                                      isResponse:isResponse,
