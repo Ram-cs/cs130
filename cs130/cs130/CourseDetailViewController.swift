@@ -113,19 +113,19 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func enrollButtonPress(sender: UIButton) {
         if ((LoadUserController.singletonUser?.addCourse(course: self.course!))!) {
-            self.setAlert(title: "Success", message: "You are already enrolled")
+            self.setAlert(title: "Success", message: "Succefully enrolled")
         }
         else {
-            self.setAlert(title: "Error", message: "Error when enrolling into the course")
+            self.setAlert(title: "Error", message: "Error adding course")
         }
     }
     
     @objc func dropButtonPress(sender: UIButton) {
         if ((LoadUserController.singletonUser?.removeCourse(course: self.course!))!) {
-            self.setAlert(title: "Success", message: "You are already dropped")
+            self.setAlert(title: "Success", message: "Succefully dropped")
         }
         else {
-            self.setAlert(title: "Error", message: "Error when dropping the course")
+            self.setAlert(title: "Error", message: "Error dropping course")
         }
     }
     
