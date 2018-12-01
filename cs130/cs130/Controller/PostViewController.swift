@@ -41,12 +41,14 @@ class PostViewController: UITableViewController {
                 let post = item as! DataSnapshot
                 let dic = post.value as! NSDictionary
                 let creator:String = dic["creatorID"] as! String
+                let creatorUsername:String = dic["creatorUsername"] as! String
                 let title:String = dic["title"] as! String
                 let description:String = dic["description"] as! String
                 let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
                 let creationTime:Date? = self.formatter.date(from: dic["creationTime"] as! String)
                 print("created Post(\(creator), \n\(title), \n\(description), \n\(isTutorSearch), \n\(dic["creationTime"] as! String)\n")
                 let fetchedPost:Post = Post(creator:creator,
+                                            creatorUsername:creatorUsername,
                                             title:title,
                                             content:description,
                                             major:major,

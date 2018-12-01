@@ -18,7 +18,6 @@ class MainTabBarController: UIViewController {
                 let logInController = LoginController()
                 let navController = UINavigationController(rootViewController: logInController)
                 self.present(navController, animated: true, completion: nil)
-                
             }
             
        // }
@@ -26,9 +25,11 @@ class MainTabBarController: UIViewController {
 //        // window?.rootViewController = controller
 //        let courseTableViewController = CourseTableViewController()
 //        let userProfileController = UserProfileController()
-        
-        let personalBoardController = PersonalBoardController()
-        let navController = UINavigationController(rootViewController: personalBoardController)
+
+        //go to LoadUserController
+
+        let loadUserController = LoadUserController()
+        let navController = UINavigationController(rootViewController: loadUserController)
         self.present(navController, animated: true, completion: nil)
     }
 }

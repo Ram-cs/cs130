@@ -5,6 +5,7 @@
 //  Created by Ram Yadav on 11/9/18.
 //  Copyright © 2018 Ram Yadav. All rights reserved.
 //
+//reference: https://www.letsbuildthatapp.com/course/Instagram-Firebase
 
 import UIKit
 import Firebase
@@ -92,7 +93,7 @@ class SignUpController: UIViewController {
         button.setTitle("Sign Up", for: .normal)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
@@ -137,7 +138,7 @@ class SignUpController: UIViewController {
                 //now store the credentials to our databse
                 guard let uid = user?.uid else {return}
                 let ref = Database.database().reference().child("users")
-                let dictionary = ["email": email, "userName": username, "password": password]
+                let dictionary = [UsersAttributes.EMAIL: email, UsersAttributes.USERNAME: username, UsersAttributes.PASSWORD: password]
                 let values = [uid: dictionary]
                 
                 ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
@@ -152,8 +153,8 @@ class SignUpController: UIViewController {
                         
                         //dismiss this view controller now
 //                        self.dismiss(animated: true, completion: nil)
-                        let personalBoardController = PersonalBoardController()
-                        let navController = UINavigationController(rootViewController: personalBoardController)
+                        let loadUserController = LoadUserController()
+                        let navController = UINavigationController(rootViewController: loadUserController)
                         self.present(navController, animated: true, completion: nil)
                     }
                 })
@@ -165,7 +166,7 @@ class SignUpController: UIViewController {
     let alreadyHaveAccountButtton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        attributedTitle.append(NSAttributedString(string: "Sign In.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        attributedTitle.append(NSAttributedString(string: "Sign In.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: APP_BLUE]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleAlreadyHaveAccount), for: .touchUpInside)
         return button

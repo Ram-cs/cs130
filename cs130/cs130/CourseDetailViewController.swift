@@ -14,11 +14,23 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     var course: Course?
     var infoTable = UITableView()
+    var accountController: AccountController?
+    
+    init (course: Course?, accountController: AccountController?) {
+        self.course = course
+        self.accountController = accountController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.isTranslucent = false
+        // self.navigationController?.navigationBar.isTranslucent = false
+        self.view.backgroundColor = PANEL_GRAY
         self.displayCourse()
     }
     
@@ -70,7 +82,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     let enroll: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor.rgb(red: 181, green: 252, blue: 161)
+        button.backgroundColor = GREEN_COLOR
         button.setTitle("Enroll", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.textAlignment = .center
@@ -88,17 +100,41 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         return view
     }()
     
-//    @objc func enrollButtonPress(sender: UIButton) {
-//        appUser.addCourse(course: self.course!)
-//        self.viewDidLoad() // Refresh the page
-//    }
+    func setAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: {(UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+            if (self.accountController != nil) {
+                self.accountController?.refresh()
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func enrollButtonPress(sender: UIButton) {
+        if ((LoadUserController.singletonUser?.addCourse(course: self.course!))!) {
+            self.setAlert(title: "Success", message: "Succefully enrolled")
+        }
+        else {
+            self.setAlert(title: "Error", message: "Error adding course")
+        }
+    }
+    
+    @objc func dropButtonPress(sender: UIButton) {
+        if ((LoadUserController.singletonUser?.removeCourse(course: self.course!))!) {
+            self.setAlert(title: "Success", message: "Succefully dropped")
+        }
+        else {
+            self.setAlert(title: "Error", message: "Error dropping course")
+        }
+    }
     
     /// Displays information of the current course
     func displayCourse() {
         // Set up the course title
         self.courseTitle.text = self.course!.title
         self.courseTitle.heightAnchor.constraint(equalToConstant: 200).isActive = true
-
+        
         // Register the info table
         self.infoTable.dataSource = self
         self.infoTable.delegate = self
@@ -112,7 +148,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         self.userCnt.item.text = "Students"
         self.postCnt.number.text = String(self.course!.postCnt)
         self.postCnt.item.text = "Posts"
-    
+        
         // Substack containing stats
         let subStack = UIStackView(arrangedSubviews: [self.userCnt, self.postCnt])
         subStack.axis = .horizontal
@@ -123,7 +159,15 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(subStack)
         
         // Set up enroll button action
-//        self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
+        if (LoadUserController.singletonUser?.hasCourse(course: self.course!))! {
+            self.enroll.backgroundColor = UIColor.orange
+            self.enroll.setTitle("Drop course", for: .normal)
+            self.enroll.addTarget(self, action: #selector(self.dropButtonPress), for: .touchUpInside)
+        }
+            
+        else {
+            self.enroll.addTarget(self, action: #selector(self.enrollButtonPress), for: .touchUpInside)
+        }
         self.enroll.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         // The empty view
@@ -138,7 +182,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(pageStack)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
     }
 }
 

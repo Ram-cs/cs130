@@ -21,10 +21,27 @@ class User {
     
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
-        self.username = dictionary["userName"] as? String ?? ""
-        self.email = dictionary["email"] as? String ?? ""
-        self.userRef = Database.database().reference().child("users").child(uid)
+        self.username = dictionary[UsersAttributes.USERNAME] as? String ?? ""
+        self.email = dictionary[UsersAttributes.EMAIL] as? String ?? ""
+        self.userRef = Database.database().reference().child(UsersAttributes.USERS).child(uid)
         self.observeCourses()
+    }
+
+    init(uid: String, dictionary: [String: Any], luc:LoadUserController) {
+        self.uid = uid
+        self.username = dictionary[UsersAttributes.USERNAME] as? String ?? ""
+        self.email = dictionary[UsersAttributes.EMAIL] as? String ?? ""
+        self.userRef = Database.database().reference().child(UsersAttributes.USERS).child(uid)
+        self.observeCourses(luc:luc)
+    }
+
+    
+    //this doesnt work
+    func retrieveUserTriggerTransition(uid: String, upc:UserProfileController) {
+        self.userRef? = Database.database().reference().child("users").child(uid)
+        self.uid = uid
+        //self.observeUserInfo()
+        //self.observeCoursesTriggerTransition(upc:upc)
     }
     
     /// Check if the user is already enrolled in a course
@@ -83,6 +100,33 @@ class User {
                 newCourses.append((major, id))
             }
             self.courses = newCourses
+        }
+    }
+    
+    //dont use this
+    func observeCourses(luc:LoadUserController) {
+        self.userRef?.child("majors").observe(.value) { (DataSnapshot) in
+            var newCourses = [(String,String)]()
+            /*let val = DataSnapshot.value as? NSDictionary
+            var unparsedData:String = ""
+            if let data = val?["courses"] as? String {unparsedData = data}
+            self.courses = DatabaseAddController.parseUserCourseData(userCourseData:unparsedData)
+            print("about to transtion!!")
+
+            lc.transitionToBoard()*/
+
+            print("observeCourses(LoadUserController)")
+            for item in DataSnapshot.children {
+                print("for course in userdatabase!!!")
+                let course = item as! DataSnapshot
+                let dic = course.value as! NSDictionary
+                let major = dic["major"] as! String
+                let id = dic["id"] as! String
+                newCourses.append((major, id))
+                print("got a course, got a course!!")
+            }
+            self.courses = newCourses
+            luc.transitionToBoard()
         }
     }
     

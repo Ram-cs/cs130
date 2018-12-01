@@ -14,14 +14,14 @@ class cs130Tests: XCTestCase {
     func testUsernameEmpty() {
         var username:UITextField?
         XCTAssertNil(username)
-        let viewController = ViewController()
+        let viewController = LoginController()
         XCTAssertEqual(username, viewController.emailTextField) ////check against nil or enterred username
     }
     
     func testPasswordEmpty() {
         var password:UITextField?
         XCTAssertNil(password)
-        let viewController = ViewController()
+        let viewController = LoginController()
         XCTAssertEqual(password, viewController.passwordTextField) //check against nil or enterred password
     }
     
@@ -34,7 +34,7 @@ class cs130Tests: XCTestCase {
     }
     
     func checkForSignIn() {
-        let viewController = ViewController()
+        let viewController = LoginController()
         guard let email = viewController.emailTextField.text else {
             print("Emails is empty")
             return}

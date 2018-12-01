@@ -6,6 +6,7 @@
 //  Copyright © 2018 Ram Yadav. All rights reserved.
 //
 
+//reference: https://www.letsbuildthatapp.com/course/Instagram-Firebase
 import UIKit
 import Firebase
 
@@ -59,7 +60,7 @@ class LoginController: UIViewController {
         button.setTitle("Login", for: .normal)
         button.layer.cornerRadius = 5
         button.clipsToBounds = true
-        button.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        button.backgroundColor = APP_BLUE
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = true
@@ -79,6 +80,7 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text else {return}
         guard let password = passwordTextField.text else {return}
+        print("handleLogin()")
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             if let error = err {
@@ -89,17 +91,38 @@ class LoginController: UIViewController {
             }
             
             print("Succefully signed In")
-            //self.storeCredentials()
-            let personalBoardController = PersonalBoardController()
-            let navController = UINavigationController(rootViewController: personalBoardController)
+
+            //// go to LoadUserController
+            let loadUserController = LoadUserController()
+            let navController = UINavigationController(rootViewController: loadUserController)
             self.present(navController, animated: true, completion: nil)
         }
+    }
+
+    private func storeCredentials() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                //LoadUserController.singletonUser = User(uid: userID, dictionary: dictionary, luc:self)
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
+    }
+
+    func transitionToBoard() {
+        let personalBoardController = PersonalBoardController()
+        self.navigationController?.pushViewController(personalBoardController, animated:true)
     }
     
     let dontHaveAccountButtton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        attributedTitle.append(NSAttributedString(string: "Sign Up.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        attributedTitle.append(NSAttributedString(string: "Sign Up.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: APP_BLUE]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button

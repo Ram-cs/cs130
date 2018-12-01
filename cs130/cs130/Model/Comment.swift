@@ -17,7 +17,7 @@ public class Comment: TextItem {
     
     /// Initializes a Post object
     /// - parameters:
-    ///     - creator: the User that is the author of the Comment
+    ///     - creator: the userID that is the author of the Comment
     ///     - content: the content of the Comment
     ///     - isPrivate: whether the message can be seen by everyone or only by the poster and rootPost poster
     ///     - rootPost: the Post that this comment is replying to
@@ -26,11 +26,11 @@ public class Comment: TextItem {
     ///     - creationTime: time that this Post was created/posted
     ///     - ID: Post identifier in the database
     /// - returns: a new Comment object
-    init(creator:String, content:String, isPrivate:Bool = false, rootPost:Post? = nil, isResponse:Bool = false, respondeeID:String = "", creationTime:Date? = nil, ID:String? = nil) {
+    init(creator:String, creatorUsername:String, content:String, isPrivate:Bool = false, rootPost:Post? = nil, isResponse:Bool = false, respondeeID:String = "", creationTime:Date? = nil, ID:String? = nil) {
         self.isPrivate = isPrivate
         self.rootPost = rootPost
         self.isResponse = isResponse
         self.respondeeID = respondeeID
-        super.init(creator:creator, content:content, creationTime:creationTime, ID:ID)
+        super.init(creator:creator, creatorUsername:creatorUsername, content:content, creationTime:creationTime, ID:ID)
     }
 }

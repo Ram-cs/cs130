@@ -25,6 +25,7 @@ class DatabaseAddController {
         let dateString = self.formatter.string(from: post.creationTime)
         
         let dbEntry:[String:Any] = ["creationTime": dateString,
+                                    "creatorUsername": post.creatorUsername,
                                     "creatorID": post.creator,
                                     "description": post.content,
                                     "isClosed": post.isClosed,
@@ -38,12 +39,13 @@ class DatabaseAddController {
         let major:String = comment.rootPost!.major
         let course:String = comment.rootPost!.course
         let rootPostID:String = comment.rootPost!.ID as! String
-        let db:DatabaseReference = Database.database().reference().child("/comments/\(major)/\(course)/\(rootPostID)")
+        let db:DatabaseReference = Database.database().reference().child("comments/\(major)/\(course)/\(rootPostID)")
         let key = db.childByAutoId().key
         
         let dateString = self.formatter.string(from: comment.creationTime)
         
         let dbEntry:[String:Any] = ["content": comment.content,
+                                    "creatorUsername": comment.creatorUsername,
                                     "creationTime": dateString,
                                     "creatorID": comment.creator,
                                     "isPrivate": comment.isPrivate,
@@ -52,5 +54,4 @@ class DatabaseAddController {
         db.updateChildValues(["/\(key)":dbEntry])
         comment.ID = key
     }
-    
 }
