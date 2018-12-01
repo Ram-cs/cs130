@@ -19,6 +19,7 @@ public class Post: TextItem {
     /// Initializes a Post object
     /// - parameters:
     ///     - creator: the User that is the author of the Post
+    ///     - creatorUsername: username of creator
     ///     - title: the title of the Post
     ///     - content: the description of the Post
     ///     - major: major that the Post is categorized under
@@ -27,13 +28,13 @@ public class Post: TextItem {
     ///     - creationTime: time that this Post was created/posted
     ///     - ID: Post identifier in the database
     /// - returns: a new Post object
-    init(creator:String, title:String, content:String, major:String, course:String, isTutorSearch:Bool, creationTime:Date? = nil, ID:String? = nil) {
+    init(creator:String, creatorUsername: String, title:String, content:String, major:String, course:String, isTutorSearch:Bool, creationTime:Date? = nil, ID:String? = nil) {
         self.title = title
         self.major = major
         self.course = course
         self.isTutorSearch = isTutorSearch
         self.isClosed = false
-        super.init(creator:creator, content:content, creationTime:creationTime, ID:ID)
+        super.init(creator:creator, creatorUsername:creatorUsername, content:content, creationTime:creationTime, ID:ID)
     }
     
     ///not functional yet
