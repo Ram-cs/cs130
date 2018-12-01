@@ -11,6 +11,8 @@ import Firebase
 
 class PostController: UIViewController, UIScrollViewDelegate {
     let rootPost:Post?
+    var formatter = DateFormatter()
+    var comments = [Comment]()
     
     init(rootPost:Post) {
         self.rootPost = rootPost
@@ -24,6 +26,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -38,11 +42,52 @@ class PostController: UIViewController, UIScrollViewDelegate {
         navigationItem.rightBarButtonItem = emptyItem
         view.backgroundColor = .white
         
-        setUpStack()
+        fetchPostComments()
+        setUpRefresh()
+        //setUpStack()
         setUpReplyButton()
+    }
+
+    func fetchPostComments() {
+        let major:String = self.rootPost!.major
+        let course:String = self.rootPost!.course
+        let rootPostID:String = self.rootPost!.ID as! String
+        let db:DatabaseReference = Database.database().reference().child("comments/\(major)/\(course)/\(rootPostID)")
+        db.observeSingleEvent(of: .value, with: { (DataSnapshot) in 
+            var comments:[Comment] = []
+            for item in DataSnapshot.children {
+                let comment = item as! DataSnapshot
+                let dic = comment.value as! NSDictionary
+                let creator:String = dic[Comments.CREATOR_ID] as! String
+                let content:String = dic[Comments.CONTENT] as! String
+                let isPrivate:Bool = dic[Comments.IS_PRIVATE] as! Bool
+                let isResponse:Bool = dic[Comments.IS_RESPONSE] as! Bool
+                let respondeeID:String = dic[Comments.RESPONDEE_ID] as! String
+                let creationTime:Date? = self.formatter.date(from: dic[Comments.CREATION_TIME] as! String)
+                let ID:String = comment.key
+                let fetchedComment:Comment = Comment(creator:creator,
+                                                     content:content,
+                                                     isPrivate:isPrivate,
+                                                     isResponse:isResponse,
+                                                     respondeeID:respondeeID,
+                                                     creationTime:creationTime,
+                                                     ID:ID)
+                comments.append(fetchedComment)
+            }
+            self.comments = comments
+            self.scrollView.setNeedsDisplay()
+            self.setUpStack()
+        })
     }
     
     
+    //refresh control 
+    let refreshControl: UIRefreshControl = {
+        let rfc = UIRefreshControl();
+        rfc.addTarget(self, action: #selector(refreshPost), for: .valueChanged)
+        return rfc
+    }()
+
     // Create scroll view
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -103,7 +148,6 @@ class PostController: UIViewController, UIScrollViewDelegate {
     }()
     
     fileprivate func setUpStack() {
-        
         // set scrollView delegate to the view and add it to the view
         scrollView.delegate = self
         view.addSubview(scrollView)
@@ -115,15 +159,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
         
         // sample posts
         
-        let commentViewController = CommentViewController(post: (self.rootPost ?? nil)!)
-    
-//        let label1 = UITextView.createPostComment(textContent: "I'm interested!", userID: "Donkey Kong")
-//
-//        let label2 = UITextView.createPostComment(textContent: "I can help!", userID: "Gene D. Block")
-//
-        //console.log(commentViewController.comments)
         var subviews = [postTitle, postText, replyLabel]
-        for comment in commentViewController.comments{
+        for comment in self.comments{
             let label = UITextView.createPostComment(textContent: comment.content, userID: comment.creator)
             subviews.append(label)
         }
@@ -139,7 +176,12 @@ class PostController: UIViewController, UIScrollViewDelegate {
         stackView.anchor(left: insideScrollView.leftAnchor, leftPadding: 10, right: insideScrollView.rightAnchor, rightPadding: -15, top: insideScrollView.topAnchor, topPadding: 0, bottom: nil, bottomPadding: 0, width: view.bounds.size.width - 30, height: 0)
         stackView.centerXAnchor.constraint(equalTo: insideScrollView.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: insideScrollView.centerYAnchor).isActive = true
-        
+    }
+
+    fileprivate func setUpRefresh() {
+        self.scrollView.alwaysBounceVertical = true
+        self.scrollView.isScrollEnabled = true
+        self.scrollView.addSubview(refreshControl)
     }
     
     // set constraints for reply button
@@ -151,9 +193,26 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     // set up reply button functionality
     @objc fileprivate func replyAction() {
-        let replyController = ReplyController(rootPost:self.rootPost!)
+        let replyController = ReplyController(rootPost:self.rootPost!, postController:self)
         self.navigationController?.pushViewController(replyController, animated: true)
     }
+
+    func clear() {
+        for subview in self.scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        for subview in self.insideScrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        self.comments = []
+    }
+    //refreshes this page
+    @objc func refreshPost() {        
+        refreshControl.endRefreshing()
+        self.clear()
+        self.viewDidLoad()
+    }
+
     
     // prevent scrollview from scrolling horizontally
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -169,10 +169,6 @@ class CreatePostController: UIViewController {
     }
     
     @objc func submitHandle() {
-//        guard let major = majorName.text, major.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
-//        guard let course = courseName.text, course.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
-//        guard let title = postName.text, title.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
-//        guard let body = postBody.text, body.count > 0 else { self.errorLabel.text = "Please fill out the form"; return }
         guard let major = majorName.text, major.count > 0 else { self.errorLabel.alpha = 1.0; return }
         guard let course = courseName.text, course.count > 0 else { self.errorLabel.alpha = 1.0; return }
         guard let title = postName.text, title.count > 0 else { self.errorLabel.alpha = 1.0; return }
