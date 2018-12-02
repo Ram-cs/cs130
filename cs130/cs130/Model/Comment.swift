@@ -36,9 +36,9 @@ public class Comment: TextItem {
     }
 
     func equals(otherComment:Comment) -> Bool {
-        val comparisons:[Bool] = []
+        var comparisons:[Bool] = []
         comparisons.append(self.isPrivate == otherComment.isPrivate)
-        comparisons.append(self.rootPost.equals(otherComment.rootPost))
+        comparisons.append(self.rootPost!.equals(otherPost:otherComment.rootPost!))
         comparisons.append(self.isResponse == otherComment.isResponse)
         comparisons.append(self.respondeeID == otherComment.respondeeID)
         comparisons.append(self.creator == otherComment.creator)
