@@ -81,7 +81,8 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
         errorLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[v]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-160-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
+        let bottom = String(describing: UIScreen.main.bounds.height / 10)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-" + bottom + "-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
         
         // stackView.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: nil, bottomPadding: 0, width: 0, height: 0)
         // stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -153,9 +154,6 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    
-    
     
     var courseName: UITextField = {
         let button = UITextField();

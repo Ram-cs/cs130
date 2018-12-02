@@ -37,6 +37,7 @@ class Course {
     /// - parameters:
     ///     - major: the major of the course
     ///     - snapshot: snapshot of the course from the database retrieved by listeners
+    /// - returns: a Course object
     init(major: String, snapshot: DataSnapshot) {
         self.major = major
         self.id = snapshot.key
@@ -83,12 +84,13 @@ class Course {
         })
     }
     
-    /// Creates an observer to the database and updates user count and post count of the course in real time.
-    /// This is called within the constructor
-    func setUpObserver() {
+    // Creates an observer to the database and updates user count and post count of the course in real time.
+    fileprivate func setUpObserver() {
         self.itemRef?.observe(.value) { (DataSnapshot) in
             let dic = DataSnapshot.value as? NSDictionary
-            self.userCnt = dic?["users"] as! Int
+            if (dic != nil) {
+                self.userCnt = dic?["users"] as! Int
+            }
         }
         
         // Observe changes in post count

@@ -16,6 +16,11 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
     var infoTable = UITableView()
     var accountController: AccountController?
     
+    /// Initializes a CourseDetailViewController object
+    /// - parameters:
+    ///     - course: the content of this course detail page will be based on the course provided
+    ///     - accountController: the root account page that the application returns to
+    /// - returns: a CourseDetailViewController object
     init (course: Course?, accountController: AccountController?) {
         self.course = course
         self.accountController = accountController

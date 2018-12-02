@@ -11,9 +11,9 @@ import Firebase
 @testable import cs130
 
 class cs130Tests: XCTestCase {
-    
-    /// Tests whether we can retrieve courses from the database correctly
+    /// Unit test: whether we can retrieve courses from the database correctly
     func testCourseGet() {
+        let expectation = XCTestExpectation(description: "Fetch courses from database")
         Database.database().reference().child("majors").observeSingleEvent(of: .value) { (DataSnapshot) in
             var fetchedCourses = [Course]()
             for item in DataSnapshot.children {
@@ -28,22 +28,135 @@ class cs130Tests: XCTestCase {
             XCTAssertEqual(fetchedCourses[0].title, "Software Engineering")
             XCTAssertEqual(fetchedCourses[0].professor, "Miryung Kim")
             print("All tests passed")
+            expectation.fulfill()
         }
-        sleep(20)
+        wait(for: [expectation], timeout: 20.0)
     }
+    
+    /// Unit test: whether we can increment user count of a course in the database
+    func testCourseAddUserCnt() {
+        let expectation = XCTestExpectation(description: "Get course user count")
+        var old_cnt = 0
+        Database.database().reference().child("majors").child("Computer Science").child("130").observeSingleEvent(of: .value) { (DataSnapshot) in
+            let course = Course(major: "Computer Science", snapshot: DataSnapshot)
+            old_cnt = course.userCnt
+            course.updateUserCnt(add: true)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+        let expectation_2 = XCTestExpectation(description: "Get updated user count")
+        Database.database().reference().child("majors").child("Computer Science").child("130").observe(.value) { (DataSnapshot) in
+            let course = Course(major: "Computer Science", snapshot: DataSnapshot)
+            if course.userCnt == old_cnt + 1 {
+                expectation_2.fulfill()
+            }
+        }
+        wait(for: [expectation_2], timeout: 30.0)
         
+    }
+    
+    /// Unit test: whether we can retrieve courses of a user from database
+    func testUserGet() {
+        let dic = ["email": "Luke@gmail.com", "username": "Luke"]
+        let user = User(uid: "hWFISzgYQ1YTrWocfrh1Svo3f682", dictionary: dic)
+        let expectation = XCTestExpectation(description: "Get user's courses")
+        // Copy of the User's observeCourses method
+        var courses = [(String, String)]()
+        user.userRef?.child("majors").observe(.value) { (DataSnapshot) in
+            var newCourses = [(String, String)]()
+            for item in DataSnapshot.children {
+                let course = item as! DataSnapshot
+                let dic = course.value as! NSDictionary
+                let major = dic["major"] as! String
+                let id = dic["id"] as! String
+                newCourses.append((major, id))
+            }
+            courses = newCourses
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+        XCTAssertEqual(courses[0].0, "Computer Science")
+        XCTAssertEqual(courses[0].1, "130")
+        
+    }
+    
+    /// Integration test: whether the user can enroll a course and update the course's user count
+    func testUserAddCourse() {
+        let dic = ["email": "Luke@gmail.com", "username": "Luke"]
+        let user = User(uid: "hWFISzgYQ1YTrWocfrh1Svo3f682", dictionary: dic)
+        let expectation = XCTestExpectation(description: "Get user's courses")
+        var courses = [(String, String)]()
+
+        // First, get the course list of the user
+        // Copy of the User's observeCourses method to manually update the user's course lost
+        user.userRef?.child("majors").observe(.value) { (DataSnapshot) in
+            var newCourses = [(String, String)]()
+            for item in DataSnapshot.children {
+                let course = item as! DataSnapshot
+                let dic = course.value as! NSDictionary
+                let major = dic["major"] as! String
+                let id = dic["id"] as! String
+                newCourses.append((major, id))
+            }
+            courses = newCourses
+            user.courses = newCourses
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10.0)
+        
+        // Then fetch a course
+        let expectation_2 = XCTestExpectation(description: "Fetch courses from database")
+        var old_cnt = 0
+        var course:Course? = nil
+        Database.database().reference().child("majors").child("Mechanical Engineering").child("101").observeSingleEvent(of: .value) { (DataSnapshot) in
+                course = Course(major: "Mechanical Engineering", snapshot: DataSnapshot)
+                old_cnt = (course?.userCnt)!
+                expectation_2.fulfill()
+        }
+        wait(for: [expectation_2], timeout: 20.0)
+        
+        // Now add the course for the user
+        XCTAssert(user.addCourse(course: course!))
+        
+        let expectation_3 = XCTestExpectation(description: "Check user's courses again")
+        user.userRef?.child("majors").observe(.value) { (DataSnapshot) in
+            var newCourses = [(String, String)]()
+            for item in DataSnapshot.children {
+                let course = item as! DataSnapshot
+                let dic = course.value as! NSDictionary
+                let major = dic["major"] as! String
+                let id = dic["id"] as! String
+                newCourses.append((major, id))
+            }
+            courses = newCourses
+            expectation_3.fulfill()
+        }
+        wait(for: [expectation_3], timeout: 10.0)
+        XCTAssertEqual(courses[4].0, "Mechanical Engineering")
+        XCTAssertEqual(courses[4].1, "101")
+        
+        // Wait for course to update user count
+        let expectation_4 = XCTestExpectation(description: "Check if course user count is incremented")
+        course?.itemRef?.observe(.value, with: { (DataSnapshot) in
+            let dic = DataSnapshot.value as? NSDictionary
+            if dic != nil {
+                let new_cnt = dic?["users"] as! Int
+                XCTAssertEqual(new_cnt, old_cnt + 1)
+                expectation_4.fulfill()
+                course?.itemRef?.removeAllObservers()
+            }
+        })
+        wait(for: [expectation_4], timeout: 20.0)
+    }
+    
     func testUsernameEmpty() {
-        var username:UITextField?
-        XCTAssertNil(username)
         let viewController = LoginController()
-        XCTAssertEqual(username, viewController.emailTextField) ////check against nil or enterred username
+        XCTAssertEqual("", viewController.emailTextField.text) ////check against empty or enterred username
     }
     
     func testPasswordEmpty() {
-        var password:UITextField?
-        XCTAssertNil(password)
         let viewController = LoginController()
-        XCTAssertEqual(password, viewController.passwordTextField) //check against nil or enterred password
+        XCTAssertEqual("", viewController.passwordTextField.text) //check against empty or enterred password
     }
     
     func passwordMatched() {
