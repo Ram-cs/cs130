@@ -109,7 +109,103 @@ class cs130Tests: XCTestCase {
 
 
         }
-        
+    }
+
+    func checkPostReadWrite() {
+        let dac:DatabaseAddController = DatabaseAddController()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+
+        let samplePost:Post = Post(creator:"204578044",
+                                    creatorUsername:"bobthebuilder",
+                                    title:"sample_title",
+                                    content:"sample_content",
+                                    major:"Computer Science",
+                                    course:"130",
+                                    isTutorSearch:false)
+        dac.addPost(post:samplePost)
+        let db:DatabaseReference = Database.database().reference().child("posts/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)")
+        db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
+            let dic = DataSnapshot.value as! NSDictionary
+            let creator:String = dic["creatorID"] as! String
+            let creatorUsername:String = dic["creatorUsername"] as! String
+            let title:String = dic["title"] as! String
+            let description:String = dic["description"] as! String
+            let isTutorSearch:Bool = dic["isTutorSearch"] as! Bool
+            let creationTime:Date? = formatter.date(from: dic["creationTime"] as! String)
+
+            let fetchedPost:Post = Post(creator:creator,
+                                        creatorUsername:creatorUsername,
+                                        title:title,
+                                        content:description,
+                                        major:samplePost.major,
+                                        course:samplePost.course,
+                                        isTutorSearch:isTutorSearch,
+                                        creationTime:creationTime,
+                                        ID:DataSnapshot.key)
+            self.checkPostRead(orig:samplePost, copy:fetchedPost)
+        })
+    }
+
+    func checkPostRead(orig:Post, copy:Post) {
+        if(orig.equals(otherPost:copy)) {
+            print("Database Post Read-Write test passed!")
+        }
+        else {
+            print("Database Post Read-Write test failed!")
+        }
+    }
+
+    func checkCommentReadWrite() {
+        let dac:DatabaseAddController = DatabaseAddController()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        let samplePost:Post = Post(creator:"204578044",
+                                   creatorUsername:"bobthebuilder",
+                                   title:"sample_title",
+                                   content:"sample_content",
+                                   major:"Computer Science",
+                                   course:"130",
+                                   isTutorSearch:false)
+        dac.addPost(post:samplePost)
+        let sampleComment:Comment = Comment(creator:"204578044",
+                                            creatorUsername:"bobthebuilder",
+                                            content:"sample_content",
+                                            isPrivate:false,
+                                            rootPost:samplePost,
+                                            isResponse:false)
+        dac.addComment(comment:sampleComment)
+        let db:DatabaseReference = Database.database().reference().child("comments/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)/\(sampleComment.ID)")
+        db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
+            let dic = DataSnapshot.value as! NSDictionary
+            let creator:String = dic["creatorID"] as! String
+            let creatorUsername:String = dic["creatorUsername"] as! String
+            let content:String = dic["content"] as! String
+            let isPrivate:Bool = dic["isPrivate"] as! Bool
+            let isResponse:Bool = dic["isResponse"] as! Bool
+            let respondeeID:String = dic["respondeeID"] as! String
+            let creationTime:Date? = formatter.date(from: dic["creationTime"] as! String)
+
+            let fetchedComment:Comment = Comment(creator:creator,
+                                                creatorUsername:creatorUsername,
+                                                content:content,
+                                                isPrivate:isPrivate,
+                                                rootPost:nil,
+                                                isResponse:isResponse,
+                                                respondeeID:respondeeID,
+                                                creationTime:creationTime,
+                                                ID:DataSnapshot.key)
+            self.checkCommentRead(orig:sampleComment, copy:fetchedComment)
+        })
+    }
+
+    func checkCommentRead(orig:Comment, copy:Comment) {
+        if(orig.equals(otherComment:copy)) {
+            print("Database Comment Read-Write test passed!")
+        }
+        else {
+            print("Database Comment Read-Write test failed!")
+        }
     }
     
 }

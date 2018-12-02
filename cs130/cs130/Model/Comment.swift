@@ -18,6 +18,7 @@ public class Comment: TextItem {
     /// Initializes a Post object
     /// - parameters:
     ///     - creator: the userID that is the author of the Comment
+    ///     - creatorUsername: username of the creator
     ///     - content: the content of the Comment
     ///     - isPrivate: whether the message can be seen by everyone or only by the poster and rootPost poster
     ///     - rootPost: the Post that this comment is replying to
@@ -32,5 +33,36 @@ public class Comment: TextItem {
         self.isResponse = isResponse
         self.respondeeID = respondeeID
         super.init(creator:creator, creatorUsername:creatorUsername, content:content, creationTime:creationTime, ID:ID)
+    }
+
+    /// Compares this Comment to another Comment
+    /// - parameters:
+    ///     - otherComment: Comment that is being compared to
+    /// - returns: equivalence of Comments
+    func equals(otherComment:Comment) -> Bool {
+        var comparisons:[Bool] = []
+        comparisons.append(self.isPrivate == otherComment.isPrivate)
+//        if(self.rootPost != nil && otherComment.rootPost != nil) {
+//            comparisons.append(self.rootPost!.equals(otherPost:otherComment.rootPost!))
+//        }
+//        else if(self.rootPost == nil && otherComment.rootPost == nil){
+//            comparisons.append(true)
+//        }
+//        else {
+//            comparisons.append(false)
+//        }
+        comparisons.append(self.isResponse == otherComment.isResponse)
+        comparisons.append(self.respondeeID == otherComment.respondeeID)
+        comparisons.append(self.creator == otherComment.creator)
+        comparisons.append(self.creatorUsername == otherComment.creatorUsername)
+        comparisons.append(self.content == otherComment.content)
+        comparisons.append(self.creationTime == otherComment.creationTime)
+        comparisons.append(self.ID == otherComment.ID)
+        for val in comparisons {
+            if(!val) {
+                return false
+            }
+        }
+        return true
     }
 }

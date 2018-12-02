@@ -70,6 +70,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
                                                      creatorUsername:creatorUsername,
                                                      content:content,
                                                      isPrivate:isPrivate,
+                                                     rootPost:self.rootPost!,
                                                      isResponse:isResponse,
                                                      respondeeID:respondeeID,
                                                      creationTime:creationTime,

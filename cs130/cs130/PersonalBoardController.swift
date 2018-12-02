@@ -37,7 +37,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
         view.backgroundColor = .white
         
-        get(user:LoadUserController.singletonUser!)
+        getCourses()
         setUpRefresh()
         setUpAccountButton()
         setUpName()
@@ -45,8 +45,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         setUplogOutButton()
     }
     
-    func get(user:User)  {
-        let userCourses:[(String, String)] = user.getCourses()
+    /// Fetches posts from the firebase database for all of current user's courses
+    func getCourses()  {
+        let userCourses:[(String, String)] = LoadUserController.singletonUser!.courses
         for course in userCourses {
             fetchUserPosts(major: course.0, course: course.1)
         }
@@ -59,7 +60,11 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     
     
-    
+    /// Fetches posts from the firebase database for a specific course
+    /// stores the courses in self.posts
+    /// - parameters: 
+    ///     - major: major of the course
+    ///     - course: course number of the course
     func fetchUserPosts(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
@@ -278,7 +283,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.pushViewController(accountController, animated:true)
     }
 
-    //refreshes this page
+    /// Refreshes the PersonalBoard
     @objc func refreshBoard() {        
         let personalBoardController = PersonalBoardController()
         let navController = UINavigationController(rootViewController:personalBoardController)
