@@ -180,7 +180,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         // add scrollView and the view inside scrollView to the view and create anchors
         view.addSubview(scrollView)
         scrollView.addSubview(insideScrollView)
-        
+        //reference: https://www.letsbuildthatapp.com/course/Instagram-Firebase
         scrollView.anchor(left: view.leftAnchor, leftPadding: 5, right: view.rightAnchor, rightPadding: -5, top: view.topAnchor, topPadding: 180, bottom: view.bottomAnchor, bottomPadding: -150, width: 0, height: 0)
         
         insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
@@ -241,6 +241,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // setup logout button
+    //reference: https://www.letsbuildthatapp.com/course/Instagram-Firebase
     private func setUplogOutButton() {
         let imageName = "gear.png"
         let image = UIImage(named: imageName)

@@ -12,6 +12,7 @@ import Firebase
 
 /// This view controller allows creation of a new user
 class SignUpController: UIViewController {
+    //create the email text filed
     let emailTextField: UITextField = {
         let email = UITextField(frame: .zero);
         email.backgroundColor = .white
@@ -29,6 +30,7 @@ class SignUpController: UIViewController {
     }()
     
     
+    //create the username text filed
     let userNameTextField: UITextField = {
         let username = UITextField();
         username.clearButtonMode = .whileEditing
@@ -57,6 +59,7 @@ class SignUpController: UIViewController {
 //        return name
 //    }()
     
+    //create the password textfield
     let passwordTextField: UITextField = {
         let password = UITextField();
         password.clearButtonMode = .whileEditing
@@ -73,6 +76,7 @@ class SignUpController: UIViewController {
         return password
     }()
     
+    //create the confirmpassword text field
     let confirmPasswordTextField: UITextField = {
         let password = UITextField();
         password.clearButtonMode = .whileEditing
@@ -89,6 +93,7 @@ class SignUpController: UIViewController {
         return password
     }()
     
+    //create the signUp button
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
@@ -102,7 +107,7 @@ class SignUpController: UIViewController {
         return button
     }()
     
-    
+    //crate the username label
     let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
@@ -112,23 +117,26 @@ class SignUpController: UIViewController {
         return label
     }()
     
-    
+    //change the barstyle color
     override var preferredStatusBarStyle: UIStatusBarStyle { //make bar color white
         return .lightContent
     }
     
+    //handdle the signup for all the field
     @objc func signUpHandle() {
         guard let email = emailTextField.text, email.count > 0 else { self.userNameLabel.text = "Please fill out the form"; return}
         guard let username = userNameTextField.text, username.count > 0 else { self.userNameLabel.text = "Please fill out the form";  return}
         guard let password = passwordTextField.text, password.count > 0 else { self.userNameLabel.text = "Please fill out the form"; return}
         guard let confirmPassword = confirmPasswordTextField.text, confirmPassword.count > 0 else {self.userNameLabel.text = "Please fill out the form"; return}
         
+        //confirm the match passwords
         if(password != confirmPassword) {
             print("Password doesn't matched! Try again!")
              self.userNameLabel.text = "Password doesn't match";
             return
         }
         
+        //craete the user in the databse
         Firebase.Auth.auth().createUser(withEmail: email, password: password) { (user, err) in
             if let error = err {
                 print("Account can not be created!", error)
@@ -164,6 +172,7 @@ class SignUpController: UIViewController {
         
     }
     
+    //user to go back to loginPage
     let alreadyHaveAccountButtton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -173,15 +182,18 @@ class SignUpController: UIViewController {
         return button
     }()
     
+    //go back to loginpage
     @objc func handleAlreadyHaveAccount() {
          self.userNameLabel.text = " ";
         navigationController?.popViewController(animated: true)
     }
     
+    //it disable the keyboard appearing in the simulator
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { //disable keyboard appearing
         self.view.endEditing(true)
     }
     
+    //when this view first appear, this function first called
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175) //render background color
@@ -192,11 +204,13 @@ class SignUpController: UIViewController {
         
     }
     
+    //constrains for the error handler for all the textfield
     func addErrorLabel() {
         view.addSubview(userNameLabel)
         userNameLabel.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -310, width: 0, height: 40)
     }
     
+    //this is the stack view for all the above mentioned textfiled palced in the signup controller
     fileprivate func setUpInputField() {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, userNameTextField, passwordTextField, passwordTextField, confirmPasswordTextField, signUpButton])
         stackView.distribution = .fillEqually
@@ -211,12 +225,13 @@ class SignUpController: UIViewController {
         
     }
 
-    
+    //signup button display at the end of the signupview controller
     fileprivate func signUp() {
         view.addSubview(alreadyHaveAccountButtton) //always put this first and then only anchor
         alreadyHaveAccountButtton.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -40, width: 0, height: 40)
     }
     
+    //string of error codes
     struct LoginErrorCode {
         static let NETWORK_ERROR = "Network error occured"
         static let INVALID_EMAIL = "Invalid Email"
@@ -227,6 +242,7 @@ class SignUpController: UIViewController {
         static let CREDENTIAL_IN_USE = "Email already exist"
     }
     
+    //for the firebase error code, it converts error code to the string
     private func errorHandler(err: NSError)->String {
         var error = ""
         

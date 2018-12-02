@@ -31,6 +31,7 @@ class LoginController: UIViewController {
         return logoView
     }()
     
+    //email text field
     let emailTextField: UITextField = {
         let email = UITextField();
         email.backgroundColor = UIColor(white: 0, alpha: 0.10)
@@ -42,6 +43,7 @@ class LoginController: UIViewController {
         return email
     }()
     
+    //password textfield
     let passwordTextField: UITextField = {
         let password = UITextField();
         password.backgroundColor = UIColor(white: 0, alpha: 0.10)
@@ -54,6 +56,7 @@ class LoginController: UIViewController {
         return password
     }()
     
+    //login button
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
@@ -67,6 +70,7 @@ class LoginController: UIViewController {
         return button
     }()
     
+    //usernameLabel
     let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
@@ -76,11 +80,13 @@ class LoginController: UIViewController {
         return label
     }()
     
+    //call when click login button
     @objc func handleLogin() {
         guard let email = emailTextField.text else {return}
         guard let password = passwordTextField.text else {return}
         print("handleLogin()")
         
+        //Sign in with credentails email and password
         Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
             if let error = err {
                 print("Error with verifying account", error)
@@ -97,6 +103,7 @@ class LoginController: UIViewController {
         }
     }
 
+    //store the user credentails in the databse
     private func storeCredentials() {
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
@@ -112,11 +119,13 @@ class LoginController: UIViewController {
         }
     }
 
+    //after succefull login in, shows the personal boardcontroller
     func transitionToBoard() {
         let personalBoardController = PersonalBoardController()
         self.navigationController?.pushViewController(personalBoardController, animated:true)
     }
     
+    //for the new user to get into signup page
     let dontHaveAccountButtton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -126,16 +135,19 @@ class LoginController: UIViewController {
         return button
     }()
     
+    //it bring signupview controller
     @objc func handleSignUp() {
         self.userNameLabel.text = ""
         let signUpController = SignUpController()
         navigationController?.pushViewController(signUpController, animated: true)
     }
     
+    //it helps to change the barstyle color
     override var preferredStatusBarStyle: UIStatusBarStyle { //make bar color white
         return .lightContent
     }
     
+    //when this view lods, this is the first functions called
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -150,16 +162,19 @@ class LoginController: UIViewController {
         
     }
     
+    //display the login error on the view
     func addErrorLabel() {
         view.addSubview(userNameLabel)
         userNameLabel.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -340, width: 0, height: 40)
     }
     
+    //it display the logoView of studybuddy
     fileprivate func logoViewDisplay() {
         view.addSubview(logoContainerView)
         logoContainerView.anchor(left: view.leftAnchor, leftPadding: 0, right: view.rightAnchor, rightPadding: 0, top: view.topAnchor, topPadding: 80, bottom: nil, bottomPadding: 0, width: 0, height: 250)
     }
     
+    //this is stack where all field put together to display in the view
     fileprivate func setUpInputField() {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.distribution = .fillEqually
@@ -171,11 +186,13 @@ class LoginController: UIViewController {
         
     }
     
+    //the is the constains for the signup button on the login view
     fileprivate func signUp() {
         view.addSubview(dontHaveAccountButtton) //always put this first and then only anchor
         dontHaveAccountButtton.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: nil, topPadding: 0, bottom: view.bottomAnchor, bottomPadding: -40, width: 0, height: 40)
     }
     
+    //the is the strings of the error from for the Firebase
     struct LoginErrorCode {
         static let NETWORK_ERROR = "Network error occured"
         static let INVALID_EMAIL = "Invalid Email"
@@ -186,6 +203,7 @@ class LoginController: UIViewController {
         static let CREDENTIAL_IN_USE = "Email already exist"
     }
     
+    //change convert the firebase error code to the string 
     private func errorHandler(err: NSError)->String {
         var error = ""
         
