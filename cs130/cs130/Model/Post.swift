@@ -37,6 +37,10 @@ public class Post: TextItem {
         super.init(creator:creator, creatorUsername:creatorUsername, content:content, creationTime:creationTime, ID:ID)
     }
 
+    /// Compares this Post to another Post
+    /// - parameters:
+    ///     - otherPost: Post that is being compared to
+    /// - returns: equivalence of Posts
     func equals(otherPost:Post) -> Bool {
         var comparisons:[Bool] = []
         comparisons.append(self.title == otherPost.title)

@@ -35,6 +35,10 @@ public class Comment: TextItem {
         super.init(creator:creator, creatorUsername:creatorUsername, content:content, creationTime:creationTime, ID:ID)
     }
 
+    /// Compares this Comment to another Comment
+    /// - parameters:
+    ///     - otherComment: Comment that is being compared to
+    /// - returns: equivalence of Comments
     func equals(otherComment:Comment) -> Bool {
         var comparisons:[Bool] = []
         comparisons.append(self.isPrivate == otherComment.isPrivate)
