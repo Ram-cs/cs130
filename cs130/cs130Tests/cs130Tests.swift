@@ -111,10 +111,10 @@ class cs130Tests: XCTestCase {
         }
     }
 
-    func checkPostReadWrite() -> Bool {
-        let dac:DatbaseAddController = DatabaseAddController()
+    func checkPostReadWrite() {
+        let dac:DatabaseAddController = DatabaseAddController()
         let formatter = DateFormatter()
-        formatter.dateFormate = "yyyy/MM/dd HH:mm:ss"
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
 
         let samplePost:Post = Post(creator:"204578044",
                                     creatorUsername:"bobthebuilder",
@@ -124,7 +124,7 @@ class cs130Tests: XCTestCase {
                                     course:"130",
                                     isTutorSearch:false)
         dac.addPost(post:samplePost)
-        let db:DatabaseReference = Datbase.database().reference().child("posts/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)")
+        let db:DatabaseReference = Database.database().reference().child("posts/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
             let dic = DataSnapshot.value as! NSDictionary
             let creator:String = dic["creatorID"] as! String
@@ -143,37 +143,39 @@ class cs130Tests: XCTestCase {
                                         isTutorSearch:isTutorSearch,
                                         creationTime:creationTime,
                                         ID:DataSnapshot.key)
-            return checkPostRead(orig:samplePost, copy:fetchedPost)
+            self.checkPostRead(orig:samplePost, copy:fetchedPost)
         })
     }
 
-    func checkPostRead(orig:Post, copy:Post) -> Bool{
-        return orig.equals(otherPost:copy)
+    func checkPostRead(orig:Post, copy:Post) {
+        if(orig.equals(otherPost:copy)) {
+            print("Database Post Read-Write test passed!")
+        }
+        else {
+            print("Database Post Read-Write test failed!")
+        }
     }
 
-    func checkCommentReadWrite() -> Bool {
-        let dac:DatbaseAddController = DatabaseAddController()
+    func checkCommentReadWrite() {
+        let dac:DatabaseAddController = DatabaseAddController()
         let formatter = DateFormatter()
-        formatter.dateFormate = "yyyy/MM/dd HH:mm:ss"
-
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         let samplePost:Post = Post(creator:"204578044",
-                                    creatorUsername:"bobthebuilder",
-                                    title:"sample_title",
-                                    content:"sample_content",
-                                    major:"Computer Science",
-                                    course:"130",
-                                    isTutorSearch:false)
-
+                                   creatorUsername:"bobthebuilder",
+                                   title:"sample_title",
+                                   content:"sample_content",
+                                   major:"Computer Science",
+                                   course:"130",
+                                   isTutorSearch:false)
+        dac.addPost(post:samplePost)
         let sampleComment:Comment = Comment(creator:"204578044",
                                             creatorUsername:"bobthebuilder",
                                             content:"sample_content",
                                             isPrivate:false,
-                                            rootPost:nil,
-                                            isReponse:false) 
-
-
-        dac.addPost(post:samplePost)
-        let db:DatabaseReference = Datbase.database().reference().child("posts/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)")
+                                            rootPost:samplePost,
+                                            isResponse:false)
+        dac.addComment(comment:sampleComment)
+        let db:DatabaseReference = Database.database().reference().child("comments/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)/\(sampleComment.ID)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
             let dic = DataSnapshot.value as! NSDictionary
             let creator:String = dic["creatorID"] as! String
@@ -185,7 +187,7 @@ class cs130Tests: XCTestCase {
             let creationTime:Date? = formatter.date(from: dic["creationTime"] as! String)
 
             let fetchedComment:Comment = Comment(creator:creator,
-                                                creatorUsername:craetorUsername,
+                                                creatorUsername:creatorUsername,
                                                 content:content,
                                                 isPrivate:isPrivate,
                                                 rootPost:nil,
@@ -193,12 +195,17 @@ class cs130Tests: XCTestCase {
                                                 respondeeID:respondeeID,
                                                 creationTime:creationTime,
                                                 ID:DataSnapshot.key)
-            return checkCommentRead(orig:sampleComment, copy:fetchedComment)
+            self.checkCommentRead(orig:sampleComment, copy:fetchedComment)
         })
     }
 
-    func checkCommentRead(orig:Comment, copy:Comment) -> Bool {
-        return orig.equals(otherComment:copy)
+    func checkCommentRead(orig:Comment, copy:Comment) {
+        if(orig.equals(otherComment:copy)) {
+            print("Database Comment Read-Write test passed!")
+        }
+        else {
+            print("Database Comment Read-Write test failed!")
+        }
     }
     
 }

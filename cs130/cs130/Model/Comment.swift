@@ -42,15 +42,15 @@ public class Comment: TextItem {
     func equals(otherComment:Comment) -> Bool {
         var comparisons:[Bool] = []
         comparisons.append(self.isPrivate == otherComment.isPrivate)
-        if(self.rootPost != nil && otherComment.rootPost != nil) {
-            comparisons.append(self.rootPost!.equals(otherPost:otherComment.rootPost!))
-        }
-        else if(self.rootPost == nil && otherComment.rootPost == nil){
-            comparisons.append(true)
-        }
-        else {
-            comparisons.append(false)
-        }
+//        if(self.rootPost != nil && otherComment.rootPost != nil) {
+//            comparisons.append(self.rootPost!.equals(otherPost:otherComment.rootPost!))
+//        }
+//        else if(self.rootPost == nil && otherComment.rootPost == nil){
+//            comparisons.append(true)
+//        }
+//        else {
+//            comparisons.append(false)
+//        }
         comparisons.append(self.isResponse == otherComment.isResponse)
         comparisons.append(self.respondeeID == otherComment.respondeeID)
         comparisons.append(self.creator == otherComment.creator)
