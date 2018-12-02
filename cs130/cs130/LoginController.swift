@@ -10,8 +10,7 @@
 import UIKit
 import Firebase
 
-
-
+/// This view controller displays the login page
 class LoginController: UIViewController {
     static var singletonUser: User?
     

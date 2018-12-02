@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Data structure for a course
 class Course {
     let major: String
     let id: String
@@ -63,7 +64,7 @@ class Course {
         return self.major + " " + self.id
     }
     
-    /// When add == true, increment user count of the course by 1, otherwise decrement
+    /// When add == true, increment user count of the course by 1 in the database, otherwise decrement
     /// - parameters:
     ///     - add: if true increment user count, or otherwise
     func updateUserCnt(add: Bool) {

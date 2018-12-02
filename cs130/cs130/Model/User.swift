@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 
-/// This class defines a user
+/// Data structure for a user
 class User {
     var uid:String = ""
     var email:String = ""

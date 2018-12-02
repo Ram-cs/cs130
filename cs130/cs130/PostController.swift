@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// This view controller displays a post and its comments
 class PostController: UIViewController, UIScrollViewDelegate {
     let rootPost:Post?
     var formatter = DateFormatter()
@@ -44,7 +45,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
         empty.isEnabled = false
         let emptyItem = UIBarButtonItem.init(customView: empty)
         navigationItem.rightBarButtonItem = emptyItem
-        view.backgroundColor = .white
+        view.backgroundColor = PANEL_GRAY
         
         fetchPostComments()
         setUpRefresh()
@@ -257,7 +258,7 @@ extension UITextView{
         textView.layer.borderColor = UIColor.black.cgColor
         textView.layer.cornerRadius = 5
         textView.layer.masksToBounds = true
-        textView.layer.borderWidth = 0.5
+        textView.layer.borderWidth = 0.0
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.sizeToFit()

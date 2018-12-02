@@ -9,12 +9,13 @@
 import Foundation
 import FirebaseDatabase
 
+/// This class defines a helper to conveniently add posts and comments to database
 class DatabaseAddController {
     let formatter:DateFormatter
     
 
     /// Initializes a DatabaseAddController
-    /// - return: a new DatabaseAddController
+    /// - returns: a new DatabaseAddController
     init() {
         self.formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"

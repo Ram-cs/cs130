@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// This view controller displays a page for the user to create a reply
 class ReplyController: UIViewController {
     let rootPost:Post?
     let postController:PostController?

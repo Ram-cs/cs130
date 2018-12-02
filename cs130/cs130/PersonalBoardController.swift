@@ -7,9 +7,9 @@
 //
 
 import UIKit
-
 import Firebase
 
+/// This view controller displays the personal board, which contains posts of the user's courses
 class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     static var singletonUser: User?
     var formatter = DateFormatter()

@@ -14,7 +14,7 @@
     <a title="User Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (11% documented)</p>
+        <p><a href="../index.html"> Docs</a> (20% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -31,13 +31,13 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+                <a href="../Classes/AccountController.html">AccountController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Comment.html">Comment</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CommentController.html">CommentController</a>
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)CommentViewController">CommentViewController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Course.html">Course</a>
@@ -46,40 +46,49 @@
                 <a href="../Classes/CourseDetailViewController.html">CourseDetailViewController</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CourseInfoTableViewCell.html">CourseInfoTableViewCell</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/CourseStatsBox.html">CourseStatsBox</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/CourseTableViewCell.html">CourseTableViewCell</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CourseTableViewController.html">CourseTableViewController</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CourseTableViewHeader.html">CourseTableViewHeader</a>
+                <a href="../Classes/CreatePostController.html">CreatePostController</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/MainTabBarController.html">MainTabBarController</a>
+                <a href="../Classes/DatabaseAddController.html">DatabaseAddController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoadUserController.html">LoadUserController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)LoginController">LoginController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)MainTabBarController">MainTabBarController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PersonalBoardController.html">PersonalBoardController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Post.html">Post</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/PostViewController.html">PostViewController</a>
+                <a href="../Classes/PostController.html">PostController</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/SignUpController.html">SignUpController</a>
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)PostViewController">PostViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReplyController.html">ReplyController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)SignUpController">SignUpController</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TextItem.html">TextItem</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/User.html">User</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/ViewController.html">ViewController</a>
               </li>
             </ul>
           </li>
@@ -95,20 +104,6 @@
               <li class="nav-group-task">
                 <a href="../Global Variables.html#/s:5cs13010PANEL_GRAYSo7UIColorCvp">PANEL_GRAY</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:5cs1307appUserAA0C0Cvp">appUser</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Extensions/UIColor.html">UIColor</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html">UIView</a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -123,7 +118,7 @@
 
                 </div>
               </div>
-            <p>This class defines a user</p>
+            <p>Data structure for a user</p>
 
           </section>
           <section class="section task-group-section">
@@ -132,9 +127,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5cs1304UserC2idSSvp"></a>
-                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC2idSSvp">id</a>
+                    <a name="/s:5cs1304UserC3uid10dictionaryACSS_SDySSypGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(uid:dictionary:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5cs1304UserC3uid10dictionaryACSS_SDySSypGtcfc">init(uid:dictionary:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -142,205 +137,51 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes a User object</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">uid</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC5majorSSvp"></a>
-                    <a name="//apple_ref/swift/Property/major" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC5majorSSvp">major</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>uid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>unique user identifier as defined by FirebaseAuth module</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dictionary</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>must contain fields <q>username</q> and <q>email</q></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">major</span><span class="p">:</span> <span class="kt">String</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC7userRefSo20FIRDatabaseReferenceCSgvp"></a>
-                    <a name="//apple_ref/swift/Property/userRef" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC7userRefSo20FIRDatabaseReferenceCSgvp">userRef</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">userRef</span><span class="p">:</span> <span class="kt">DatabaseReference</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC7coursesSaySS_SStGvp"></a>
-                    <a name="//apple_ref/swift/Property/courses" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC7coursesSaySS_SStGvp">courses</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">courses</span><span class="p">:</span> <span class="p">[(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="p">)]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC2id5majorACSS_SStcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(id:major:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC2id5majorACSS_SStcfc">init(id:major:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">major</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC2idACSS_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(id:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC2idACSS_tcfc">init(id:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC8snapshotACSo15FIRDataSnapshotC_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(snapshot:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC8snapshotACSo15FIRDataSnapshotC_tcfc">init(snapshot:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">snapshot</span><span class="p">:</span> <span class="kt">DataSnapshot</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:5cs1304UserC13addToDatabaseyyF"></a>
-                    <a name="//apple_ref/swift/Method/addToDatabase()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC13addToDatabaseyyF">addToDatabase()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Add the user to the database as an entry (when creating a new user)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">addToDatabase</span><span class="p">()</span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a User object</p>
                       </div>
                     </section>
                   </div>
@@ -498,34 +339,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:5cs1304UserC14observeCoursesyyF"></a>
-                    <a name="//apple_ref/swift/Method/observeCourses()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:5cs1304UserC14observeCoursesyyF">observeCourses()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Set up an observer to asynchronously listen to changes in the user&rsquo;s courses. This is called
-within the constructor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">observeCourses</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:5cs1304UserC5getIDSSyF"></a>
                     <a name="//apple_ref/swift/Method/getID()" class="dashAnchor"></a>
                     <a class="token" href="#/s:5cs1304UserC5getIDSSyF">getID()</a>
@@ -536,7 +349,7 @@ within the constructor</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Gets the unique identifier of user</p>
 
                       </div>
                       <div class="declaration">
@@ -546,6 +359,10 @@ within the constructor</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getID</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the user&rsquo;s unique identifier, a string</p>
                       </div>
                     </section>
                   </div>
@@ -586,7 +403,7 @@ within the constructor</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-11-15)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-12-02)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// This view controller decides whether a user is logged in and redirects to either login page or loading page
 class MainTabBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()

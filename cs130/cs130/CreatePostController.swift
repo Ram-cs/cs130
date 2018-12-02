@@ -10,6 +10,7 @@ import UIKit
 
 import Firebase
 
+/// This view controller displays a page for the user to create a new post
 class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let personalBoard:PersonalBoardController?
@@ -85,7 +86,7 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
         errorLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[v]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
-        let bottom = String(describing: UIScreen.main.bounds.height / 10)
+        let bottom = String(describing: UIScreen.main.bounds.height / 8)
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-" + bottom + "-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
         
         // stackView.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: nil, bottomPadding: 0, width: 0, height: 0)

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// This view controller is a loading page
 class LoadUserController: UIViewController {
     static var singletonUser: User?
 
@@ -21,7 +22,7 @@ class LoadUserController: UIViewController {
     }
 
 
-    /// stores current user information into singletonUser:User object
+    // stores current user information into singletonUser:User object
     private func storeCredentials() {
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!

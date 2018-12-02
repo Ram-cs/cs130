@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Data structure for a post
 public class Post: TextItem {
     let title:String
     let course:String

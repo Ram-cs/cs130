@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Data structure for a comment
 public class Comment: TextItem {
     var isPrivate:Bool
     let rootPost:Post?

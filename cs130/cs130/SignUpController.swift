@@ -10,6 +10,7 @@
 import UIKit
 import Firebase
 
+/// This view controller allows creation of a new user
 class SignUpController: UIViewController {
     let emailTextField: UITextField = {
         let email = UITextField(frame: .zero);

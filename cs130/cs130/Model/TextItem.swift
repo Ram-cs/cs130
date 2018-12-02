@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Parent class for both posts and comments
 public class TextItem {
     let creator:String
     let creatorUsername:String

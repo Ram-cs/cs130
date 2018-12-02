@@ -6,10 +6,10 @@
 //  Copyright © 2018 Ram Yadav. All rights reserved.
 //
 
-// This viewcontroller displays details of a class
 import UIKit
 import FirebaseAuth
 
+/// This view controller displays details of a class, including its post count and student count
 class CourseDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var course: Course?
@@ -134,8 +134,7 @@ class CourseDetailViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    /// Displays information of the current course
-    func displayCourse() {
+    fileprivate func displayCourse() {
         // Set up the course title
         self.courseTitle.text = self.course!.title
         self.courseTitle.heightAnchor.constraint(equalToConstant: 200).isActive = true

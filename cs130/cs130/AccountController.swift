@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
+/// This view controller displays the user's name and email, as well as a table of courses enrolled by the user
 class AccountController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     var ref: DatabaseReference?
     var table = UITableView()
