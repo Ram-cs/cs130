@@ -16,6 +16,10 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
     var majorOptions = [String]()
     var courseOptions = [String]()
     
+    /// Initializes a CreatePostController
+    /// - parameters:
+    ///     - personalBoard: personalBoard object that this is attached to
+    /// - returns: a new CreatePostController object
     init(personalBoard:PersonalBoardController) {
         self.personalBoard = personalBoard
         super.init(nibName: nil, bundle: nil)

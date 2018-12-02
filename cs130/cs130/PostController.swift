@@ -14,6 +14,10 @@ class PostController: UIViewController, UIScrollViewDelegate {
     var formatter = DateFormatter()
     var comments = [Comment]()
     
+    /// Initializes a PostController
+    /// - parameters:
+    ///     - rootPost: Post object that user will be responding to
+    /// - returns: a new PostController object
     init(rootPost:Post) {
         self.rootPost = rootPost
         super.init(nibName: nil, bundle: nil)
@@ -48,6 +52,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
         setUpReplyButton()
     }
 
+    /// Fetches comments from the firebase database for a specific post
+    /// stores the comments in self.comments
     func fetchPostComments() {
         let major:String = self.rootPost!.major
         let course:String = self.rootPost!.course
