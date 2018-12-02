@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
+        // Disable UI layout constraint warnings
+        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
         // Override point for customization after application launch.
         //appUser = User(id:"204578044")
         let samplePost:Post = Post(creator: "204578044",
