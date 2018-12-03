@@ -132,6 +132,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
         label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textAlignment = NSTextAlignment.center
+        label.numberOfLines = 0
         label.sizeToFit()
         return label
     }()

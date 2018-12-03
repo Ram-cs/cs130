@@ -24,9 +24,8 @@ class cs130Tests: XCTestCase {
                 }
             }
             XCTAssertEqual(fetchedCourses[0].major, "Computer Science")
-            XCTAssertEqual(fetchedCourses[0].id, "130")
-            XCTAssertEqual(fetchedCourses[0].title, "Software Engineering")
-            XCTAssertEqual(fetchedCourses[0].professor, "Miryung Kim")
+            XCTAssertEqual(fetchedCourses[0].id, "CS130")
+            XCTAssertEqual(fetchedCourses[0].title, "Software Programming")
             print("All tests passed")
             expectation.fulfill()
         }
@@ -37,7 +36,7 @@ class cs130Tests: XCTestCase {
     func testCourseAddUserCnt() {
         let expectation = XCTestExpectation(description: "Get course user count")
         var old_cnt = 0
-        Database.database().reference().child("majors").child("Computer Science").child("130").observeSingleEvent(of: .value) { (DataSnapshot) in
+        Database.database().reference().child("majors").child("Computer Science").child("CS130").observeSingleEvent(of: .value) { (DataSnapshot) in
             let course = Course(major: "Computer Science", snapshot: DataSnapshot)
             old_cnt = course.userCnt
             course.updateUserCnt(add: true)
@@ -45,7 +44,7 @@ class cs130Tests: XCTestCase {
         }
         wait(for: [expectation], timeout: 10.0)
         let expectation_2 = XCTestExpectation(description: "Get updated user count")
-        Database.database().reference().child("majors").child("Computer Science").child("130").observe(.value) { (DataSnapshot) in
+        Database.database().reference().child("majors").child("Computer Science").child("CS130").observe(.value) { (DataSnapshot) in
             let course = Course(major: "Computer Science", snapshot: DataSnapshot)
             if course.userCnt == old_cnt + 1 {
                 expectation_2.fulfill()
@@ -76,7 +75,7 @@ class cs130Tests: XCTestCase {
         }
         wait(for: [expectation], timeout: 10.0)
         XCTAssertEqual(courses[0].0, "Computer Science")
-        XCTAssertEqual(courses[0].1, "130")
+        XCTAssertEqual(courses[0].1, "CS130")
         
     }
     
@@ -108,7 +107,7 @@ class cs130Tests: XCTestCase {
         let expectation_2 = XCTestExpectation(description: "Fetch courses from database")
         var old_cnt = 0
         var course:Course? = nil
-        Database.database().reference().child("majors").child("Mechanical Engineering").child("101").observeSingleEvent(of: .value) { (DataSnapshot) in
+        Database.database().reference().child("majors").child("Mechanical Engineering").child("ME101").observeSingleEvent(of: .value) { (DataSnapshot) in
                 course = Course(major: "Mechanical Engineering", snapshot: DataSnapshot)
                 old_cnt = (course?.userCnt)!
                 expectation_2.fulfill()
@@ -133,7 +132,7 @@ class cs130Tests: XCTestCase {
         }
         wait(for: [expectation_3], timeout: 10.0)
         XCTAssertEqual(courses[4].0, "Mechanical Engineering")
-        XCTAssertEqual(courses[4].1, "101")
+        XCTAssertEqual(courses[4].1, "ME101")
         
         // Wait for course to update user count
         let expectation_4 = XCTestExpectation(description: "Check if course user count is incremented")
@@ -167,7 +166,6 @@ class cs130Tests: XCTestCase {
         var password = signUpViewController.passwordTextField;
         var re_enterPassword = signUpViewController.confirmPasswordTextField;
         XCTAssertEqual(password, re_enterPassword) //check if the enter password is matched
-        
     }
     
     //Test for whether the user is SignedIn
@@ -239,7 +237,7 @@ class cs130Tests: XCTestCase {
                                     title:"sample_title",
                                     content:"sample_content",
                                     major:"Computer Science",
-                                    course:"130",
+                                    course:"CS130",
                                     isTutorSearch:false)
         dac.addPost(post:samplePost)
         let db:DatabaseReference = Database.database().reference().child("posts/\(samplePost.major)/\(samplePost.course)/\(samplePost.ID)")
@@ -266,12 +264,13 @@ class cs130Tests: XCTestCase {
     }
 
     func checkPostRead(orig:Post, copy:Post) {
-        if(orig.equals(otherPost:copy)) {
-            print("Database Post Read-Write test passed!")
-        }
-        else {
-            print("Database Post Read-Write test failed!")
-        }
+        XCTAssertTrue(orig.equals(otherPost:copy))
+        //if(orig.equals(otherPost:copy)) {
+            //print("Database Post Read-Write test passed!")
+        //}
+        //else {
+            //print("Database Post Read-Write test failed!")
+        //}
     }
 
     func checkCommentReadWrite() {
@@ -283,7 +282,7 @@ class cs130Tests: XCTestCase {
                                    title:"sample_title",
                                    content:"sample_content",
                                    major:"Computer Science",
-                                   course:"130",
+                                   course:"CS130",
                                    isTutorSearch:false)
         dac.addPost(post:samplePost)
         let sampleComment:Comment = Comment(creator:"204578044",
@@ -318,12 +317,13 @@ class cs130Tests: XCTestCase {
     }
 
     func checkCommentRead(orig:Comment, copy:Comment) {
-        if(orig.equals(otherComment:copy)) {
-            print("Database Comment Read-Write test passed!")
-        }
-        else {
-            print("Database Comment Read-Write test failed!")
-        }
+        XCTAssertTrue(orig.equals(otherComment:copy))
+        //if(orig.equals(otherComment:copy)) {
+            //print("Database Comment Read-Write test passed!")
+        //}
+        //else {
+            //print("Database Comment Read-Write test failed!")
+        //}
     }
     
 }

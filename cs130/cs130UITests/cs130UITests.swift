@@ -84,8 +84,11 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(app.buttons["Login"].exists)
     }
     
+<<<<<<< HEAD
     //Test case for SignUpViewController
     //Test case to check for the signUp input
+=======
+>>>>>>> b37b8cca12691fbbb028d3312273ee48f74af2e6
     func signUpTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.buttons["Don't have an account? Sign Up."].exists)
