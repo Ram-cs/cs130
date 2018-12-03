@@ -38,6 +38,7 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(app.secureTextFields["Password"].exists)
         XCTAssertTrue(app.buttons["Login"].exists)
     }
+    
     func signUpTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.buttons["Don't have an account? Sign Up."].exists)
