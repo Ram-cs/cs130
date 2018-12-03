@@ -313,7 +313,11 @@ class PostButton: UIButton {
     init(post:Post) {
         self.post = post
         super.init(frame: .zero)
-        self.setTitle(self.post.course + ": " + self.post.title, for: .normal)
+        var tutorStudent:String = ""
+        if(self.post.isTutorSearch) {
+            tutorStudent = "_TutorSearch"
+        }
+        self.setTitle(self.post.course + tutorStudent + ": " + self.post.title, for: .normal)
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
         self.backgroundColor = UIColor.rgb(red:17, green:154, blue:237)

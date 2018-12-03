@@ -124,7 +124,11 @@ class PostController: UIViewController, UIScrollViewDelegate {
     // Create the post title
     lazy var postTitle: UILabel = {
         let label = UILabel();
-        label.text = (self.rootPost?.title)!
+        var tutorSearch:String = ""
+        if(self.rootPost!.isTutorSearch) {
+            tutorSearch = "TutorSearch: "
+        }
+        label.text = tutorSearch + (self.rootPost?.title)!
         label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textAlignment = NSTextAlignment.center
