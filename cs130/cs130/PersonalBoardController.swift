@@ -11,6 +11,7 @@ import Firebase
 
 /// This view controller displays the personal board, which contains posts of the user's courses
 class PersonalBoardController: UIViewController, UIScrollViewDelegate {
+
     static var singletonUser: User?
     var formatter = DateFormatter()
     var posts = [Post]()
@@ -265,6 +266,22 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         }))
         alertController.addAction((UIAlertAction(title: "Cancel", style: .cancel, handler: nil)))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func storeCredentials() {
+        if((Auth.auth().currentUser?.uid) != nil) {
+            let userID : String = (Auth.auth().currentUser?.uid)!
+            print("Current user is: ", userID)
+            
+            let ref = Database.database().reference().child("users").child(userID)
+            ref.observeSingleEvent(of: .value) { (snapshot) in
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                PersonalBoardController.singletonUser = User(uid: userID, dictionary: dictionary)
+                
+            }
+        } else {
+            print("Error, couldn't get user credentails")
+        }
     }
     
     // button action function. use sender.tag to specify the action

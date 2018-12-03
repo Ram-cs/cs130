@@ -12,7 +12,7 @@ import Firebase
 
 /// This view controller displays the login page
 class LoginController: UIViewController {
-    static var singletonUser: User?
+    //static var singletonUser: User?
     
     let logoContainerView: UIView = {
         let logoView = UIView()
@@ -96,6 +96,7 @@ class LoginController: UIViewController {
             }
             
             print("Succefully signed In")
+
             //// go to LoadUserController
             let loadUserController = LoadUserController()
             let navController = UINavigationController(rootViewController: loadUserController)
