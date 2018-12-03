@@ -261,12 +261,13 @@ class cs130Tests: XCTestCase {
     }
 
     func checkPostRead(orig:Post, copy:Post) {
-        if(orig.equals(otherPost:copy)) {
-            print("Database Post Read-Write test passed!")
-        }
-        else {
-            print("Database Post Read-Write test failed!")
-        }
+        XCTAssertTrue(orig.equals(otherPost:copy))
+        //if(orig.equals(otherPost:copy)) {
+            //print("Database Post Read-Write test passed!")
+        //}
+        //else {
+            //print("Database Post Read-Write test failed!")
+        //}
     }
 
     func checkCommentReadWrite() {
@@ -313,12 +314,13 @@ class cs130Tests: XCTestCase {
     }
 
     func checkCommentRead(orig:Comment, copy:Comment) {
-        if(orig.equals(otherComment:copy)) {
-            print("Database Comment Read-Write test passed!")
-        }
-        else {
-            print("Database Comment Read-Write test failed!")
-        }
+        XCTAssertTrue(orig.equals(otherComment:copy))
+        //if(orig.equals(otherComment:copy)) {
+            //print("Database Comment Read-Write test passed!")
+        //}
+        //else {
+            //print("Database Comment Read-Write test failed!")
+        //}
     }
     
 }
