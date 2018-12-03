@@ -148,16 +148,19 @@ class cs130Tests: XCTestCase {
         wait(for: [expectation_4], timeout: 20.0)
     }
     
+    //test case to check if the emailfield is filledout
     func testUsernameEmpty() {
         let viewController = LoginController()
         XCTAssertEqual("", viewController.emailTextField.text) ////check against empty or enterred username
     }
     
+    //Test for if the password field is empty
     func testPasswordEmpty() {
         let viewController = LoginController()
         XCTAssertEqual("", viewController.passwordTextField.text) //check against empty or enterred password
     }
     
+    //Test for whether the password is matched
     func passwordMatched() {
         var signUpViewController = SignUpController()
         var password = signUpViewController.passwordTextField;
@@ -165,6 +168,7 @@ class cs130Tests: XCTestCase {
         XCTAssertEqual(password, re_enterPassword) //check if the enter password is matched
     }
     
+    //Test for whether the user is SignedIn
     func checkForSignIn() {
         let viewController = LoginController()
         guard let email = viewController.emailTextField.text else {
@@ -183,6 +187,7 @@ class cs130Tests: XCTestCase {
         }
     }
     
+    //Test for the user is signUp
     func checkForSignUp() {
         let signUpViewController = SignUpController()
         guard let email = signUpViewController.emailTextField.text, email.count > 0 else {
@@ -220,6 +225,7 @@ class cs130Tests: XCTestCase {
         }
     }
 
+    // Checks whether a Post that is added to the database can be correctly read back
     func checkPostReadWrite() {
         let dac:DatabaseAddController = DatabaseAddController()
         let formatter = DateFormatter()
@@ -256,15 +262,13 @@ class cs130Tests: XCTestCase {
         })
     }
 
+    // Handles asynchronous database reads
     func checkPostRead(orig:Post, copy:Post) {
-        if(orig.equals(otherPost:copy)) {
-            print("Database Post Read-Write test passed!")
-        }
-        else {
-            print("Database Post Read-Write test failed!")
-        }
+        XCTAssertTrue(orig.equals(otherPost:copy))
     }
 
+
+    // Checks whether a Comment that is added to the database can be correctly read back
     func checkCommentReadWrite() {
         let dac:DatabaseAddController = DatabaseAddController()
         let formatter = DateFormatter()
@@ -307,14 +311,10 @@ class cs130Tests: XCTestCase {
             self.checkCommentRead(orig:sampleComment, copy:fetchedComment)
         })
     }
-
+    
+    // Handles asynchronous database reads
     func checkCommentRead(orig:Comment, copy:Comment) {
-        if(orig.equals(otherComment:copy)) {
-            print("Database Comment Read-Write test passed!")
-        }
-        else {
-            print("Database Comment Read-Write test failed!")
-        }
+        XCTAssertTrue(orig.equals(otherComment:copy))
     }
     
 }
