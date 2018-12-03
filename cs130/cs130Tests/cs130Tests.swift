@@ -71,12 +71,11 @@ class cs130Tests: XCTestCase {
                 newCourses.append((major, id))
             }
             courses = newCourses
+            XCTAssertEqual(courses[0].0, "Computer Science")
+            XCTAssertEqual(courses[0].1, "CS130")
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10.0)
-        XCTAssertEqual(courses[0].0, "Computer Science")
-        XCTAssertEqual(courses[0].1, "CS130")
-        
     }
     
     /// Integration test: whether the user can enroll a course and update the course's user count
@@ -87,7 +86,7 @@ class cs130Tests: XCTestCase {
         var courses = [(String, String)]()
 
         // First, get the course list of the user
-        // Copy of the User's observeCourses method to manually update the user's course lost
+        // Copy of the User's observeCourses method to manually update the user's course list
         user.userRef?.child("majors").observe(.value) { (DataSnapshot) in
             var newCourses = [(String, String)]()
             for item in DataSnapshot.children {
@@ -128,11 +127,12 @@ class cs130Tests: XCTestCase {
                 newCourses.append((major, id))
             }
             courses = newCourses
+            XCTAssertEqual(courses[4].0, "Mechanical Engineering")
+            XCTAssertEqual(courses[4].1, "ME101")
             expectation_3.fulfill()
         }
         wait(for: [expectation_3], timeout: 10.0)
-        XCTAssertEqual(courses[4].0, "Mechanical Engineering")
-        XCTAssertEqual(courses[4].1, "ME101")
+
         
         // Wait for course to update user count
         let expectation_4 = XCTestExpectation(description: "Check if course user count is incremented")
@@ -217,8 +217,6 @@ class cs130Tests: XCTestCase {
                     }
                 })
             }
-
-
         }
     }
 
