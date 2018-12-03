@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import UIKit
 
+/// This view controller displays the posts from the user's courses
 class PostViewController: UITableViewController {
     var formatter = DateFormatter()
     var posts = [Post]()

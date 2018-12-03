@@ -9,15 +9,22 @@
 import Foundation
 import FirebaseDatabase
 
+/// This class defines a helper to conveniently add posts and comments to database
 class DatabaseAddController {
     let formatter:DateFormatter
     
+
+    /// Initializes a DatabaseAddController
+    /// - returns: a new DatabaseAddController
     init() {
         self.formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
     }
     
     
+    ///adds a Post to the Firebase database
+    /// - parameters:
+    ///     - post: the Post object that is to be written to the database
     func addPost(post:Post) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(post.major)/\(post.course)")
         let key = db.childByAutoId().key
@@ -35,6 +42,10 @@ class DatabaseAddController {
         post.ID = key
     }
     
+
+    ///adds a Comment to the Firebase database
+    /// - parameters:
+    ///     - comment: the Comment object that is to be written to the database
     func addComment(comment:Comment) {
         let major:String = comment.rootPost!.major
         let course:String = comment.rootPost!.course

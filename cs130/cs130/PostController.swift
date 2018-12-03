@@ -9,11 +9,16 @@
 import UIKit
 import Firebase
 
+/// This view controller displays a post and its comments
 class PostController: UIViewController, UIScrollViewDelegate {
     let rootPost:Post?
     var formatter = DateFormatter()
     var comments = [Comment]()
     
+    /// Initializes a PostController
+    /// - parameters:
+    ///     - rootPost: Post object that user will be responding to
+    /// - returns: a new PostController object
     init(rootPost:Post) {
         self.rootPost = rootPost
         super.init(nibName: nil, bundle: nil)
@@ -40,7 +45,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
         empty.isEnabled = false
         let emptyItem = UIBarButtonItem.init(customView: empty)
         navigationItem.rightBarButtonItem = emptyItem
-        view.backgroundColor = .white
+        view.backgroundColor = PANEL_GRAY
         
         fetchPostComments()
         setUpRefresh()
@@ -48,6 +53,8 @@ class PostController: UIViewController, UIScrollViewDelegate {
         setUpReplyButton()
     }
 
+    /// Fetches comments from the firebase database for a specific post
+    /// stores the comments in self.comments
     func fetchPostComments() {
         let major:String = self.rootPost!.major
         let course:String = self.rootPost!.course
@@ -70,6 +77,7 @@ class PostController: UIViewController, UIScrollViewDelegate {
                                                      creatorUsername:creatorUsername,
                                                      content:content,
                                                      isPrivate:isPrivate,
+                                                     rootPost:self.rootPost!,
                                                      isResponse:isResponse,
                                                      respondeeID:respondeeID,
                                                      creationTime:creationTime,
@@ -109,20 +117,37 @@ class PostController: UIViewController, UIScrollViewDelegate {
     
     // Create the TextView for the post
     lazy var postText: UITextView = {
-        let label = UITextView.createPostComment(textContent: self.rootPost!.content, username: self.rootPost!.creatorUsername)
+        let label = UITextView.createPostComment(textContent: self.rootPost!.content, username: self.rootPost!.creatorUsername, creationTime:self.rootPost!.creationTime)
         return label
     }()
     
     // Create the post title
     lazy var postTitle: UILabel = {
         let label = UILabel();
-        label.text = self.rootPost?.title
+        var tutorSearch:String = ""
+        if(self.rootPost!.isTutorSearch) {
+            tutorSearch = "TutorSearch: "
+        }
+        label.text = tutorSearch + (self.rootPost?.title)!
         label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textAlignment = NSTextAlignment.center
+        label.numberOfLines = 0
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var courseTitle: UILabel = {
+        let label = UILabel();
+        label.text = (self.rootPost?.major)! + " " + (self.rootPost?.course)!
+        label.textColor = UIColor.black
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = NSTextAlignment.center
         label.sizeToFit()
         return label
     }()
+    
+    
     
     // create the "Replies:" label
     let replyLabel: UILabel = {
@@ -161,9 +186,9 @@ class PostController: UIViewController, UIScrollViewDelegate {
         
         // sample posts
         
-        var subviews = [postTitle, postText, replyLabel]
+        var subviews = [postTitle, courseTitle, postText, replyLabel]
         for comment in self.comments{
-            let label = UITextView.createPostComment(textContent: comment.content, username: comment.creatorUsername)
+            let label = UITextView.createPostComment(textContent: comment.content, username: comment.creatorUsername, creationTime:comment.creationTime)
             subviews.append(label)
         }
         let stackView = UIStackView(arrangedSubviews: subviews)
@@ -226,17 +251,19 @@ class PostController: UIViewController, UIScrollViewDelegate {
 
 // extend UITextView to contain a function that creates a Post/Comment
 extension UITextView{
-    static func createPostComment(textContent:String, username: String) -> UITextView {
+    static func createPostComment(textContent:String, username: String, creationTime:Date) -> UITextView {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         let textView = UITextView();
         textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        textView.text = username + ": \n" + textContent + "\n\n"
+        textView.text = username + ": \n" + textContent + "\n\n" + formatter.string(from: creationTime)
         textView.textColor = UIColor.black
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.textAlignment = NSTextAlignment.left
         textView.layer.borderColor = UIColor.black.cgColor
         textView.layer.cornerRadius = 5
         textView.layer.masksToBounds = true
-        textView.layer.borderWidth = 0.5
+        textView.layer.borderWidth = 0.0
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.sizeToFit()

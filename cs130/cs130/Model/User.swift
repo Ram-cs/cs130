@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 
-/// This class defines a user
+/// Data structure for a user
 class User {
     var uid:String = ""
     var email:String = ""
@@ -19,6 +19,11 @@ class User {
     var userRef:DatabaseReference?
     var courses = [(String,String)]()
     
+    /// Initializes a User object
+    /// - parameters:
+    ///     - uid: unique user identifier as defined by FirebaseAuth module
+    ///     - dictionary: must contain fields "username" and "email"
+    /// - returns: a User object
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
         self.username = dictionary[UsersAttributes.USERNAME] as? String ?? ""
@@ -88,8 +93,8 @@ class User {
         }
     }
     
-    /// Set up an observer to asynchronously listen to changes in the user's courses, updating the list of courses stored in self
-    func observeCourses() {
+    // Set up an observer to asynchronously listen to changes in the user's courses, updating the list of courses stored in self
+    fileprivate func observeCourses() {
         self.userRef?.child("majors").observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             for item in DataSnapshot.children {
@@ -104,7 +109,7 @@ class User {
     }
     
     //dont use this
-    func observeCourses(luc:LoadUserController) {
+    fileprivate func observeCourses(luc:LoadUserController) {
         self.userRef?.child("majors").observe(.value) { (DataSnapshot) in
             var newCourses = [(String,String)]()
             /*let val = DataSnapshot.value as? NSDictionary

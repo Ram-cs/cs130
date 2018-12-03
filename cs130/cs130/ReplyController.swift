@@ -9,16 +9,23 @@
 import UIKit
 import Firebase
 
+/// This view controller displays a page for the user to create a reply
 class ReplyController: UIViewController {
     let rootPost:Post?
     let postController:PostController?
 
+    /// Initializes a ReplyController 
+    /// - parameters:
+    ///     - rootPost: Post object that user will be responding to
+    ///     - postController: PostController object that this is attached to
+    /// - returns: a new ReplyController object
     init(rootPost:Post, postController:PostController) {
         self.rootPost = rootPost
         self.postController = postController
         super.init(nibName: nil, bundle: nil)
     }
     
+    /// Required initializer
     required init?(coder aDecoder: NSCoder) {
         rootPost = nil
         postController = nil
@@ -26,7 +33,6 @@ class ReplyController: UIViewController {
     }
     
     override func viewDidLoad() {
-
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = APP_BLUE
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -75,7 +81,7 @@ class ReplyController: UIViewController {
     }()
 
 
-    //submiti comment button
+    //submit comment button
     let submitButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Post Comment", for: .normal)

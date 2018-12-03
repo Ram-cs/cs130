@@ -6,10 +6,10 @@
 //  Copyright © 2018 Ram Yadav. All rights reserved.
 //
 
-// This viewcontroller lists all course available
 import UIKit
 import FirebaseDatabase
 
+/// This view controller contains a table of all courses available
 class CourseTableViewController: UITableViewController {
 
     var ref: DatabaseReference?
@@ -75,7 +75,7 @@ class CourseTableViewController: UITableViewController {
     }
 }
 
-// Cells
+/// This is a table cell that displays the course name, major, professor and quarter
 class CourseTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -110,6 +110,9 @@ class CourseTableViewCell: UITableViewCell {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-15-[v]-1-[v2]-15-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : self.name, "v2": self.id]))
     }
     
+    /// Set up the content of the cell based on information of a course
+    /// - parameters:
+    ///     - course: A course of interest
     func setupContent(course: Course) {
         self.name.text = course.major + " " + course.id + ": " + course.title
         self.id.text = course.professor + ", " + course.quarter + " " + String(course.year)

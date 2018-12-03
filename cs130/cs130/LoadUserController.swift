@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// This view controller is a loading page
 class LoadUserController: UIViewController {
     static var singletonUser: User?
 
@@ -18,13 +19,10 @@ class LoadUserController: UIViewController {
 
         self.storeCredentials()
         self.setUpName()
-        
-        //let personalBoardController = PersonalBoardController()
-        //let navController = UINavigationController(rootViewController: personalBoardController)
-        //self.present(navController, animated: true, completion: nil)
     }
 
 
+    // stores current user information into singletonUser:User object
     private func storeCredentials() {
         if((Auth.auth().currentUser?.uid) != nil) {
             let userID : String = (Auth.auth().currentUser?.uid)!
@@ -40,6 +38,8 @@ class LoadUserController: UIViewController {
         }
     }
 
+    /// Transitions the NavigationController to the PersonalBoardController
+    /// is called when singletonUser is done fetching data from database
     func transitionToBoard() {
         let personalBoardController = PersonalBoardController()
         let navController = UINavigationController(rootViewController:personalBoardController)
@@ -58,6 +58,7 @@ class LoadUserController: UIViewController {
         return label
     }()
 
+    /// displays "Loading..." on the screen while user information is being fetched from database
     fileprivate func setUpName() {
         view.addSubview(name)
         name.anchor(left: view.leftAnchor, leftPadding: 12, right: view.rightAnchor, rightPadding: -12, top: view.topAnchor, topPadding: 120, bottom: nil, bottomPadding: 0, width: 0, height: 50)

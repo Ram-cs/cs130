@@ -10,12 +10,17 @@ import UIKit
 
 import Firebase
 
+/// This view controller displays a page for the user to create a new post
 class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let personalBoard:PersonalBoardController?
     var majorOptions = [String]()
     var courseOptions = [String]()
     
+    /// Initializes a CreatePostController
+    /// - parameters:
+    ///     - personalBoard: personalBoard object that this is attached to
+    /// - returns: a new CreatePostController object
     init(personalBoard:PersonalBoardController) {
         self.personalBoard = personalBoard
         super.init(nibName: nil, bundle: nil)
@@ -81,7 +86,8 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
         errorLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-40-[v]-40-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-160-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
+        let bottom = String(describing: UIScreen.main.bounds.height / 8)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-120-[v]-" + bottom + "-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : stackView]))
         
         // stackView.anchor(left: view.leftAnchor, leftPadding: 40, right: view.rightAnchor, rightPadding: -40, top: nil, topPadding: 0, bottom: nil, bottomPadding: 0, width: 0, height: 0)
         // stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -154,9 +160,6 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
         return button
     }()
     
-    
-    
-    
     var courseName: UITextField = {
         let button = UITextField();
         button.backgroundColor = .white
@@ -202,7 +205,7 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
     let userType: UISegmentedControl = {
         let user = UISegmentedControl()
-        user.insertSegment(withTitle: "Student", at: 0, animated: true)
+        user.insertSegment(withTitle: "Group", at: 0, animated: true)
         user.insertSegment(withTitle: "Tutor", at: 1, animated: true)
         user.selectedSegmentIndex = 0
         return user

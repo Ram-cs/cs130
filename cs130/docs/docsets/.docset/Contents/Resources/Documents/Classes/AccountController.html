@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AccountController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AccountController" class="dashAnchor"></a>
+    <a title="AccountController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (20% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AccountController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AccountController.html">AccountController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Comment.html">Comment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)CommentViewController">CommentViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Course.html">Course</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CourseDetailViewController.html">CourseDetailViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CourseTableViewCell.html">CourseTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CourseTableViewController.html">CourseTableViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CreatePostController.html">CreatePostController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DatabaseAddController.html">DatabaseAddController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoadUserController.html">LoadUserController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)LoginController">LoginController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)MainTabBarController">MainTabBarController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PersonalBoardController.html">PersonalBoardController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Post.html">Post</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PostController.html">PostController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)PostViewController">PostViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReplyController.html">ReplyController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@cs130@objc(cs)SignUpController">SignUpController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextItem.html">TextItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:5cs1308APP_BLUESo7UIColorCvp">APP_BLUE</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:5cs13011GREEN_COLORSo7UIColorCvp">GREEN_COLOR</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:5cs13010PANEL_GRAYSo7UIColorCvp">PANEL_GRAY</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AccountController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AccountController</span> <span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">UITableViewDataSource</span><span class="p">,</span> <span class="kt">UITableViewDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>This view controller displays the user&rsquo;s name and email, as well as a table of courses enrolled by the user</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:5cs13017AccountControllerC7refreshyyF"></a>
+                    <a name="//apple_ref/swift/Method/refresh()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:5cs13017AccountControllerC7refreshyyF">refresh()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Refreshes the table of enrolled courses</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">refresh</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-12-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

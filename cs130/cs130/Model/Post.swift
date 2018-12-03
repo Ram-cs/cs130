@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Data structure for a post
 public class Post: TextItem {
     let title:String
     let course:String
@@ -18,8 +19,8 @@ public class Post: TextItem {
     
     /// Initializes a Post object
     /// - parameters:
-    ///     - creator: the User that is the author of the Post
-    ///     - creatorUsername: username of creator
+    ///     - creator: the userID that is the author of the Post
+    ///     - creatorUsername: username of the creator
     ///     - title: the title of the Post
     ///     - content: the description of the Post
     ///     - major: major that the Post is categorized under
@@ -36,33 +37,28 @@ public class Post: TextItem {
         self.isClosed = false
         super.init(creator:creator, creatorUsername:creatorUsername, content:content, creationTime:creationTime, ID:ID)
     }
-    
-    ///not functional yet
-//    init(major:String, course:String, ID:String) {
-//        let db:DatabaseReference = Database.database().reference().child("/posts/\(major)/\(course)/\(ID)")
-//        var postTitle:String = ""
-//        var postIsTutorSearch:Bool = false
-//        var postIsClosed:Bool = false
-//        var postCreationTime:Date? = Date()
-//        var postCreatorID:String = ""
-//        var postContent:String = ""
-//        db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
-//            let dic = DataSnapshot.value as! NSDictionary
-//            postTitle = dic["title"] as! String
-//            postIsTutorSearch = dic["isTutorSearch"] as! Bool
-//            postIsClosed = dic["isClosed"] as! Bool
-//            
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-//            postCreationTime = formatter.date(from: dic["creationTime"] as! String)
-//            postCreatorID = dic["creatorID"] as! String
-//            postContent = dic["description"] as! String
-//        })
-//        self.title = postTitle
-//        self.major = major
-//        self.course = course
-//        self.isTutorSearch = postIsTutorSearch
-//        self.isClosed = postIsClosed
-//        super.init(creator:postCreatorID, content:postContent, creationTime:postCreationTime, ID:ID)
-//    }
+
+    /// Compares this Post to another Post
+    /// - parameters:
+    ///     - otherPost: Post that is being compared to
+    /// - returns: equivalence of Posts
+    func equals(otherPost:Post) -> Bool {
+        var comparisons:[Bool] = []
+        comparisons.append(self.title == otherPost.title)
+        comparisons.append(self.course == otherPost.course)
+        comparisons.append(self.major == otherPost.major)
+        comparisons.append(self.isTutorSearch == otherPost.isTutorSearch)
+        comparisons.append(self.isClosed == otherPost.isClosed)
+        comparisons.append(self.creator == otherPost.creator)
+        comparisons.append(self.creatorUsername == otherPost.creatorUsername)
+        comparisons.append(self.content == otherPost.content)
+        comparisons.append(self.creationTime == otherPost.creationTime)
+        comparisons.append(self.ID == otherPost.ID)
+        for val in comparisons {
+            if(!val) {
+                return false
+            }
+        }
+        return true
+    }
 }

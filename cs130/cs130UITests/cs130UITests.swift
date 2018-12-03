@@ -31,13 +31,64 @@ class cs130UITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
     }
+    
+    //Test cases for Account view controller
+    //Adding cousrse
+    func addCourse() {
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Computer Science CS130: Software Programming"]/*[[".cells.staticTexts[\"Computer Science CS130: Software Programming\"]",".staticTexts[\"Computer Science CS130: Software Programming\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
+        let enrollButton = app.buttons["Enroll"]
+        enrollButton.tap()
+        
+        let okayButton = app.alerts["Success"].buttons["Okay"]
+        okayButton.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Computer Science CS131: Programming Languages"]/*[[".cells.staticTexts[\"Computer Science CS131: Programming Languages\"]",".staticTexts[\"Computer Science CS131: Programming Languages\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        enrollButton.tap()
+        okayButton.tap()
+    }
+    
+    //Test case for dropping cousrses
+    func dropCourse() {
+        let app = XCUIApplication()
+        let dropCourseButton = app.buttons["Drop course"]
+        dropCourseButton.tap()
+        
+        let okayButton = app.alerts["Success"].buttons["Okay"]
+        okayButton.tap()
+        app.navigationBars["cs130.CourseDetailView"].buttons["Account"].tap()
+        app.tables/*@START_MENU_TOKEN@*/.staticTexts["Engineering ENGR 183EW: Engineering and Society"]/*[[".cells.staticTexts[\"Engineering ENGR 183EW: Engineering and Society\"]",".staticTexts[\"Engineering ENGR 183EW: Engineering and Society\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        dropCourseButton.tap()
+        okayButton.tap()
+        
+    }
+    
+    //Test case for when tap on the course
+    func tapOnCourse() {
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Kim M., Fall 2018"]/*[[".cells.staticTexts[\"Kim M., Fall 2018\"]",".staticTexts[\"Kim M., Fall 2018\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let accountButton = app.navigationBars["cs130.CourseDetailView"].buttons["Account"]
+        accountButton.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Computer Science CS131: Programming Languages"]/*[[".cells.staticTexts[\"Computer Science CS131: Programming Languages\"]",".staticTexts[\"Computer Science CS131: Programming Languages\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    }
+    
+    //Test case for loinView controller
+    //Test case to check the input field
     func loginTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.textFields["Email"].exists)
         XCTAssertTrue(app.secureTextFields["Password"].exists)
         XCTAssertTrue(app.buttons["Login"].exists)
     }
+    
+<<<<<<< HEAD
+    //Test case for SignUpViewController
+    //Test case to check for the signUp input
+=======
+>>>>>>> b37b8cca12691fbbb028d3312273ee48f74af2e6
     func signUpTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.buttons["Don't have an account? Sign Up."].exists)
@@ -49,6 +100,8 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(app.buttons["Sign Up"].exists)
     }
     
+    //Test case for personalBoard controller
+    //Check for after signup and then logout
     func signUpAndLogOutTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.buttons["Don't have an account? Sign Up."].exists)
@@ -67,6 +120,7 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(sheetsQuery.buttons["Log Out"].exists)
     }
     
+    //Test case when signIn with credentials and after that logout
     func LoginAndSignOutTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.textFields["Email"].exists)
@@ -82,6 +136,7 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(sheetsQuery.buttons["Log Out"].exists)
     }
     
+    //Test case for SignUp useing loginView Controller and then SignUP
     func loginAndSignUpTestCase() {
         let app = XCUIApplication()
         let emailTextField = app.textFields["Email"]

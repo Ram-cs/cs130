@@ -1,26 +1,1405 @@
 {
   "warnings": [
     {
-      "file": "/Users/jesse/Documents/cs130/cs130/cs130/Model/Comment.swift",
-      "line": 12,
-      "symbol": "Comment",
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 14,
+      "symbol": "AccountController.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 15,
+      "symbol": "AccountController.table",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 16,
+      "symbol": "AccountController.courses",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 17,
+      "symbol": "AccountController.username",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 18,
+      "symbol": "AccountController.email",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 20,
+      "symbol": "AccountController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 56,
+      "symbol": "AccountController.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 61,
+      "symbol": "AccountController.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 66,
+      "symbol": "AccountController.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 74,
+      "symbol": "AccountController.tableView(_:heightForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 78,
+      "symbol": "AccountController.tableView(_:didSelectRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 84,
+      "symbol": "AccountController.nameField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 95,
+      "symbol": "AccountController.emailField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 106,
+      "symbol": "AccountController.classTitle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 116,
+      "symbol": "AccountController.allCourses",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AccountController.swift",
+      "line": 126,
+      "symbol": "AccountController.gotoAllCourses(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/AppDelegate.swift",
+      "line": 13,
+      "symbol": "AppDelegate",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/jesse/Documents/cs130/cs130/cs130/Model/Post.swift",
-      "line": 12,
-      "symbol": "Post",
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 15,
+      "symbol": "CommentViewController.formatter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 16,
+      "symbol": "CommentViewController.comments",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 17,
+      "symbol": "CommentViewController.post",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 19,
+      "symbol": "CommentViewController.init(post:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 24,
+      "symbol": "CommentViewController.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 29,
+      "symbol": "CommentViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 36,
+      "symbol": "CommentViewController.get(post:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/CommentViewController.swift",
+      "line": 40,
+      "symbol": "CommentViewController.fetchPostComments(major:course:postID:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/DatabaseAddController.swift",
+      "line": 14,
+      "symbol": "DatabaseAddController.formatter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 15,
+      "symbol": "PostViewController.formatter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 16,
+      "symbol": "PostViewController.posts",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 17,
+      "symbol": "PostViewController.appUser",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 19,
+      "symbol": "PostViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 29,
+      "symbol": "PostViewController.get(user:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 37,
+      "symbol": "PostViewController.fetchUserPosts(major:course:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 68,
+      "symbol": "PostViewController.post(post:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Controller/PostViewController.swift",
+      "line": 84,
+      "symbol": "PostViewController.setClosed(post:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 15,
+      "symbol": "CourseDetailViewController.course",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 16,
+      "symbol": "CourseDetailViewController.infoTable",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 17,
+      "symbol": "CourseDetailViewController.accountController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 30,
+      "symbol": "CourseDetailViewController.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 34,
+      "symbol": "CourseDetailViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 42,
+      "symbol": "CourseDetailViewController.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 46,
+      "symbol": "CourseDetailViewController.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 50,
+      "symbol": "CourseDetailViewController.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 72,
+      "symbol": "CourseDetailViewController.tableView(_:heightForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 76,
+      "symbol": "CourseDetailViewController.courseTitle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 88,
+      "symbol": "CourseDetailViewController.enroll",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 98,
+      "symbol": "CourseDetailViewController.userCnt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 99,
+      "symbol": "CourseDetailViewController.postCnt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 101,
+      "symbol": "CourseDetailViewController.emptyView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 108,
+      "symbol": "CourseDetailViewController.setAlert(title:message:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 119,
+      "symbol": "CourseDetailViewController.enrollButtonPress(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 128,
+      "symbol": "CourseDetailViewController.dropButtonPress(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 193,
+      "symbol": "CourseInfoTableViewCell",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/jesse/Documents/cs130/cs130/cs130/Model/TextItem.swift",
-      "line": 12,
-      "symbol": "TextItem",
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseDetailViewController.swift",
+      "line": 225,
+      "symbol": "CourseStatsBox",
       "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 15,
+      "symbol": "CourseTableViewController.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 16,
+      "symbol": "CourseTableViewController.courses",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 17,
+      "symbol": "CourseTableViewController.accountController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 19,
+      "symbol": "CourseTableViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 50,
+      "symbol": "CourseTableViewController.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 54,
+      "symbol": "CourseTableViewController.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 59,
+      "symbol": "CourseTableViewController.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 66,
+      "symbol": "CourseTableViewController.tableView(_:heightForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 71,
+      "symbol": "CourseTableViewController.tableView(_:didSelectRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 81,
+      "symbol": "CourseTableViewCell.init(style:reuseIdentifier:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 86,
+      "symbol": "CourseTableViewCell.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 90,
+      "symbol": "CourseTableViewCell.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CourseTableViewController.swift",
+      "line": 96,
+      "symbol": "CourseTableViewCell.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 16,
+      "symbol": "CreatePostController.personalBoard",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 17,
+      "symbol": "CreatePostController.majorOptions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 18,
+      "symbol": "CreatePostController.courseOptions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 29,
+      "symbol": "CreatePostController.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 34,
+      "symbol": "CreatePostController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 102,
+      "symbol": "CreatePostController.numberOfComponents(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 106,
+      "symbol": "CreatePostController.pickerView(_:numberOfRowsInComponent:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 117,
+      "symbol": "CreatePostController.pickerView(_:titleForRow:forComponent:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 128,
+      "symbol": "CreatePostController.pickerView(_:didSelectRow:inComponent:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 139,
+      "symbol": "CreatePostController.postName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 151,
+      "symbol": "CreatePostController.majorName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 163,
+      "symbol": "CreatePostController.courseName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 175,
+      "symbol": "CreatePostController.bodyLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 183,
+      "symbol": "CreatePostController.postBody",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 206,
+      "symbol": "CreatePostController.userType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 214,
+      "symbol": "CreatePostController.submitButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 227,
+      "symbol": "CreatePostController.errorLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 238,
+      "symbol": "CreatePostController.addErrorLabel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/CreatePostController.swift",
+      "line": 243,
+      "symbol": "CreatePostController.submitHandle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoadUserController.swift",
+      "line": 14,
+      "symbol": "LoadUserController.singletonUser",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoadUserController.swift",
+      "line": 16,
+      "symbol": "LoadUserController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoadUserController.swift",
+      "line": 50,
+      "symbol": "LoadUserController.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 15,
+      "symbol": "LoginController.singletonUser",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 17,
+      "symbol": "LoginController.logoContainerView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 34,
+      "symbol": "LoginController.emailTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 45,
+      "symbol": "LoginController.passwordTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 57,
+      "symbol": "LoginController.loginButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 70,
+      "symbol": "LoginController.userNameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 79,
+      "symbol": "LoginController.handleLogin()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 115,
+      "symbol": "LoginController.transitionToBoard()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 120,
+      "symbol": "LoginController.dontHaveAccountButtton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 129,
+      "symbol": "LoginController.handleSignUp()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 135,
+      "symbol": "LoginController.preferredStatusBarStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 139,
+      "symbol": "LoginController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 153,
+      "symbol": "LoginController.addErrorLabel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/LoginController.swift",
+      "line": 179,
+      "symbol": "LoginController.LoginErrorCode",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/MainTabBarController.swift",
+      "line": 14,
+      "symbol": "MainTabBarController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Attributes.swift",
+      "line": 11,
+      "symbol": "UsersAttributes",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Attributes.swift",
+      "line": 19,
+      "symbol": "Comments",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Attributes.swift",
+      "line": 31,
+      "symbol": "Majors",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Attributes.swift",
+      "line": 41,
+      "symbol": "Posts",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Comment.swift",
+      "line": 14,
+      "symbol": "Comment.isPrivate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Comment.swift",
+      "line": 15,
+      "symbol": "Comment.rootPost",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Comment.swift",
+      "line": 16,
+      "symbol": "Comment.isResponse",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Comment.swift",
+      "line": 17,
+      "symbol": "Comment.respondeeID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 14,
+      "symbol": "Course.major",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 15,
+      "symbol": "Course.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 16,
+      "symbol": "Course.title",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 17,
+      "symbol": "Course.professor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 18,
+      "symbol": "Course.quarter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 19,
+      "symbol": "Course.year",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 20,
+      "symbol": "Course.userCnt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 21,
+      "symbol": "Course.postCnt",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 22,
+      "symbol": "Course.itemRef",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Course.swift",
+      "line": 24,
+      "symbol": "Course.init(major:id:title:professor:quarter:year:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Post.swift",
+      "line": 14,
+      "symbol": "Post.title",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Post.swift",
+      "line": 15,
+      "symbol": "Post.course",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Post.swift",
+      "line": 16,
+      "symbol": "Post.major",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Post.swift",
+      "line": 17,
+      "symbol": "Post.isTutorSearch",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/Post.swift",
+      "line": 18,
+      "symbol": "Post.isClosed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 14,
+      "symbol": "TextItem.creator",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 15,
+      "symbol": "TextItem.creatorUsername",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 16,
+      "symbol": "TextItem.content",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 17,
+      "symbol": "TextItem.creationTime",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 18,
+      "symbol": "TextItem.ID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 19,
+      "symbol": "TextItem.child",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/TextItem.swift",
+      "line": 20,
+      "symbol": "TextItem.ref",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 16,
+      "symbol": "User.uid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 17,
+      "symbol": "User.email",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 18,
+      "symbol": "User.username",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 19,
+      "symbol": "User.userRef",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 20,
+      "symbol": "User.courses",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 35,
+      "symbol": "User.init(uid:dictionary:luc:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Model/User.swift",
+      "line": 45,
+      "symbol": "User.retrieveUserTriggerTransition(uid:upc:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 15,
+      "symbol": "PersonalBoardController.singletonUser",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 16,
+      "symbol": "PersonalBoardController.formatter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 17,
+      "symbol": "PersonalBoardController.posts",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 18,
+      "symbol": "PersonalBoardController.colorList",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 25,
+      "symbol": "PersonalBoardController.buttonList",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 26,
+      "symbol": "PersonalBoardController.fetchedCourseCount",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 30,
+      "symbol": "PersonalBoardController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 58,
+      "symbol": "PersonalBoardController.preferredStatusBarStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 113,
+      "symbol": "PersonalBoardController.refreshControl",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 120,
+      "symbol": "PersonalBoardController.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 134,
+      "symbol": "PersonalBoardController.accountButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 146,
+      "symbol": "PersonalBoardController.CreatePostButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 160,
+      "symbol": "PersonalBoardController.scrollView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 170,
+      "symbol": "PersonalBoardController.insideScrollView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 252,
+      "symbol": "PersonalBoardController.handleLogOut()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 297,
+      "symbol": "PersonalBoardController.scrollViewDidScroll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PersonalBoardController.swift",
+      "line": 306,
+      "symbol": "PostButton",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 14,
+      "symbol": "PostController.rootPost",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 15,
+      "symbol": "PostController.formatter",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 16,
+      "symbol": "PostController.comments",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 27,
+      "symbol": "PostController.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 32,
+      "symbol": "PostController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 95,
+      "symbol": "PostController.refreshControl",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 102,
+      "symbol": "PostController.scrollView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 112,
+      "symbol": "PostController.insideScrollView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 119,
+      "symbol": "PostController.postText",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 125,
+      "symbol": "PostController.postTitle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 135,
+      "symbol": "PostController.courseTitle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 148,
+      "symbol": "PostController.replyLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 159,
+      "symbol": "PostController.replyButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 222,
+      "symbol": "PostController.clear()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 232,
+      "symbol": "PostController.refreshPost()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 240,
+      "symbol": "PostController.scrollViewDidScroll(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/PostController.swift",
+      "line": 249,
+      "symbol": "UITextView.createPostComment(textContent:username:creationTime:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 14,
+      "symbol": "ReplyController.rootPost",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 15,
+      "symbol": "ReplyController.postController",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 35,
+      "symbol": "ReplyController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 61,
+      "symbol": "ReplyController.postBody",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 74,
+      "symbol": "ReplyController.replyField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 85,
+      "symbol": "ReplyController.submitButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 149,
+      "symbol": "ReplyController.errorLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/ReplyController.swift",
+      "line": 158,
+      "symbol": "ReplyController.addErrorLabel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 15,
+      "symbol": "SignUpController.emailTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 32,
+      "symbol": "SignUpController.userNameTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 60,
+      "symbol": "SignUpController.passwordTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 76,
+      "symbol": "SignUpController.confirmPasswordTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 92,
+      "symbol": "SignUpController.signUpButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 106,
+      "symbol": "SignUpController.userNameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 116,
+      "symbol": "SignUpController.preferredStatusBarStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 120,
+      "symbol": "SignUpController.signUpHandle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 167,
+      "symbol": "SignUpController.alreadyHaveAccountButtton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 176,
+      "symbol": "SignUpController.handleAlreadyHaveAccount()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 181,
+      "symbol": "SignUpController.touchesBegan(_:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 185,
+      "symbol": "SignUpController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 195,
+      "symbol": "SignUpController.addErrorLabel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/SignUpController.swift",
+      "line": 220,
+      "symbol": "SignUpController.LoginErrorCode",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/UserProfileController.swift",
+      "line": 13,
+      "symbol": "UserProfileController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Utilities/Extension.swift",
+      "line": 13,
+      "symbol": "UIColor.rgb(red:green:blue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Utilities/Extension.swift",
+      "line": 18,
+      "symbol": "LoginErrorHandler",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130/cs130/Utilities/Extension.swift",
+      "line": 22,
+      "symbol": "UIView.anchor(left:leftPadding:right:rightPadding:top:topPadding:bottom:bottomPadding:width:height:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/jesse/Documents/cs130/cs130"
+  "source_directory": "/Users/runjiali/Documents/CS130/proj_test/cs130/cs130"
 }

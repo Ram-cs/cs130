@@ -7,21 +7,21 @@
 //
 
 import UIKit
-
 import Firebase
 
+/// This view controller displays the personal board, which contains posts of the user's courses
 class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
     static var singletonUser: User?
     var formatter = DateFormatter()
     var posts = [Post]()
     var colorList = [UIColor.blue,
-                     UIColor.green,
                      UIColor.brown,
                      UIColor.red,
                      UIColor.orange,
                      UIColor.purple,
-                     UIColor.gray]
+                     UIColor.gray,
+                     UIColor.black]
     var buttonList = [UIButton]()
     var fetchedCourseCount:Int = 0
     
@@ -38,7 +38,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
 
         view.backgroundColor = .white
         
-        get(user:LoadUserController.singletonUser!)
+        getCourses()
         setUpRefresh()
         setUpAccountButton()
         setUpName()
@@ -46,8 +46,9 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         setUplogOutButton()
     }
     
-    func get(user:User)  {
-        let userCourses:[(String, String)] = user.getCourses()
+    /// Fetches posts from the firebase database for all of current user's courses
+    func getCourses()  {
+        let userCourses:[(String, String)] = LoadUserController.singletonUser!.courses
         for course in userCourses {
             fetchUserPosts(major: course.0, course: course.1)
         }
@@ -60,7 +61,11 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     
     
     
-    
+    /// Fetches posts from the firebase database for a specific course
+    /// stores the courses in self.posts
+    /// - parameters: 
+    ///     - major: major of the course
+    ///     - course: course number of the course
     func fetchUserPosts(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child("posts/\(major)/\(course)")
         db.observeSingleEvent(of: .value, with: { (DataSnapshot) in
@@ -176,7 +181,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         // add scrollView and the view inside scrollView to the view and create anchors
         view.addSubview(scrollView)
         scrollView.addSubview(insideScrollView)
-        
+        //reference: https://www.letsbuildthatapp.com/course/Instagram-Firebase
         scrollView.anchor(left: view.leftAnchor, leftPadding: 5, right: view.rightAnchor, rightPadding: -5, top: view.topAnchor, topPadding: 180, bottom: view.bottomAnchor, bottomPadding: -150, width: 0, height: 0)
         
         insideScrollView.anchor(left: scrollView.leftAnchor, leftPadding: 0, right: scrollView.rightAnchor, rightPadding: 0, top: scrollView.topAnchor, topPadding: 0, bottom: scrollView.bottomAnchor, bottomPadding: 0, width: scrollView.bounds.size.width, height: 0)
@@ -237,6 +242,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
     }
     
     // setup logout button
+    //reference: https://www.letsbuildthatapp.com/course/Instagram-Firebase
     private func setUplogOutButton() {
         let imageName = "gear.png"
         let image = UIImage(named: imageName)
@@ -295,13 +301,29 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.pushViewController(accountController, animated:true)
     }
 
-    //refreshes this page
+    func clear() {
+        for subview in self.scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        for subview in self.insideScrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        self.posts = []
+        self.buttonList = []
+        self.fetchedCourseCount = 0
+    }
+    
+    /// Refreshes the PersonalBoard
     @objc func refreshBoard() {        
-        let personalBoardController = PersonalBoardController()
-        let navController = UINavigationController(rootViewController:personalBoardController)
-        self.present(navController, animated:true, completion:nil)
+//        let personalBoardController = PersonalBoardController()
+//        let navController = UINavigationController(rootViewController:personalBoardController)
+//        self.present(navController, animated:true, completion:nil)
+//        refreshControl.endRefreshing()
+//        self.dismiss(animated:true, completion:nil)
+        
         refreshControl.endRefreshing()
-        self.dismiss(animated:true, completion:nil)
+        self.clear()
+        self.viewDidLoad()
     }
     
     // function that stops ScrollView from scrolling horizontally
@@ -324,7 +346,11 @@ class PostButton: UIButton {
     init(post:Post) {
         self.post = post
         super.init(frame: .zero)
-        self.setTitle(self.post.title, for: .normal)
+        var tutorStudent:String = ""
+        if(self.post.isTutorSearch) {
+            tutorStudent = "_TutorSearch"
+        }
+        self.setTitle(self.post.course + tutorStudent + ": " + self.post.title, for: .normal)
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
         self.backgroundColor = UIColor.rgb(red:17, green:154, blue:237)

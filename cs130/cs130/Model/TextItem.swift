@@ -9,8 +9,8 @@
 import Foundation
 import FirebaseDatabase
 
+/// Parent class for both posts and comments
 public class TextItem {
-    //let creator:User
     let creator:String
     let creatorUsername:String
     var content:String
@@ -22,7 +22,8 @@ public class TextItem {
     
     /// Initializes a TextItem object
     /// - parameters:
-    ///     - creator the User that is the author of the Comment
+    ///     - creator: the userID that is the author of the Comment
+    ///     - creatorUsername: the username of the creator
     ///     - content: the content of the TextItem
     ///     - creationTime: time that this TextItem was created/posted
     ///     - ID: TextItem identifier in the database

@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import UIKit
 
+/// This view controller displays comments for a post
 class CommentViewController: UITableViewController {
     var formatter = DateFormatter()
     var comments = [Comment]()

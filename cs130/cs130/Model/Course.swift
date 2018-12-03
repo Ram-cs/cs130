@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+/// Data structure for a course
 class Course {
     let major: String
     let id: String
@@ -37,6 +38,7 @@ class Course {
     /// - parameters:
     ///     - major: the major of the course
     ///     - snapshot: snapshot of the course from the database retrieved by listeners
+    /// - returns: a Course object
     init(major: String, snapshot: DataSnapshot) {
         self.major = major
         self.id = snapshot.key
@@ -62,12 +64,15 @@ class Course {
         return self.major + " " + self.id
     }
     
-    /// When add == true, increment user count of the course by 1, otherwise decrement
+    /// When add == true, increment user count of the course by 1 in the database, otherwise decrement
     /// - parameters:
     ///     - add: if true increment user count, or otherwise
     func updateUserCnt(add: Bool) {
         self.itemRef?.runTransactionBlock({ (MutableData) -> TransactionResult in
             var dic = MutableData.value as? [String: AnyObject]
+            if dic == nil {
+                return TransactionResult.success(withValue: MutableData)
+            }
             var cnt = dic?["users"] as! Int
             if add {
                 cnt += 1
@@ -80,12 +85,13 @@ class Course {
         })
     }
     
-    /// Creates an observer to the database and updates user count and post count of the course in real time.
-    /// This is called within the constructor
-    func setUpObserver() {
+    // Creates an observer to the database and updates user count and post count of the course in real time.
+    fileprivate func setUpObserver() {
         self.itemRef?.observe(.value) { (DataSnapshot) in
             let dic = DataSnapshot.value as? NSDictionary
-            self.userCnt = dic?["users"] as! Int
+            if (dic != nil) {
+                self.userCnt = dic?["users"] as! Int
+            }
         }
         
         // Observe changes in post count

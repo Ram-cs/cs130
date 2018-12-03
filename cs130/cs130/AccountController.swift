@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
+/// This view controller displays the user's name and email, as well as a table of courses enrolled by the user
 class AccountController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     var ref: DatabaseReference?
     var table = UITableView()
@@ -29,14 +30,14 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         display()
     }
 
-    func getCourses() {
+    fileprivate func getCourses() {
         let userCourses:[(String, String)] = LoadUserController.singletonUser!.courses
         for course in userCourses {
             fetchCourse(major: course.0, course: course.1)
         }
     }
 
-    func fetchCourse(major: String, course: String) {
+    fileprivate func fetchCourse(major: String, course: String) {
         let db:DatabaseReference = Database.database().reference().child(Majors.MAJORS).child(major).child(course)
         db.observeSingleEvent(of: .value, with: { (snapshot) in
             let fetchedCourse:Course = Course(major:major, snapshot:snapshot)
@@ -56,12 +57,12 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         return 1
     }
     
-    //how many rows are displayed
+    // how many rows are displayed
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.courses.count
     }
     
-    //display each cell
+    // display each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseTableViewCell
         let course = self.courses[indexPath.row]
@@ -128,7 +129,6 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         self.navigationController?.pushViewController(courseTableViewController, animated: true)
     }
     
-
     fileprivate func display(){
 //        nameField.text = username
 //        nameField.heightAnchor.constraint(equalToConstant: 200).isActive = true
@@ -162,7 +162,8 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         view.addSubview(pageStack)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]-150-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
+        let bottom = String(describing: UIScreen.main.bounds.height / 10)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[v]-" + bottom + "-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v" : pageStack]))
         
     }
     
@@ -171,6 +172,7 @@ class AccountController: UIViewController, UITableViewDataSource, UITableViewDel
         self.email = LoadUserController.singletonUser!.email
     }
     
+    /// Refreshes the table of enrolled courses
     func refresh() {
         self.viewDidLoad()
         self.table.reloadData()
