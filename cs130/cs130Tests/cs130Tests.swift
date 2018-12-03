@@ -222,6 +222,7 @@ class cs130Tests: XCTestCase {
         }
     }
 
+    // Checks whether a Post that is added to the database can be correctly read back
     func checkPostReadWrite() {
         let dac:DatabaseAddController = DatabaseAddController()
         let formatter = DateFormatter()
@@ -258,16 +259,13 @@ class cs130Tests: XCTestCase {
         })
     }
 
+    // Handles asynchronous database reads
     func checkPostRead(orig:Post, copy:Post) {
         XCTAssertTrue(orig.equals(otherPost:copy))
-        //if(orig.equals(otherPost:copy)) {
-            //print("Database Post Read-Write test passed!")
-        //}
-        //else {
-            //print("Database Post Read-Write test failed!")
-        //}
     }
 
+
+    // Checks whether a Comment that is added to the database can be correctly read back
     func checkCommentReadWrite() {
         let dac:DatabaseAddController = DatabaseAddController()
         let formatter = DateFormatter()
@@ -310,15 +308,10 @@ class cs130Tests: XCTestCase {
             self.checkCommentRead(orig:sampleComment, copy:fetchedComment)
         })
     }
-
+    
+    // Handles asynchronous database reads
     func checkCommentRead(orig:Comment, copy:Comment) {
         XCTAssertTrue(orig.equals(otherComment:copy))
-        //if(orig.equals(otherComment:copy)) {
-            //print("Database Comment Read-Write test passed!")
-        //}
-        //else {
-            //print("Database Comment Read-Write test failed!")
-        //}
     }
     
 }
