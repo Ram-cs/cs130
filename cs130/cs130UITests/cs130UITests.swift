@@ -84,11 +84,8 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(app.buttons["Login"].exists)
     }
     
-<<<<<<< HEAD
     //Test case for SignUpViewController
     //Test case to check for the signUp input
-=======
->>>>>>> b37b8cca12691fbbb028d3312273ee48f74af2e6
     func signUpTestCase() {
         let app = XCUIApplication()
         XCTAssertTrue(app.buttons["Don't have an account? Sign Up."].exists)
@@ -150,5 +147,31 @@ class cs130UITests: XCTestCase {
         XCTAssertTrue(app.textFields["Confirm password"].exists)
         XCTAssertTrue(app.buttons["Sign Up"].exists)
     }
-
+    
+    func testPersonalBoard() {
+        
+        let app = XCUIApplication()
+        XCTAssertTrue(app.navigationBars["Personal Board"].buttons["Account"].exists)
+        XCTAssertTrue(app.buttons["Create Post!"].exists)
+        XCTAssertTrue(app.navigationBars["Create Post"].buttons["Personal Board"].exists)
+    }
+    
+    func testPost() {
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons["CS130_TutorSearch: Tutor for CS130"].tap()
+        
+        XCTAssertTrue(elementsQuery.staticTexts["TutorSearch: Tutor for CS130"].exists)
+        XCTAssertTrue(elementsQuery.staticTexts["Computer Science CS130"].exists)
+        XCTAssertTrue(elementsQuery.staticTexts["Replies:"].exists)
+        XCTAssertTrue(app.buttons["Reply"].exists)
+    }
+    
+    func testPostReply() {
+        
+        let app = XCUIApplication()
+        app.scrollViews.otherElements.buttons["CS130_TutorSearch: Tutor for CS130"].tap()
+        app.buttons["Reply"].tap()
+        XCTAssertTrue(app.buttons["Post Comment"].exists)
+    }
 }
