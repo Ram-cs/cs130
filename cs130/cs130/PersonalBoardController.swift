@@ -293,6 +293,7 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         }
         self.posts = []
         self.buttonList = []
+        self.fetchedCourseCount = 0
     }
     
     /// Refreshes the PersonalBoard

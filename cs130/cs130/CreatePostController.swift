@@ -205,7 +205,7 @@ class CreatePostController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
     let userType: UISegmentedControl = {
         let user = UISegmentedControl()
-        user.insertSegment(withTitle: "Student", at: 0, animated: true)
+        user.insertSegment(withTitle: "Group", at: 0, animated: true)
         user.insertSegment(withTitle: "Tutor", at: 1, animated: true)
         user.selectedSegmentIndex = 0
         return user
