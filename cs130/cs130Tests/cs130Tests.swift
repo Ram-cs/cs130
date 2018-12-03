@@ -149,16 +149,19 @@ class cs130Tests: XCTestCase {
         wait(for: [expectation_4], timeout: 20.0)
     }
     
+    //test case to check if the emailfield is filledout
     func testUsernameEmpty() {
         let viewController = LoginController()
         XCTAssertEqual("", viewController.emailTextField.text) ////check against empty or enterred username
     }
     
+    //Test for if the password field is empty
     func testPasswordEmpty() {
         let viewController = LoginController()
         XCTAssertEqual("", viewController.passwordTextField.text) //check against empty or enterred password
     }
     
+    //Test for whether the password is matched
     func passwordMatched() {
         var signUpViewController = SignUpController()
         var password = signUpViewController.passwordTextField;
@@ -167,6 +170,7 @@ class cs130Tests: XCTestCase {
         
     }
     
+    //Test for whether the user is SignedIn
     func checkForSignIn() {
         let viewController = LoginController()
         guard let email = viewController.emailTextField.text else {
@@ -185,6 +189,7 @@ class cs130Tests: XCTestCase {
         }
     }
     
+    //Test for the user is signUp
     func checkForSignUp() {
         let signUpViewController = SignUpController()
         guard let email = signUpViewController.emailTextField.text, email.count > 0 else {
