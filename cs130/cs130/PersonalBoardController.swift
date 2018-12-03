@@ -284,13 +284,28 @@ class PersonalBoardController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.pushViewController(accountController, animated:true)
     }
 
+    func clear() {
+        for subview in self.scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        for subview in self.insideScrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        self.posts = []
+        self.buttonList = []
+    }
+    
     /// Refreshes the PersonalBoard
     @objc func refreshBoard() {        
-        let personalBoardController = PersonalBoardController()
-        let navController = UINavigationController(rootViewController:personalBoardController)
-        self.present(navController, animated:true, completion:nil)
+//        let personalBoardController = PersonalBoardController()
+//        let navController = UINavigationController(rootViewController:personalBoardController)
+//        self.present(navController, animated:true, completion:nil)
+//        refreshControl.endRefreshing()
+//        self.dismiss(animated:true, completion:nil)
+        
         refreshControl.endRefreshing()
-        self.dismiss(animated:true, completion:nil)
+        self.clear()
+        self.viewDidLoad()
     }
     
     // function that stops ScrollView from scrolling horizontally
